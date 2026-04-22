@@ -1,0 +1,25 @@
+{
+  "intro": "The Digital Disruption Matrix is a yearly barometer from the ESSEC Digital Disruption Chair designed for leaders seeking clarity on how emerging technologies reshape industries.",
+  "audience": [
+    "Current and future global leaders making technology portfolio decisions",
+    "Innovation and transformation teams planning adoption roadmaps",
+    "Executives and investors tracking cross-sector disruption intensity",
+    "Operational and risk teams preparing for near-term capability shifts"
+  ],
+  "interpretation": [
+    "Each cell maps one technology × one industry intersection on a 0-100 disruption scale.",
+    "Technology columns reveal cross-sector momentum while industry rows show domain exposure and readiness.",
+    "Darker intensity indicates stronger disruption potential in the near-to-medium term."
+  ],
+  "methodology": [
+    "The model combines market signals, publications, patents, and executive survey responses into calibrated disruption scores.",
+    "Signal pillars include ecosystem maturity, innovation intensity, momentum, and professional perception.",
+    "Scores are normalized to keep comparisons consistent across all technology and industry intersections."
+  ],
+  "researchApproach": [
+    "Research integrates industry reports, patent filings, academic publications, social listening, and structured survey signals.",
+    "Expert interviews add qualitative context to quantitative indicators.",
+    "Editorial synthesis highlights converging patterns, polarized signals, and actionable hotspots."
+  ],
+  "institutionalContext": "The framework is maintained by the ESSEC Digital Disruption Chair with support from ecosystem partners, and is structured for yearly refreshes without changing the core templates."
+}

@@ -1,0 +1,1628 @@
+[
+  {
+    "id": "industry-energy",
+    "slug": "energy",
+    "name": "Energy",
+    "summary": "Energy posts an average matrix heat score of 20.5/100 across the five tracked technologies.",
+    "description": "Companies involved in the exploration, production, or refining of energy products.",
+    "strategicScores": {
+      "strategicUrgency": 20,
+      "adoptionVelocity": 35,
+      "investmentConfidence": 4,
+      "innovationIntensity": 21,
+      "operationalReadiness": 30
+    },
+    "scoreSummary": [
+      {
+        "label": "Average Heat Score",
+        "value": "20.5/100",
+        "tone": "neutral"
+      },
+      {
+        "label": "Top technology",
+        "value": "Descriptive AI"
+      },
+      {
+        "label": "Cells above 50",
+        "value": "0"
+      }
+    ],
+    "disruptionDimensions": [
+      {
+        "label": "Innovation Intensity",
+        "score": 21
+      },
+      {
+        "label": "Innovation Momentum",
+        "score": 35
+      },
+      {
+        "label": "Startup Activity",
+        "score": 38
+      },
+      {
+        "label": "Market Validation",
+        "score": 4
+      },
+      {
+        "label": "Professional Perception",
+        "score": 30
+      }
+    ],
+    "topTechnologies": [
+      {
+        "label": "Descriptive AI",
+        "score": 32
+      },
+      {
+        "label": "Agentic & Gen AI",
+        "score": 30
+      },
+      {
+        "label": "Robotics & Automation",
+        "score": 16
+      },
+      {
+        "label": "Quantum Computing",
+        "score": 15
+      },
+      {
+        "label": "Blockchain & Decentralized Systems",
+        "score": 10
+      }
+    ],
+    "impactDistribution": [
+      {
+        "year": "No impact",
+        "value": 12.1
+      },
+      {
+        "year": "Minor",
+        "value": 21.5
+      },
+      {
+        "year": "Moderate",
+        "value": 25.7
+      },
+      {
+        "year": "Significant",
+        "value": 25.3
+      },
+      {
+        "year": "Very significant",
+        "value": 15.4
+      }
+    ],
+    "maturityTimeline": [
+      {
+        "year": "Never",
+        "value": 10.6
+      },
+      {
+        "year": "Later (2+yr)",
+        "value": 36.3
+      },
+      {
+        "year": "Soon (next yr)",
+        "value": 19.1
+      },
+      {
+        "year": "Now",
+        "value": 33.9
+      }
+    ],
+    "useCaseSnippets": [
+      {
+        "title": " signal",
+        "description": "Answers will change in weeks not months based on how fast we are running.",
+        "signal": "30y experience"
+      }
+    ],
+    "marketValidation": {
+      "ecosystemMetrics": [
+        {
+          "label": "Unicorn funding",
+          "value": "$4.1B"
+        },
+        {
+          "label": "Unicorn count",
+          "value": "2"
+        },
+        {
+          "label": "Startup count (2025)",
+          "value": "52"
+        }
+      ],
+      "topCompanies": [
+        "Crusoe",
+        "Univers"
+      ],
+      "fundingIndicators": [
+        {
+          "label": "Native unicorns",
+          "value": "0"
+        },
+        {
+          "label": "Emerging unicorns",
+          "value": "2"
+        },
+        {
+          "label": "Scholar 2025 volume",
+          "value": "25,950"
+        }
+      ]
+    },
+    "expertQuote": {
+      "speaker": "Ducatel",
+      "role": "Energy interview synthesis",
+      "text": "Agentic AI is really what everyone is looking at, what everyone is talking about."
+    }
+  },
+  {
+    "id": "industry-materials",
+    "slug": "materials",
+    "name": "Materials",
+    "summary": "Materials posts an average matrix heat score of 27.9/100 across the five tracked technologies.",
+    "description": "Businesses in chemicals, construction materials, metals, paper, and forestry products.",
+    "strategicScores": {
+      "strategicUrgency": 28,
+      "adoptionVelocity": 30,
+      "investmentConfidence": 16,
+      "innovationIntensity": 42,
+      "operationalReadiness": 39
+    },
+    "scoreSummary": [
+      {
+        "label": "Average Heat Score",
+        "value": "27.9/100",
+        "tone": "neutral"
+      },
+      {
+        "label": "Top technology",
+        "value": "Descriptive AI"
+      },
+      {
+        "label": "Cells above 50",
+        "value": "0"
+      }
+    ],
+    "disruptionDimensions": [
+      {
+        "label": "Innovation Intensity",
+        "score": 42
+      },
+      {
+        "label": "Innovation Momentum",
+        "score": 30
+      },
+      {
+        "label": "Startup Activity",
+        "score": 24
+      },
+      {
+        "label": "Market Validation",
+        "score": 16
+      },
+      {
+        "label": "Professional Perception",
+        "score": 39
+      }
+    ],
+    "topTechnologies": [
+      {
+        "label": "Descriptive AI",
+        "score": 44
+      },
+      {
+        "label": "Agentic & Gen AI",
+        "score": 41
+      },
+      {
+        "label": "Robotics & Automation",
+        "score": 26
+      },
+      {
+        "label": "Quantum Computing",
+        "score": 17
+      },
+      {
+        "label": "Blockchain & Decentralized Systems",
+        "score": 11
+      }
+    ],
+    "impactDistribution": [
+      {
+        "year": "No impact",
+        "value": 7.5
+      },
+      {
+        "year": "Minor",
+        "value": 18.4
+      },
+      {
+        "year": "Moderate",
+        "value": 24.7
+      },
+      {
+        "year": "Significant",
+        "value": 29.4
+      },
+      {
+        "year": "Very significant",
+        "value": 20.0
+      }
+    ],
+    "maturityTimeline": [
+      {
+        "year": "Never",
+        "value": 10.2
+      },
+      {
+        "year": "Later (2+yr)",
+        "value": 41.6
+      },
+      {
+        "year": "Soon (next yr)",
+        "value": 18.8
+      },
+      {
+        "year": "Now",
+        "value": 29.4
+      }
+    ],
+    "useCaseSnippets": [
+      {
+        "title": "Cross-technology adoption signal",
+        "description": "Materials shows strongest disruption concentration in Descriptive AI and Agentic & Gen AI.",
+        "signal": "Average heat score 27.9/100"
+      }
+    ],
+    "marketValidation": {
+      "ecosystemMetrics": [
+        {
+          "label": "Unicorn funding",
+          "value": "$12.4B"
+        },
+        {
+          "label": "Unicorn count",
+          "value": "23"
+        },
+        {
+          "label": "Startup count (2025)",
+          "value": "22"
+        }
+      ],
+      "topCompanies": [
+        "Silicon Box",
+        "Relativity Space",
+        "KoBold Metals",
+        "Saronic",
+        "AIWAYS"
+      ],
+      "fundingIndicators": [
+        {
+          "label": "Native unicorns",
+          "value": "3"
+        },
+        {
+          "label": "Emerging unicorns",
+          "value": "1"
+        },
+        {
+          "label": "Scholar 2025 volume",
+          "value": "68,274"
+        }
+      ]
+    },
+    "expertQuote": {
+      "speaker": "Industry Expert Panel",
+      "role": "Materials interview synthesis",
+      "text": "Materials is experiencing uneven but accelerating technology adoption, with readiness concentrated in high-signal intersections."
+    }
+  },
+  {
+    "id": "industry-industrials",
+    "slug": "industrials",
+    "name": "Industrials",
+    "summary": "Industrials posts an average matrix heat score of 36.9/100 across the five tracked technologies.",
+    "description": "Aerospace, defense, machinery, construction, fabrication, and manufacturing.",
+    "strategicScores": {
+      "strategicUrgency": 37,
+      "adoptionVelocity": 38,
+      "investmentConfidence": 28,
+      "innovationIntensity": 53,
+      "operationalReadiness": 44
+    },
+    "scoreSummary": [
+      {
+        "label": "Average Heat Score",
+        "value": "36.9/100",
+        "tone": "neutral"
+      },
+      {
+        "label": "Top technology",
+        "value": "Descriptive AI"
+      },
+      {
+        "label": "Cells above 50",
+        "value": "1"
+      }
+    ],
+    "disruptionDimensions": [
+      {
+        "label": "Innovation Intensity",
+        "score": 53
+      },
+      {
+        "label": "Innovation Momentum",
+        "score": 38
+      },
+      {
+        "label": "Startup Activity",
+        "score": 50
+      },
+      {
+        "label": "Market Validation",
+        "score": 28
+      },
+      {
+        "label": "Professional Perception",
+        "score": 44
+      }
+    ],
+    "topTechnologies": [
+      {
+        "label": "Descriptive AI",
+        "score": 54
+      },
+      {
+        "label": "Agentic & Gen AI",
+        "score": 47
+      },
+      {
+        "label": "Robotics & Automation",
+        "score": 46
+      },
+      {
+        "label": "Blockchain & Decentralized Systems",
+        "score": 21
+      },
+      {
+        "label": "Quantum Computing",
+        "score": 17
+      }
+    ],
+    "impactDistribution": [
+      {
+        "year": "No impact",
+        "value": 7.3
+      },
+      {
+        "year": "Minor",
+        "value": 17.6
+      },
+      {
+        "year": "Moderate",
+        "value": 23.2
+      },
+      {
+        "year": "Significant",
+        "value": 31.8
+      },
+      {
+        "year": "Very significant",
+        "value": 20.2
+      }
+    ],
+    "maturityTimeline": [
+      {
+        "year": "Never",
+        "value": 7.9
+      },
+      {
+        "year": "Later (2+yr)",
+        "value": 36.4
+      },
+      {
+        "year": "Soon (next yr)",
+        "value": 19.6
+      },
+      {
+        "year": "Now",
+        "value": 36.1
+      }
+    ],
+    "useCaseSnippets": [
+      {
+        "title": "Descriptive AI, Agentic & GenAI signal",
+        "description": "We have used descriptive and generative AI a lot on the procurement side to model/predict the impact of potential commodities pricing (63 commodities) on our chemical costs. In terms of value creation, this has been huge.",
+        "signal": "35y experience"
+      },
+      {
+        "title": "Robotics & Automation signal",
+        "description": "Autonomy is the major disruptor.",
+        "signal": "28y experience"
+      }
+    ],
+    "marketValidation": {
+      "ecosystemMetrics": [
+        {
+          "label": "Unicorn funding",
+          "value": "$26.0B"
+        },
+        {
+          "label": "Unicorn count",
+          "value": "34"
+        },
+        {
+          "label": "Startup count (2025)",
+          "value": "168"
+        }
+      ],
+      "topCompanies": [
+        "Anduril Industries",
+        "Figure",
+        "Helsing",
+        "Relativity Space",
+        "Apptronik"
+      ],
+      "fundingIndicators": [
+        {
+          "label": "Native unicorns",
+          "value": "9"
+        },
+        {
+          "label": "Emerging unicorns",
+          "value": "8"
+        },
+        {
+          "label": "Scholar 2025 volume",
+          "value": "105,715"
+        }
+      ]
+    },
+    "expertQuote": {
+      "speaker": "Laurent Deloire",
+      "role": "Industrials interview synthesis",
+      "text": "There is a real gap between understanding the technology and using it at scale."
+    }
+  },
+  {
+    "id": "industry-consumer-goods",
+    "slug": "consumer-goods",
+    "name": "Consumer Goods",
+    "summary": "Consumer Goods posts an average matrix heat score of 39.1/100 across the five tracked technologies.",
+    "description": "Food & Beverage, General Merchandise, Clothing & Apparel, Household & Personal Care, Mass market & Luxury goods.",
+    "strategicScores": {
+      "strategicUrgency": 39,
+      "adoptionVelocity": 47,
+      "investmentConfidence": 28,
+      "innovationIntensity": 28,
+      "operationalReadiness": 49
+    },
+    "scoreSummary": [
+      {
+        "label": "Average Heat Score",
+        "value": "39.1/100",
+        "tone": "neutral"
+      },
+      {
+        "label": "Top technology",
+        "value": "Descriptive AI"
+      },
+      {
+        "label": "Cells above 50",
+        "value": "2"
+      }
+    ],
+    "disruptionDimensions": [
+      {
+        "label": "Innovation Intensity",
+        "score": 28
+      },
+      {
+        "label": "Innovation Momentum",
+        "score": 47
+      },
+      {
+        "label": "Startup Activity",
+        "score": 56
+      },
+      {
+        "label": "Market Validation",
+        "score": 28
+      },
+      {
+        "label": "Professional Perception",
+        "score": 49
+      }
+    ],
+    "topTechnologies": [
+      {
+        "label": "Descriptive AI",
+        "score": 62
+      },
+      {
+        "label": "Agentic & Gen AI",
+        "score": 58
+      },
+      {
+        "label": "Robotics & Automation",
+        "score": 28
+      },
+      {
+        "label": "Blockchain & Decentralized Systems",
+        "score": 24
+      },
+      {
+        "label": "Quantum Computing",
+        "score": 23
+      }
+    ],
+    "impactDistribution": [
+      {
+        "year": "No impact",
+        "value": 7.6
+      },
+      {
+        "year": "Minor",
+        "value": 17.9
+      },
+      {
+        "year": "Moderate",
+        "value": 23.7
+      },
+      {
+        "year": "Significant",
+        "value": 29.4
+      },
+      {
+        "year": "Very significant",
+        "value": 21.4
+      }
+    ],
+    "maturityTimeline": [
+      {
+        "year": "Never",
+        "value": 5.9
+      },
+      {
+        "year": "Later (2+yr)",
+        "value": 35.0
+      },
+      {
+        "year": "Soon (next yr)",
+        "value": 17.5
+      },
+      {
+        "year": "Now",
+        "value": 41.5
+      }
+    ],
+    "useCaseSnippets": [
+      {
+        "title": "Descriptive AI, Agentic & GenAI signal",
+        "description": "AI is like a primordial soup right now. The promise far exceeds the outcomes in the near term, and will exceed our imagination in the long term — particularly combined with quantum computing and robotics.",
+        "signal": "22y experience"
+      },
+      {
+        "title": "Descriptive AI, Agentic & GenAI, Robotics signal",
+        "description": "Cobots, descriptive AI and AI agents are already part of our industry: they are already changing our business model.",
+        "signal": "24y experience"
+      }
+    ],
+    "marketValidation": {
+      "ecosystemMetrics": [
+        {
+          "label": "Unicorn funding",
+          "value": "$28.0B"
+        },
+        {
+          "label": "Unicorn count",
+          "value": "43"
+        },
+        {
+          "label": "Startup count (2025)",
+          "value": "392"
+        }
+      ],
+      "topCompanies": [
+        "Noon",
+        "Tamara",
+        "Zipline",
+        "Helsing",
+        "Shield AI"
+      ],
+      "fundingIndicators": [
+        {
+          "label": "Native unicorns",
+          "value": "3"
+        },
+        {
+          "label": "Emerging unicorns",
+          "value": "15"
+        },
+        {
+          "label": "Scholar 2025 volume",
+          "value": "24,357"
+        }
+      ]
+    },
+    "expertQuote": {
+      "speaker": "Fetiveau",
+      "role": "Consumer Goods interview synthesis",
+      "text": "In China I tell my phone 'bring me this drink.' No need to pay or give my address. I get it in 5 minutes — through chains of agents that know bank cards, address, etc."
+    }
+  },
+  {
+    "id": "industry-health-care",
+    "slug": "health-care",
+    "name": "Health Care",
+    "summary": "Health Care posts an average matrix heat score of 44.4/100 across the five tracked technologies.",
+    "description": "Health care equipment and services, pharmaceuticals, and biotechnology companies.",
+    "strategicScores": {
+      "strategicUrgency": 44,
+      "adoptionVelocity": 37,
+      "investmentConfidence": 34,
+      "innovationIntensity": 83,
+      "operationalReadiness": 50
+    },
+    "scoreSummary": [
+      {
+        "label": "Average Heat Score",
+        "value": "44.4/100",
+        "tone": "neutral"
+      },
+      {
+        "label": "Top technology",
+        "value": "Descriptive AI"
+      },
+      {
+        "label": "Cells above 50",
+        "value": "2"
+      }
+    ],
+    "disruptionDimensions": [
+      {
+        "label": "Innovation Intensity",
+        "score": 83
+      },
+      {
+        "label": "Innovation Momentum",
+        "score": 37
+      },
+      {
+        "label": "Startup Activity",
+        "score": 56
+      },
+      {
+        "label": "Market Validation",
+        "score": 34
+      },
+      {
+        "label": "Professional Perception",
+        "score": 50
+      }
+    ],
+    "topTechnologies": [
+      {
+        "label": "Descriptive AI",
+        "score": 68
+      },
+      {
+        "label": "Agentic & Gen AI",
+        "score": 67
+      },
+      {
+        "label": "Robotics & Automation",
+        "score": 34
+      },
+      {
+        "label": "Quantum Computing",
+        "score": 29
+      },
+      {
+        "label": "Blockchain & Decentralized Systems",
+        "score": 24
+      }
+    ],
+    "impactDistribution": [
+      {
+        "year": "No impact",
+        "value": 7.4
+      },
+      {
+        "year": "Minor",
+        "value": 14.2
+      },
+      {
+        "year": "Moderate",
+        "value": 24.3
+      },
+      {
+        "year": "Significant",
+        "value": 31.5
+      },
+      {
+        "year": "Very significant",
+        "value": 22.5
+      }
+    ],
+    "maturityTimeline": [
+      {
+        "year": "Never",
+        "value": 7.2
+      },
+      {
+        "year": "Later (2+yr)",
+        "value": 34.2
+      },
+      {
+        "year": "Soon (next yr)",
+        "value": 16.5
+      },
+      {
+        "year": "Now",
+        "value": 42.1
+      }
+    ],
+    "useCaseSnippets": [
+      {
+        "title": "Cross-technology adoption signal",
+        "description": "Health Care shows strongest disruption concentration in Descriptive AI and Agentic & Gen AI.",
+        "signal": "Average heat score 44.4/100"
+      }
+    ],
+    "marketValidation": {
+      "ecosystemMetrics": [
+        {
+          "label": "Unicorn funding",
+          "value": "$28.5B"
+        },
+        {
+          "label": "Unicorn count",
+          "value": "60"
+        },
+        {
+          "label": "Startup count (2025)",
+          "value": "452"
+        }
+      ],
+      "topCompanies": [
+        "Zipline",
+        "CMR Surgical",
+        "Neuralink",
+        "Xaira Therapeutics",
+        "Commure"
+      ],
+      "fundingIndicators": [
+        {
+          "label": "Native unicorns",
+          "value": "7"
+        },
+        {
+          "label": "Emerging unicorns",
+          "value": "16"
+        },
+        {
+          "label": "Scholar 2025 volume",
+          "value": "334,536"
+        }
+      ]
+    },
+    "expertQuote": {
+      "speaker": "Alcorn & Zar",
+      "role": "Health Care interview synthesis",
+      "text": "Agentic AI is going to be the most disruptive technology in healthcare. There's a lot of manual procedures done at very low levels that agentic AI will replace. There'll be a huge change of employment as a result."
+    }
+  },
+  {
+    "id": "industry-financial-services",
+    "slug": "financial-services",
+    "name": "Financial Services",
+    "summary": "Financial Services posts an average matrix heat score of 47.0/100 across the five tracked technologies.",
+    "description": "Banks, investment funds, insurance companies, and real estate firms.",
+    "strategicScores": {
+      "strategicUrgency": 47,
+      "adoptionVelocity": 47,
+      "investmentConfidence": 42,
+      "innovationIntensity": 72,
+      "operationalReadiness": 40
+    },
+    "scoreSummary": [
+      {
+        "label": "Average Heat Score",
+        "value": "47.0/100",
+        "tone": "neutral"
+      },
+      {
+        "label": "Top technology",
+        "value": "Agentic & Gen AI"
+      },
+      {
+        "label": "Cells above 50",
+        "value": "3"
+      }
+    ],
+    "disruptionDimensions": [
+      {
+        "label": "Innovation Intensity",
+        "score": 72
+      },
+      {
+        "label": "Innovation Momentum",
+        "score": 47
+      },
+      {
+        "label": "Startup Activity",
+        "score": 66
+      },
+      {
+        "label": "Market Validation",
+        "score": 42
+      },
+      {
+        "label": "Professional Perception",
+        "score": 40
+      }
+    ],
+    "topTechnologies": [
+      {
+        "label": "Agentic & Gen AI",
+        "score": 70
+      },
+      {
+        "label": "Descriptive AI",
+        "score": 65
+      },
+      {
+        "label": "Blockchain & Decentralized Systems",
+        "score": 59
+      },
+      {
+        "label": "Quantum Computing",
+        "score": 26
+      },
+      {
+        "label": "Robotics & Automation",
+        "score": 15
+      }
+    ],
+    "impactDistribution": [
+      {
+        "year": "No impact",
+        "value": 11.8
+      },
+      {
+        "year": "Minor",
+        "value": 18.2
+      },
+      {
+        "year": "Moderate",
+        "value": 19.7
+      },
+      {
+        "year": "Significant",
+        "value": 26.0
+      },
+      {
+        "year": "Very significant",
+        "value": 24.3
+      }
+    ],
+    "maturityTimeline": [
+      {
+        "year": "Never",
+        "value": 13.9
+      },
+      {
+        "year": "Later (2+yr)",
+        "value": 31.2
+      },
+      {
+        "year": "Soon (next yr)",
+        "value": 16.4
+      },
+      {
+        "year": "Now",
+        "value": 38.5
+      }
+    ],
+    "useCaseSnippets": [
+      {
+        "title": "Blockchain signal",
+        "description": "Blockchain has the potential to massively reduce friction in private markets fund transfers. It could reduce cost and time by huge factors, though the incentive set is not there. Incumbent law firms have more to lose than gain.",
+        "signal": "12y experience"
+      }
+    ],
+    "marketValidation": {
+      "ecosystemMetrics": [
+        {
+          "label": "Unicorn funding",
+          "value": "$57.2B"
+        },
+        {
+          "label": "Unicorn count",
+          "value": "124"
+        },
+        {
+          "label": "Startup count (2025)",
+          "value": "871"
+        }
+      ],
+      "topCompanies": [
+        "Trade Republic",
+        "Lendbuzz",
+        "Tamara",
+        "Polymarket",
+        "Binance"
+      ],
+      "fundingIndicators": [
+        {
+          "label": "Native unicorns",
+          "value": "5"
+        },
+        {
+          "label": "Emerging unicorns",
+          "value": "37"
+        },
+        {
+          "label": "Scholar 2025 volume",
+          "value": "194,282"
+        }
+      ]
+    },
+    "expertQuote": {
+      "speaker": "Thomas Rocafull",
+      "role": "Financial Services interview synthesis",
+      "text": "This category [Agentic & GenAI] is the most important for the next 2 years. I see the volume of investment and the number of use cases and it shows."
+    }
+  },
+  {
+    "id": "industry-information-technology",
+    "slug": "information-technology",
+    "name": "Information Technology",
+    "summary": "Information Technology posts an average matrix heat score of 62.1/100 across the five tracked technologies.",
+    "description": "Software, hardware, electronics, and IT services.",
+    "strategicScores": {
+      "strategicUrgency": 62,
+      "adoptionVelocity": 43,
+      "investmentConfidence": 79,
+      "innovationIntensity": 74,
+      "operationalReadiness": 45
+    },
+    "scoreSummary": [
+      {
+        "label": "Average Heat Score",
+        "value": "62.1/100",
+        "tone": "positive"
+      },
+      {
+        "label": "Top technology",
+        "value": "Agentic & Gen AI"
+      },
+      {
+        "label": "Cells above 50",
+        "value": "4"
+      }
+    ],
+    "disruptionDimensions": [
+      {
+        "label": "Innovation Intensity",
+        "score": 74
+      },
+      {
+        "label": "Innovation Momentum",
+        "score": 43
+      },
+      {
+        "label": "Startup Activity",
+        "score": 92
+      },
+      {
+        "label": "Market Validation",
+        "score": 79
+      },
+      {
+        "label": "Professional Perception",
+        "score": 45
+      }
+    ],
+    "topTechnologies": [
+      {
+        "label": "Agentic & Gen AI",
+        "score": 94
+      },
+      {
+        "label": "Descriptive AI",
+        "score": 67
+      },
+      {
+        "label": "Blockchain & Decentralized Systems",
+        "score": 58
+      },
+      {
+        "label": "Robotics & Automation",
+        "score": 52
+      },
+      {
+        "label": "Quantum Computing",
+        "score": 40
+      }
+    ],
+    "impactDistribution": [
+      {
+        "year": "No impact",
+        "value": 9.9
+      },
+      {
+        "year": "Minor",
+        "value": 16.3
+      },
+      {
+        "year": "Moderate",
+        "value": 23.0
+      },
+      {
+        "year": "Significant",
+        "value": 23.3
+      },
+      {
+        "year": "Very significant",
+        "value": 27.5
+      }
+    ],
+    "maturityTimeline": [
+      {
+        "year": "Never",
+        "value": 10.3
+      },
+      {
+        "year": "Later (2+yr)",
+        "value": 31.3
+      },
+      {
+        "year": "Soon (next yr)",
+        "value": 18.6
+      },
+      {
+        "year": "Now",
+        "value": 39.8
+      }
+    ],
+    "useCaseSnippets": [
+      {
+        "title": "Descriptive AI, Agentic & GenAI signal",
+        "description": "Value will increasingly shift toward the underlying models — how they are designed, operationalized, and maintained. These systems will free humans from tedious, repetitive tasks.",
+        "signal": "22y experience"
+      },
+      {
+        "title": "Agentic & GenAI signal",
+        "description": "Agentic GenAI is having a huge impact today at a speed I've never seen in my career.",
+        "signal": "20y experience"
+      }
+    ],
+    "marketValidation": {
+      "ecosystemMetrics": [
+        {
+          "label": "Unicorn funding",
+          "value": "$786.1B"
+        },
+        {
+          "label": "Unicorn count",
+          "value": "618"
+        },
+        {
+          "label": "Startup count (2025)",
+          "value": "5769"
+        }
+      ],
+      "topCompanies": [
+        "OpenAI",
+        "Anthropic",
+        "Databricks",
+        "Waymo",
+        "Cruise"
+      ],
+      "fundingIndicators": [
+        {
+          "label": "Native unicorns",
+          "value": "25"
+        },
+        {
+          "label": "Emerging unicorns",
+          "value": "146"
+        },
+        {
+          "label": "Scholar 2025 volume",
+          "value": "176,258"
+        }
+      ]
+    },
+    "expertQuote": {
+      "speaker": "Industry Expert Panel",
+      "role": "Information Technology interview synthesis",
+      "text": "Information Technology is experiencing uneven but accelerating technology adoption, with readiness concentrated in high-signal intersections."
+    }
+  },
+  {
+    "id": "industry-communication-creative-services",
+    "slug": "communication-creative-services",
+    "name": "Communication & Creative Services",
+    "summary": "Communication & Creative Services posts an average matrix heat score of 42.2/100 across the five tracked technologies.",
+    "description": "Telecommunications, media, entertainment, and creative industries.",
+    "strategicScores": {
+      "strategicUrgency": 42,
+      "adoptionVelocity": 43,
+      "investmentConfidence": 32,
+      "innovationIntensity": 55,
+      "operationalReadiness": 46
+    },
+    "scoreSummary": [
+      {
+        "label": "Average Heat Score",
+        "value": "42.2/100",
+        "tone": "neutral"
+      },
+      {
+        "label": "Top technology",
+        "value": "Agentic & Gen AI"
+      },
+      {
+        "label": "Cells above 50",
+        "value": "2"
+      }
+    ],
+    "disruptionDimensions": [
+      {
+        "label": "Innovation Intensity",
+        "score": 55
+      },
+      {
+        "label": "Innovation Momentum",
+        "score": 43
+      },
+      {
+        "label": "Startup Activity",
+        "score": 56
+      },
+      {
+        "label": "Market Validation",
+        "score": 32
+      },
+      {
+        "label": "Professional Perception",
+        "score": 46
+      }
+    ],
+    "topTechnologies": [
+      {
+        "label": "Agentic & Gen AI",
+        "score": 78
+      },
+      {
+        "label": "Descriptive AI",
+        "score": 64
+      },
+      {
+        "label": "Blockchain & Decentralized Systems",
+        "score": 32
+      },
+      {
+        "label": "Quantum Computing",
+        "score": 23
+      },
+      {
+        "label": "Robotics & Automation",
+        "score": 15
+      }
+    ],
+    "impactDistribution": [
+      {
+        "year": "No impact",
+        "value": 10.4
+      },
+      {
+        "year": "Minor",
+        "value": 21.0
+      },
+      {
+        "year": "Moderate",
+        "value": 20.8
+      },
+      {
+        "year": "Significant",
+        "value": 24.1
+      },
+      {
+        "year": "Very significant",
+        "value": 23.8
+      }
+    ],
+    "maturityTimeline": [
+      {
+        "year": "Never",
+        "value": 11.0
+      },
+      {
+        "year": "Later (2+yr)",
+        "value": 32.8
+      },
+      {
+        "year": "Soon (next yr)",
+        "value": 13.0
+      },
+      {
+        "year": "Now",
+        "value": 43.2
+      }
+    ],
+    "useCaseSnippets": [
+      {
+        "title": "Cross-technology adoption signal",
+        "description": "Communication & Creative Services shows strongest disruption concentration in Agentic & Gen AI and Descriptive AI.",
+        "signal": "Average heat score 42.2/100"
+      }
+    ],
+    "marketValidation": {
+      "ecosystemMetrics": [
+        {
+          "label": "Unicorn funding",
+          "value": "$46.7B"
+        },
+        {
+          "label": "Unicorn count",
+          "value": "66"
+        },
+        {
+          "label": "Startup count (2025)",
+          "value": "637"
+        }
+      ],
+      "topCompanies": [],
+      "fundingIndicators": [
+        {
+          "label": "Native unicorns",
+          "value": "3"
+        },
+        {
+          "label": "Emerging unicorns",
+          "value": "21"
+        },
+        {
+          "label": "Scholar 2025 volume",
+          "value": "63,441"
+        }
+      ]
+    },
+    "expertQuote": {
+      "speaker": "Industry Expert Panel",
+      "role": "Communication & Creative Services interview synthesis",
+      "text": "Communication & Creative Services is experiencing uneven but accelerating technology adoption, with readiness concentrated in high-signal intersections."
+    }
+  },
+  {
+    "id": "industry-real-estate",
+    "slug": "real-estate",
+    "name": "Real Estate",
+    "summary": "Real Estate posts an average matrix heat score of 30.9/100 across the five tracked technologies.",
+    "description": "Companies that own commercial, industrial, and residential real estate.",
+    "strategicScores": {
+      "strategicUrgency": 31,
+      "adoptionVelocity": 51,
+      "investmentConfidence": 6,
+      "innovationIntensity": 59,
+      "operationalReadiness": 32
+    },
+    "scoreSummary": [
+      {
+        "label": "Average Heat Score",
+        "value": "30.9/100",
+        "tone": "neutral"
+      },
+      {
+        "label": "Top technology",
+        "value": "Agentic & Gen AI"
+      },
+      {
+        "label": "Cells above 50",
+        "value": "1"
+      }
+    ],
+    "disruptionDimensions": [
+      {
+        "label": "Innovation Intensity",
+        "score": 59
+      },
+      {
+        "label": "Innovation Momentum",
+        "score": 51
+      },
+      {
+        "label": "Startup Activity",
+        "score": 52
+      },
+      {
+        "label": "Market Validation",
+        "score": 6
+      },
+      {
+        "label": "Professional Perception",
+        "score": 32
+      }
+    ],
+    "topTechnologies": [
+      {
+        "label": "Agentic & Gen AI",
+        "score": 53
+      },
+      {
+        "label": "Descriptive AI",
+        "score": 45
+      },
+      {
+        "label": "Blockchain & Decentralized Systems",
+        "score": 21
+      },
+      {
+        "label": "Quantum Computing",
+        "score": 20
+      },
+      {
+        "label": "Robotics & Automation",
+        "score": 16
+      }
+    ],
+    "impactDistribution": [
+      {
+        "year": "No impact",
+        "value": 16.5
+      },
+      {
+        "year": "Minor",
+        "value": 20.2
+      },
+      {
+        "year": "Moderate",
+        "value": 22.3
+      },
+      {
+        "year": "Significant",
+        "value": 23.7
+      },
+      {
+        "year": "Very significant",
+        "value": 17.3
+      }
+    ],
+    "maturityTimeline": [
+      {
+        "year": "Never",
+        "value": 18.1
+      },
+      {
+        "year": "Later (2+yr)",
+        "value": 34.4
+      },
+      {
+        "year": "Soon (next yr)",
+        "value": 17.1
+      },
+      {
+        "year": "Now",
+        "value": 30.3
+      }
+    ],
+    "useCaseSnippets": [
+      {
+        "title": "Cross-technology adoption signal",
+        "description": "Real Estate shows strongest disruption concentration in Agentic & Gen AI and Descriptive AI.",
+        "signal": "Average heat score 30.9/100"
+      }
+    ],
+    "marketValidation": {
+      "ecosystemMetrics": [
+        {
+          "label": "Unicorn funding",
+          "value": "$2.4B"
+        },
+        {
+          "label": "Unicorn count",
+          "value": "5"
+        },
+        {
+          "label": "Startup count (2025)",
+          "value": "217"
+        }
+      ],
+      "topCompanies": [
+        "Verkada",
+        "ICON",
+        "EliseAI",
+        "Bedrock Robotics",
+        "Vantaca"
+      ],
+      "fundingIndicators": [
+        {
+          "label": "Native unicorns",
+          "value": "0"
+        },
+        {
+          "label": "Emerging unicorns",
+          "value": "2"
+        },
+        {
+          "label": "Scholar 2025 volume",
+          "value": "123,675"
+        }
+      ]
+    },
+    "expertQuote": {
+      "speaker": "Industry Expert Panel",
+      "role": "Real Estate interview synthesis",
+      "text": "Real Estate is experiencing uneven but accelerating technology adoption, with readiness concentrated in high-signal intersections."
+    }
+  },
+  {
+    "id": "industry-automotive-transport",
+    "slug": "automotive-transport",
+    "name": "Automotive & Transport",
+    "summary": "Automotive & Transport posts an average matrix heat score of 38.2/100 across the five tracked technologies.",
+    "description": "Mainstream automotive companies and transportation-related industries.",
+    "strategicScores": {
+      "strategicUrgency": 38,
+      "adoptionVelocity": 39,
+      "investmentConfidence": 32,
+      "innovationIntensity": 63,
+      "operationalReadiness": 37
+    },
+    "scoreSummary": [
+      {
+        "label": "Average Heat Score",
+        "value": "38.2/100",
+        "tone": "neutral"
+      },
+      {
+        "label": "Top technology",
+        "value": "Descriptive AI"
+      },
+      {
+        "label": "Cells above 50",
+        "value": "2"
+      }
+    ],
+    "disruptionDimensions": [
+      {
+        "label": "Innovation Intensity",
+        "score": 63
+      },
+      {
+        "label": "Innovation Momentum",
+        "score": 39
+      },
+      {
+        "label": "Startup Activity",
+        "score": 50
+      },
+      {
+        "label": "Market Validation",
+        "score": 32
+      },
+      {
+        "label": "Professional Perception",
+        "score": 37
+      }
+    ],
+    "topTechnologies": [
+      {
+        "label": "Descriptive AI",
+        "score": 58
+      },
+      {
+        "label": "Agentic & Gen AI",
+        "score": 54
+      },
+      {
+        "label": "Robotics & Automation",
+        "score": 42
+      },
+      {
+        "label": "Quantum Computing",
+        "score": 20
+      },
+      {
+        "label": "Blockchain & Decentralized Systems",
+        "score": 18
+      }
+    ],
+    "impactDistribution": [
+      {
+        "year": "No impact",
+        "value": 8.2
+      },
+      {
+        "year": "Minor",
+        "value": 18.9
+      },
+      {
+        "year": "Moderate",
+        "value": 24.2
+      },
+      {
+        "year": "Significant",
+        "value": 28.0
+      },
+      {
+        "year": "Very significant",
+        "value": 20.8
+      }
+    ],
+    "maturityTimeline": [
+      {
+        "year": "Never",
+        "value": 9.7
+      },
+      {
+        "year": "Later (2+yr)",
+        "value": 34.7
+      },
+      {
+        "year": "Soon (next yr)",
+        "value": 19.4
+      },
+      {
+        "year": "Now",
+        "value": 36.2
+      }
+    ],
+    "useCaseSnippets": [
+      {
+        "title": "Blockchain signal",
+        "description": "Blockchain came high in the hype and is now bottoming for quite some time, I personally don't see it bringing disruption in automotive anytime soon.",
+        "signal": "24y experience"
+      }
+    ],
+    "marketValidation": {
+      "ecosystemMetrics": [
+        {
+          "label": "Unicorn funding",
+          "value": "$86.8B"
+        },
+        {
+          "label": "Unicorn count",
+          "value": "59"
+        },
+        {
+          "label": "Startup count (2025)",
+          "value": "170"
+        }
+      ],
+      "topCompanies": [
+        "Waymo",
+        "Cruise",
+        "Metropolis",
+        "Yinwang Smart Technology",
+        "Nuro"
+      ],
+      "fundingIndicators": [
+        {
+          "label": "Native unicorns",
+          "value": "6"
+        },
+        {
+          "label": "Emerging unicorns",
+          "value": "10"
+        },
+        {
+          "label": "Scholar 2025 volume",
+          "value": "136,912"
+        }
+      ]
+    },
+    "expertQuote": {
+      "speaker": "Industry Expert Panel",
+      "role": "Automotive & Transport interview synthesis",
+      "text": "(AYME) Thinks the subject of SDV is really interesting. It encompasses many tech. SDV (Software Defined Vehicles): Centralizes all software functions in a car, enabling remote updates like Tesla. • Traditional manufacturers have distributed systems, making remote updates difficult. • SDV allows for..."
+    }
+  }
+]

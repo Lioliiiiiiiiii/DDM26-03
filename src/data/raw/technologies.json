@@ -1,0 +1,987 @@
+[
+  {
+    "id": "tech-descriptive-ai",
+    "slug": "descriptive-ai",
+    "name": "Descriptive AI",
+    "shortName": "Descriptive AI",
+    "summary": "Descriptive AI records an average heat score of 55.8/100 across the ten sectors in the 2026 matrix.",
+    "definition": "Descriptive AI encompasses traditional AI approaches that analyze and interpret existing data to identify patterns, make predictions, and derive insights. This technology forms the foundation of practical AI applications in industry through machine learning, statistical analysis, and pattern recognition.",
+    "color": "#F59E0B",
+    "strategicScores": {
+      "strategicUrgency": 56,
+      "adoptionVelocity": 17,
+      "investmentConfidence": 62,
+      "innovationIntensity": 78,
+      "operationalReadiness": 70
+    },
+    "scoreSummary": [
+      {
+        "label": "Average Heat Score",
+        "value": "55.8/100",
+        "tone": "positive"
+      },
+      {
+        "label": "Top Exposure Sector",
+        "value": "Health Care"
+      },
+      {
+        "label": "Cells above 60",
+        "value": "5"
+      }
+    ],
+    "dimensionBreakdown": [
+      {
+        "label": "Innovation Intensity",
+        "score": 78
+      },
+      {
+        "label": "Innovation Momentum",
+        "score": 17
+      },
+      {
+        "label": "Startup Activity",
+        "score": 85
+      },
+      {
+        "label": "Market Validation",
+        "score": 62
+      },
+      {
+        "label": "Professional Perception",
+        "score": 70
+      }
+    ],
+    "perceptionRankings": [
+      {
+        "label": "Health Care",
+        "score": 68
+      },
+      {
+        "label": "Information Technology",
+        "score": 67
+      },
+      {
+        "label": "Financial Services",
+        "score": 65
+      },
+      {
+        "label": "Communication & Creative Services",
+        "score": 64
+      },
+      {
+        "label": "Consumer Goods",
+        "score": 62
+      }
+    ],
+    "impactTimeline": [
+      {
+        "year": "2020",
+        "value": 19938
+      },
+      {
+        "year": "2021",
+        "value": 25044
+      },
+      {
+        "year": "2022",
+        "value": 35159
+      },
+      {
+        "year": "2023",
+        "value": 38328
+      },
+      {
+        "year": "2024",
+        "value": 38370
+      },
+      {
+        "year": "2025",
+        "value": 36870
+      }
+    ],
+    "topUseCases": [
+      {
+        "title": "Practitioner signal 1",
+        "description": "We have used descriptive and generative AI a lot on the procurement side to model/predict the impact of potential commodities pricing (63 commodities) on our chemical costs. In terms of value creation, this has been huge.",
+        "signal": "Industrials · 35y"
+      },
+      {
+        "title": "Practitioner signal 2",
+        "description": "AI is like a primordial soup right now. The promise far exceeds the outcomes in the near term, and will exceed our imagination in the long term — particularly combined with quantum computing and robotics.",
+        "signal": "Consumer Goods · 22y"
+      },
+      {
+        "title": "Practitioner signal 3",
+        "description": "Value will increasingly shift toward the underlying models — how they are designed, operationalized, and maintained. These systems will free humans from tedious, repetitive tasks.",
+        "signal": "Information Technology · 22y"
+      }
+    ],
+    "marketValidation": {
+      "ecosystemMetrics": [
+        {
+          "label": "Total unicorn funding",
+          "value": "$704.7B"
+        },
+        {
+          "label": "Total unicorn count",
+          "value": "614"
+        },
+        {
+          "label": "Startup count (2025)",
+          "value": "6308"
+        }
+      ],
+      "notablePlayers": [
+        "Samsung Electronics CO LTD",
+        "Google LLC",
+        "Qualcomm INC",
+        "Ibm",
+        "Intel CORP",
+        "Microsoft Technology Licensing LLC"
+      ],
+      "fundingSignals": [
+        {
+          "label": "Aggregate funding",
+          "value": "$704.7B"
+        },
+        {
+          "label": "Median cell funding",
+          "value": "$19.4B"
+        },
+        {
+          "label": "Emerging unicorns",
+          "value": "146"
+        }
+      ]
+    },
+    "researchInnovation": {
+      "publicationTrend": [
+        {
+          "year": "2020",
+          "value": 294501
+        },
+        {
+          "year": "2021",
+          "value": 372888
+        },
+        {
+          "year": "2022",
+          "value": 362787
+        },
+        {
+          "year": "2023",
+          "value": 377906
+        },
+        {
+          "year": "2024",
+          "value": 433839
+        },
+        {
+          "year": "2025",
+          "value": 540611
+        }
+      ],
+      "cagr": "12.9%",
+      "patentLeaders": [
+        "Ibm",
+        "Samsung Electronics CO LTD",
+        "Microsoft Technology Licensing LLC",
+        "Qualcomm INC",
+        "Google LLC"
+      ]
+    },
+    "expertQuote": {
+      "speaker": "Laurent Deloire",
+      "role": "Descriptive AI interviews",
+      "text": "Computer vision is the real breakthrough in predictive maintenance. A new paradigm — capturing and processing data at very fine, complex levels."
+    }
+  },
+  {
+    "id": "tech-agentic-gen-ai",
+    "slug": "agentic-gen-ai",
+    "name": "Agentic & Gen AI",
+    "shortName": "Agentic & GenAI",
+    "summary": "Agentic & Gen AI records an average heat score of 59.2/100 across the ten sectors in the 2026 matrix.",
+    "definition": "Generative AI and Agentic AI refers to AI systems that can create new content (text, images, code, synthetic data) and autonomously plan and execute multi-step actions to achieve goals. This technology leverages large language models and neural networks to generate novel outputs based on patterns learned from training data and complete tasks with reduced human supervision.",
+    "color": "#F97316",
+    "strategicScores": {
+      "strategicUrgency": 59,
+      "adoptionVelocity": 76,
+      "investmentConfidence": 35,
+      "innovationIntensity": 53,
+      "operationalReadiness": 80
+    },
+    "scoreSummary": [
+      {
+        "label": "Average Heat Score",
+        "value": "59.2/100",
+        "tone": "positive"
+      },
+      {
+        "label": "Top Exposure Sector",
+        "value": "Information Technology"
+      },
+      {
+        "label": "Cells above 60",
+        "value": "4"
+      }
+    ],
+    "dimensionBreakdown": [
+      {
+        "label": "Innovation Intensity",
+        "score": 53
+      },
+      {
+        "label": "Innovation Momentum",
+        "score": 76
+      },
+      {
+        "label": "Startup Activity",
+        "score": 61
+      },
+      {
+        "label": "Market Validation",
+        "score": 35
+      },
+      {
+        "label": "Professional Perception",
+        "score": 80
+      }
+    ],
+    "perceptionRankings": [
+      {
+        "label": "Information Technology",
+        "score": 94
+      },
+      {
+        "label": "Communication & Creative Services",
+        "score": 78
+      },
+      {
+        "label": "Financial Services",
+        "score": 70
+      },
+      {
+        "label": "Health Care",
+        "score": 67
+      },
+      {
+        "label": "Consumer Goods",
+        "score": 58
+      }
+    ],
+    "impactTimeline": [
+      {
+        "year": "2020",
+        "value": 6742
+      },
+      {
+        "year": "2021",
+        "value": 7898
+      },
+      {
+        "year": "2022",
+        "value": 10268
+      },
+      {
+        "year": "2023",
+        "value": 11536
+      },
+      {
+        "year": "2024",
+        "value": 12337
+      },
+      {
+        "year": "2025",
+        "value": 14900
+      }
+    ],
+    "topUseCases": [
+      {
+        "title": "Practitioner signal 1",
+        "description": "We have used descriptive and generative AI a lot on the procurement side to model/predict the impact of potential commodities pricing (63 commodities) on our chemical costs. In terms of value creation, this has been huge.",
+        "signal": "Industrials · 35y"
+      },
+      {
+        "title": "Practitioner signal 2",
+        "description": "AI is like a primordial soup right now. The promise far exceeds the outcomes in the near term, and will exceed our imagination in the long term — particularly combined with quantum computing and robotics.",
+        "signal": "Consumer Goods · 22y"
+      },
+      {
+        "title": "Practitioner signal 3",
+        "description": "Value will increasingly shift toward the underlying models — how they are designed, operationalized, and maintained. These systems will free humans from tedious, repetitive tasks.",
+        "signal": "Information Technology · 22y"
+      }
+    ],
+    "marketValidation": {
+      "ecosystemMetrics": [
+        {
+          "label": "Total unicorn funding",
+          "value": "$228.0B"
+        },
+        {
+          "label": "Total unicorn count",
+          "value": "117"
+        },
+        {
+          "label": "Startup count (2025)",
+          "value": "1112"
+        }
+      ],
+      "notablePlayers": [
+        "Samsung Electronics CO LTD",
+        "Samsung Display CO LTD",
+        "Lg Electronics INC",
+        "Huawei Tech CO LTD",
+        "Snap INC",
+        "Taiwan Semiconductor Mfg CO LTD"
+      ],
+      "fundingSignals": [
+        {
+          "label": "Aggregate funding",
+          "value": "$228.0B"
+        },
+        {
+          "label": "Median cell funding",
+          "value": "$2.4B"
+        },
+        {
+          "label": "Emerging unicorns",
+          "value": "51"
+        }
+      ]
+    },
+    "researchInnovation": {
+      "publicationTrend": [
+        {
+          "year": "2020",
+          "value": 72613
+        },
+        {
+          "year": "2021",
+          "value": 86292
+        },
+        {
+          "year": "2022",
+          "value": 83162
+        },
+        {
+          "year": "2023",
+          "value": 91328
+        },
+        {
+          "year": "2024",
+          "value": 143155
+        },
+        {
+          "year": "2025",
+          "value": 230139
+        }
+      ],
+      "cagr": "25.9%",
+      "patentLeaders": [
+        "Samsung Electronics CO LTD",
+        "Ibm",
+        "Lg Electronics INC",
+        "Huawei Tech CO LTD",
+        "Samsung Display CO LTD"
+      ]
+    },
+    "expertQuote": {
+      "speaker": "Maciej Workiewicz",
+      "role": "Agentic & Gen AI interviews",
+      "text": "The agentic AI and generative AI right now are changing the world. To a huge extent. Even small media mentions or some kind of questionable reports can move stock prices and stock indexes around the world quite significantly."
+    }
+  },
+  {
+    "id": "tech-blockchain-decentralized-systems",
+    "slug": "blockchain-decentralized-systems",
+    "name": "Blockchain & Decentralized Systems",
+    "shortName": "Blockchain",
+    "summary": "Blockchain & Decentralized Systems records an average heat score of 27.9/100 across the ten sectors in the 2026 matrix.",
+    "definition": "Blockchain technology enables secure, decentralized record-keeping and transactions without requiring central authority. It creates transparent, immutable records across distributed networks, supporting applications from cryptocurrency to supply chain tracking.",
+    "color": "#FB923C",
+    "strategicScores": {
+      "strategicUrgency": 28,
+      "adoptionVelocity": 31,
+      "investmentConfidence": 24,
+      "innovationIntensity": 44,
+      "operationalReadiness": 20
+    },
+    "scoreSummary": [
+      {
+        "label": "Average Heat Score",
+        "value": "27.9/100",
+        "tone": "neutral"
+      },
+      {
+        "label": "Top Exposure Sector",
+        "value": "Financial Services"
+      },
+      {
+        "label": "Cells above 60",
+        "value": "0"
+      }
+    ],
+    "dimensionBreakdown": [
+      {
+        "label": "Innovation Intensity",
+        "score": 44
+      },
+      {
+        "label": "Innovation Momentum",
+        "score": 31
+      },
+      {
+        "label": "Startup Activity",
+        "score": 57
+      },
+      {
+        "label": "Market Validation",
+        "score": 24
+      },
+      {
+        "label": "Professional Perception",
+        "score": 20
+      }
+    ],
+    "perceptionRankings": [
+      {
+        "label": "Financial Services",
+        "score": 59
+      },
+      {
+        "label": "Information Technology",
+        "score": 58
+      },
+      {
+        "label": "Communication & Creative Services",
+        "score": 32
+      },
+      {
+        "label": "Health Care",
+        "score": 24
+      },
+      {
+        "label": "Consumer Goods",
+        "score": 24
+      }
+    ],
+    "impactTimeline": [
+      {
+        "year": "2020",
+        "value": 7344
+      },
+      {
+        "year": "2021",
+        "value": 9122
+      },
+      {
+        "year": "2022",
+        "value": 11792
+      },
+      {
+        "year": "2023",
+        "value": 12764
+      },
+      {
+        "year": "2024",
+        "value": 12895
+      },
+      {
+        "year": "2025",
+        "value": 13078
+      }
+    ],
+    "topUseCases": [
+      {
+        "title": "Practitioner signal 1",
+        "description": "Blockchain has the potential to massively reduce friction in private markets fund transfers. It could reduce cost and time by huge factors, though the incentive set is not there. Incumbent law firms have more to lose than gain.",
+        "signal": "Financial Services · 12y"
+      },
+      {
+        "title": "Practitioner signal 2",
+        "description": "Blockchain came high in the hype and is now bottoming for quite some time, I personally don't see it bringing disruption in automotive anytime soon.",
+        "signal": "Automotive & Transport · 24y"
+      },
+      {
+        "title": "Strategic deployment path 3",
+        "description": "Blockchain & Decentralized Systems programs are scaling fastest in Financial Services, Information Technology, where signal density and implementation readiness are highest.",
+        "signal": "Top hotspot: Financial Services"
+      }
+    ],
+    "marketValidation": {
+      "ecosystemMetrics": [
+        {
+          "label": "Total unicorn funding",
+          "value": "$83.2B"
+        },
+        {
+          "label": "Total unicorn count",
+          "value": "201"
+        },
+        {
+          "label": "Startup count (2025)",
+          "value": "960"
+        }
+      ],
+      "notablePlayers": [
+        "Microsoft Technology Licensing LLC",
+        "Google LLC",
+        "Capital One Services LLC",
+        "Ibm",
+        "Bank Of America",
+        "Dell Products LP"
+      ],
+      "fundingSignals": [
+        {
+          "label": "Aggregate funding",
+          "value": "$83.2B"
+        },
+        {
+          "label": "Median cell funding",
+          "value": "$3.5B"
+        },
+        {
+          "label": "Emerging unicorns",
+          "value": "42"
+        }
+      ]
+    },
+    "researchInnovation": {
+      "publicationTrend": [
+        {
+          "year": "2020",
+          "value": 87950
+        },
+        {
+          "year": "2021",
+          "value": 98023
+        },
+        {
+          "year": "2022",
+          "value": 86715
+        },
+        {
+          "year": "2023",
+          "value": 60634
+        },
+        {
+          "year": "2024",
+          "value": 61063
+        },
+        {
+          "year": "2025",
+          "value": 83903
+        }
+      ],
+      "cagr": "-0.9%",
+      "patentLeaders": [
+        "Ibm",
+        "Microsoft Technology Licensing LLC",
+        "Qualcomm INC",
+        "Microsoft CORP",
+        "Igt Reno Nev"
+      ]
+    },
+    "expertQuote": {
+      "speaker": "Fetiveau",
+      "role": "Blockchain & Decentralized Systems interviews",
+      "text": "I feel like we've been talking about it for 10 years and the use cases aren't really multiplying."
+    }
+  },
+  {
+    "id": "tech-robotics-automation",
+    "slug": "robotics-automation",
+    "name": "Robotics & Automation",
+    "shortName": "Robotics",
+    "summary": "Robotics & Automation records an average heat score of 28.9/100 across the ten sectors in the 2026 matrix.",
+    "definition": "Robotics and Automation encompasses the design and deployment of physical and virtual systems that can perform tasks automatically with minimal human intervention. This includes industrial robots, autonomous systems, and process automation technologies.",
+    "color": "#FDBA74",
+    "strategicScores": {
+      "strategicUrgency": 29,
+      "adoptionVelocity": 7,
+      "investmentConfidence": 28,
+      "innovationIntensity": 74,
+      "operationalReadiness": 28
+    },
+    "scoreSummary": [
+      {
+        "label": "Average Heat Score",
+        "value": "28.9/100",
+        "tone": "neutral"
+      },
+      {
+        "label": "Top Exposure Sector",
+        "value": "Information Technology"
+      },
+      {
+        "label": "Cells above 60",
+        "value": "0"
+      }
+    ],
+    "dimensionBreakdown": [
+      {
+        "label": "Innovation Intensity",
+        "score": 74
+      },
+      {
+        "label": "Innovation Momentum",
+        "score": 7
+      },
+      {
+        "label": "Startup Activity",
+        "score": 45
+      },
+      {
+        "label": "Market Validation",
+        "score": 28
+      },
+      {
+        "label": "Professional Perception",
+        "score": 28
+      }
+    ],
+    "perceptionRankings": [
+      {
+        "label": "Information Technology",
+        "score": 52
+      },
+      {
+        "label": "Industrials",
+        "score": 46
+      },
+      {
+        "label": "Automotive & Transport",
+        "score": 42
+      },
+      {
+        "label": "Health Care",
+        "score": 34
+      },
+      {
+        "label": "Consumer Goods",
+        "score": 28
+      }
+    ],
+    "impactTimeline": [
+      {
+        "year": "2020",
+        "value": 32039
+      },
+      {
+        "year": "2021",
+        "value": 34678
+      },
+      {
+        "year": "2022",
+        "value": 41303
+      },
+      {
+        "year": "2023",
+        "value": 42575
+      },
+      {
+        "year": "2024",
+        "value": 42853
+      },
+      {
+        "year": "2025",
+        "value": 41585
+      }
+    ],
+    "topUseCases": [
+      {
+        "title": "Practitioner signal 1",
+        "description": "Autonomy is the major disruptor.",
+        "signal": "Industrials · 28y"
+      },
+      {
+        "title": "Practitioner signal 2",
+        "description": "Cobots, descriptive AI and AI agents are already part of our industry: they are already changing our business model.",
+        "signal": "Consumer Goods · 24y"
+      },
+      {
+        "title": "Strategic deployment path 3",
+        "description": "Robotics & Automation programs are scaling fastest in Information Technology, Industrials, where signal density and implementation readiness are highest.",
+        "signal": "Top hotspot: Information Technology"
+      }
+    ],
+    "marketValidation": {
+      "ecosystemMetrics": [
+        {
+          "label": "Total unicorn funding",
+          "value": "$56.9B"
+        },
+        {
+          "label": "Total unicorn count",
+          "value": "95"
+        },
+        {
+          "label": "Startup count (2025)",
+          "value": "323"
+        }
+      ],
+      "notablePlayers": [
+        "Qualcomm INC",
+        "Samsung Electronics CO LTD",
+        "Lg Electronics INC",
+        "Apple INC",
+        "Intel CORP",
+        "Huawei Tech CO LTD"
+      ],
+      "fundingSignals": [
+        {
+          "label": "Aggregate funding",
+          "value": "$56.9B"
+        },
+        {
+          "label": "Median cell funding",
+          "value": "$5.2B"
+        },
+        {
+          "label": "Emerging unicorns",
+          "value": "18"
+        }
+      ]
+    },
+    "researchInnovation": {
+      "publicationTrend": [
+        {
+          "year": "2020",
+          "value": 231062
+        },
+        {
+          "year": "2021",
+          "value": 257822
+        },
+        {
+          "year": "2022",
+          "value": 237639
+        },
+        {
+          "year": "2023",
+          "value": 195711
+        },
+        {
+          "year": "2024",
+          "value": 208590
+        },
+        {
+          "year": "2025",
+          "value": 237225
+        }
+      ],
+      "cagr": "0.5%",
+      "patentLeaders": [
+        "Samsung Electronics CO LTD",
+        "Qualcomm INC",
+        "Ibm",
+        "Lg Electronics INC",
+        "Apple INC"
+      ]
+    },
+    "expertQuote": {
+      "speaker": "Ducatel",
+      "role": "Robotics & Automation interviews",
+      "text": "Inspecting pipelines with waterproof drones is still R&D. For grid operators, line inspection and vegetation clearing — that's already underway."
+    }
+  },
+  {
+    "id": "tech-quantum-computing",
+    "slug": "quantum-computing",
+    "name": "Quantum Computing",
+    "shortName": "Quantum",
+    "summary": "Quantum Computing records an average heat score of 22.9/100 across the ten sectors in the 2026 matrix.",
+    "definition": "Quantum Computing harnesses quantum mechanical phenomena like superposition and entanglement to perform computations. This technology enables exponentially faster calculations for specific problems, particularly in cryptography, material science, and complex system optimization.",
+    "color": "#FBBF24",
+    "strategicScores": {
+      "strategicUrgency": 23,
+      "adoptionVelocity": 74,
+      "investmentConfidence": 2,
+      "innovationIntensity": 26,
+      "operationalReadiness": 7
+    },
+    "scoreSummary": [
+      {
+        "label": "Average Heat Score",
+        "value": "22.9/100",
+        "tone": "neutral"
+      },
+      {
+        "label": "Top Exposure Sector",
+        "value": "Information Technology"
+      },
+      {
+        "label": "Cells above 60",
+        "value": "0"
+      }
+    ],
+    "dimensionBreakdown": [
+      {
+        "label": "Innovation Intensity",
+        "score": 26
+      },
+      {
+        "label": "Innovation Momentum",
+        "score": 74
+      },
+      {
+        "label": "Startup Activity",
+        "score": 22
+      },
+      {
+        "label": "Market Validation",
+        "score": 2
+      },
+      {
+        "label": "Professional Perception",
+        "score": 7
+      }
+    ],
+    "perceptionRankings": [
+      {
+        "label": "Information Technology",
+        "score": 40
+      },
+      {
+        "label": "Health Care",
+        "score": 29
+      },
+      {
+        "label": "Financial Services",
+        "score": 26
+      },
+      {
+        "label": "Communication & Creative Services",
+        "score": 23
+      },
+      {
+        "label": "Consumer Goods",
+        "score": 23
+      }
+    ],
+    "impactTimeline": [
+      {
+        "year": "2020",
+        "value": 1759
+      },
+      {
+        "year": "2021",
+        "value": 2333
+      },
+      {
+        "year": "2022",
+        "value": 3068
+      },
+      {
+        "year": "2023",
+        "value": 3712
+      },
+      {
+        "year": "2024",
+        "value": 4006
+      },
+      {
+        "year": "2025",
+        "value": 5066
+      }
+    ],
+    "topUseCases": [
+      {
+        "title": "Strategic deployment path 1",
+        "description": "Quantum Computing programs are scaling fastest in Information Technology, Health Care, where signal density and implementation readiness are highest.",
+        "signal": "Top hotspot: Information Technology"
+      },
+      {
+        "title": "Strategic deployment path 2",
+        "description": "Quantum Computing programs are scaling fastest in Information Technology, Health Care, where signal density and implementation readiness are highest.",
+        "signal": "Top hotspot: Information Technology"
+      },
+      {
+        "title": "Strategic deployment path 3",
+        "description": "Quantum Computing programs are scaling fastest in Information Technology, Health Care, where signal density and implementation readiness are highest.",
+        "signal": "Top hotspot: Information Technology"
+      }
+    ],
+    "marketValidation": {
+      "ecosystemMetrics": [
+        {
+          "label": "Total unicorn funding",
+          "value": "$5.2B"
+        },
+        {
+          "label": "Total unicorn count",
+          "value": "7"
+        },
+        {
+          "label": "Startup count (2025)",
+          "value": "47"
+        }
+      ],
+      "notablePlayers": [
+        "Ibm",
+        "Pure Storage INC",
+        "Google LLC",
+        "Origin Quantum Computing Technology Hefei CO LTD",
+        "Microsoft Technology Licensing LLC",
+        "Intel CORP"
+      ],
+      "fundingSignals": [
+        {
+          "label": "Aggregate funding",
+          "value": "$5.2B"
+        },
+        {
+          "label": "Median cell funding",
+          "value": "$5.2B"
+        },
+        {
+          "label": "Emerging unicorns",
+          "value": "1"
+        }
+      ]
+    },
+    "researchInnovation": {
+      "publicationTrend": [
+        {
+          "year": "2020",
+          "value": 24391
+        },
+        {
+          "year": "2021",
+          "value": 30557
+        },
+        {
+          "year": "2022",
+          "value": 29944
+        },
+        {
+          "year": "2023",
+          "value": 28664
+        },
+        {
+          "year": "2024",
+          "value": 32999
+        },
+        {
+          "year": "2025",
+          "value": 43926
+        }
+      ],
+      "cagr": "12.5%",
+      "patentLeaders": [
+        "Ibm",
+        "Google LLC",
+        "Microsoft Technology Licensing LLC",
+        "Nokia CORP",
+        "Pure Storage INC"
+      ]
+    },
+    "expertQuote": {
+      "speaker": "Bulliere",
+      "role": "Quantum Computing interviews",
+      "text": "Quantum, I think, has real potential for us. We use supercomputers to analyze geoscience data and find oil and gas in the right place."
+    }
+  }
+]

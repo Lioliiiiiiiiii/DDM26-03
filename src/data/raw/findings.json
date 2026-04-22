@@ -1,0 +1,63 @@
+[
+  {
+    "id": "finding-1",
+    "title": "Descriptive AI, Agentic & GenAI",
+    "summary": "74% des commentaires (41) du survey (qui sont optionnels) mentionnent l’IA (as a all, descriptive ou Agentic & GenAI)",
+    "evidence": [
+      "74% des commentaires (41) du survey (qui sont optionnels) mentionnent l’IA (as a all, descriptive ou Agentic & GenAI)"
+    ],
+    "highlightCellIds": [
+      "descriptive-ai::health-care",
+      "agentic-gen-ai::information-technology"
+    ]
+  },
+  {
+    "id": "finding-2",
+    "title": "Agentic & GenAI, Robotics (Unicorns)",
+    "summary": "Agentic & GenAI déjà 75 unicorns, comme robotics mais avec quadruple total funding, notamment grâce aux géants OpenAI et Anthropic. Agentic & GenAI : 75 unicorns, $205B Robotics & automation : 75 unicorns $44B",
+    "evidence": [
+      "Agentic & GenAI déjà 75 unicorns, comme robotics mais avec quadruple total funding, notamment grâce aux géants OpenAI et Anthropic.",
+      "Agentic & GenAI : 75 unicorns, $205B",
+      "Robotics & automation : 75 unicorns $44B"
+    ],
+    "highlightCellIds": [
+      "agentic-gen-ai::information-technology",
+      "robotics-automation::information-technology"
+    ]
+  },
+  {
+    "id": "finding-3",
+    "title": "Quantum (Survey)",
+    "summary": "Quantum: The most polarized: 8.6% “very significant” vs. 21.5% “no impact.”",
+    "evidence": [
+      "Quantum: The most polarized: 8.6% “very significant” vs. 21.5% “no impact.”"
+    ],
+    "highlightCellIds": [
+      "quantum-computing::information-technology"
+    ]
+  },
+  {
+    "id": "finding-4",
+    "title": "Blockchain, Robotics (Survey)",
+    "summary": "Timeline robotics et blockchain quasi identique",
+    "evidence": [
+      "Timeline robotics et blockchain quasi identique"
+    ],
+    "highlightCellIds": [
+      "blockchain-decentralized-systems::financial-services",
+      "robotics-automation::information-technology"
+    ]
+  },
+  {
+    "id": "finding-5",
+    "title": "Blockchain, Quantum (Survey)",
+    "summary": "Si on regarde médiane de l’impact ranking Blockchain et Quantum sont côte à côte à la dernière place",
+    "evidence": [
+      "Si on regarde médiane de l’impact ranking Blockchain et Quantum sont côte à côte à la dernière place"
+    ],
+    "highlightCellIds": [
+      "blockchain-decentralized-systems::financial-services",
+      "quantum-computing::information-technology"
+    ]
+  }
+]
