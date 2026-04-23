@@ -1,23 +1,19 @@
 'use client';
 
+import Image from 'next/image';
 import {
   motion,
-  useMotionValueEvent,
   useReducedMotion,
   useScroll,
   useTransform
 } from 'framer-motion';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useRef } from 'react';
 import { BackgroundLines } from '@/components/BackgroundLines';
-import { InteractiveHeatmatrix } from '@/components/InteractiveHeatmatrix';
 import { cn } from '@/lib/utils';
-import { HomepageIntroContent, Industry, MatrixCell, Technology } from '@/types/matrix';
+import { HomepageIntroContent } from '@/types/matrix';
 
 type HomepageCinematicIntroProps = {
   intro: HomepageIntroContent;
-  technologies: Technology[];
-  industries: Industry[];
-  cells: MatrixCell[];
 };
 
 type NoiseLayout = {
@@ -139,21 +135,13 @@ function NoiseSnippet({
   );
 }
 
-export function HomepageCinematicIntro({
-  intro,
-  technologies,
-  industries,
-  cells
-}: HomepageCinematicIntroProps) {
+export function HomepageCinematicIntro({ intro }: HomepageCinematicIntroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end']
   });
-  const [matrixRevealActive, setMatrixRevealActive] = useState(Boolean(reduceMotion));
-  const [matrixRevealResetKey, setMatrixRevealResetKey] = useState(0);
-  const matrixRevealActiveRef = useRef(matrixRevealActive);
 
   const introOpacity = useTransform(scrollYProgress, [0, 0.07], [1, 0]);
   const introScale = useTransform(scrollYProgress, [0, 0.07], [1, 0.985]);
@@ -161,15 +149,10 @@ export function HomepageCinematicIntro({
   const typewriterOpacity = useTransform(scrollYProgress, [0.11, 0.2, 0.44, 0.52], [0, 1, 1, 0]);
   const typewriterY = useTransform(scrollYProgress, [0.11, 0.45], [12, -8]);
 
-  const sortOpacity = useTransform(scrollYProgress, [0.58, 0.67, 0.82, 0.89, 0.93], [0, 1, 1, 0.08, 0.05]);
-  const sortY = useTransform(scrollYProgress, [0.58, 0.67, 0.82, 0.89, 0.93], [26, 0, 0, -24, -32]);
+  const sortOpacity = useTransform(scrollYProgress, [0.61, 0.7, 0.84, 0.9, 0.94], [0, 1, 1, 0.08, 0.05]);
+  const sortY = useTransform(scrollYProgress, [0.61, 0.7, 0.84, 0.9, 0.94], [26, 0, 0, -24, -32]);
 
-  const matrixOpacity = useTransform(scrollYProgress, [0.89, 0.93, 0.975, 1], [0, 0.12, 0.86, 1]);
-  const matrixY = useTransform(scrollYProgress, [0.89, 0.93, 0.975, 1], [48, 24, 6, 0]);
-  const matrixScale = useTransform(scrollYProgress, [0.89, 0.93, 0.975, 1], [0.8, 0.84, 0.91, 0.94]);
-
-  const overlaysOpacity = useTransform(scrollYProgress, [0, 0.08, 0.92, 1], [0.16, 0.16, 0.16, 0]);
-  const linesOpacity = useTransform(scrollYProgress, [0, 0.2, 0.55, 1], [0.82, 0.68, 0.52, 0.34]);
+  const linesOpacity = useTransform(scrollYProgress, [0, 0.2, 0.55, 1], [0.88, 0.74, 0.58, 0.4]);
 
   const noiseLayout = useMemo(
     () =>
@@ -185,32 +168,6 @@ export function HomepageCinematicIntro({
       }),
     [intro.noiseStatements]
   );
-
-  useEffect(() => {
-    matrixRevealActiveRef.current = matrixRevealActive;
-  }, [matrixRevealActive]);
-
-  useEffect(() => {
-    if (reduceMotion) {
-      setMatrixRevealActive(true);
-    }
-  }, [reduceMotion]);
-
-  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
-    if (reduceMotion) {
-      return;
-    }
-
-    if (latest > 0.965 && !matrixRevealActiveRef.current) {
-      setMatrixRevealActive(true);
-      return;
-    }
-
-    if (latest < 0.82 && matrixRevealActiveRef.current) {
-      setMatrixRevealActive(false);
-      setMatrixRevealResetKey((value) => value + 1);
-    }
-  });
 
   const typewriterLine = intro.typewriterLine;
   const sortLine = intro.sortHeadline;
@@ -243,19 +200,20 @@ export function HomepageCinematicIntro({
           />
         </div>
 
-        <motion.div className="pointer-events-none absolute inset-0 z-20" style={{ opacity: overlaysOpacity }}>
-          <div className="absolute left-[6%] top-[15%] rotate-[-4deg] border border-white/20 bg-slate-900/65 px-3 py-2 text-[11px] uppercase tracking-[0.18em] text-slate-200">
-            SIGNAL STREAMS ACTIVE
-          </div>
-          <div className="absolute bottom-[12%] right-[8%] rotate-[10deg] border border-white/20 bg-slate-900/65 px-3 py-2 text-[11px] uppercase tracking-[0.18em] text-slate-200">
-            DDM / 2026 INDEX
-          </div>
-        </motion.div>
-
         <motion.div
           className="absolute inset-0 z-20 flex flex-col items-start justify-center px-6 md:px-16"
           style={{ opacity: introOpacity, scale: introScale }}
         >
+          <div className="pointer-events-none absolute right-6 top-6 md:right-16 md:top-8">
+            <Image
+              src="/logos/essec-bs-logo-blanc.png"
+              alt="ESSEC Business School"
+              width={156}
+              height={132}
+              priority
+              className="h-auto w-24 sm:w-28 md:w-[9.75rem]"
+            />
+          </div>
           <p className="text-xs font-semibold uppercase tracking-[0.26em] text-[#fdba74] md:text-sm">
             {intro.heroEyebrow}
           </p>
@@ -322,7 +280,7 @@ export function HomepageCinematicIntro({
                     scrollYProgress={scrollYProgress}
                     reducedMotion={Boolean(reduceMotion)}
                     emphasize={isOut ? 'out' : 'none'}
-                    rangeStart={0.6}
+                    rangeStart={0.63}
                     spread={0.11}
                     revealDuration={0.055}
                   />
@@ -339,33 +297,13 @@ export function HomepageCinematicIntro({
                   scrollYProgress={scrollYProgress}
                   reducedMotion={Boolean(reduceMotion)}
                   emphasize="none"
-                  rangeStart={0.63}
+                  rangeStart={0.66}
                   spread={0.13}
                   revealDuration={0.05}
                 />
               ))}
             </p>
           </div>
-        </motion.div>
-
-        <motion.div
-          id="heatmatrix"
-          className="absolute inset-0 z-30 flex items-center justify-center px-4 pb-6 pt-10 md:px-8"
-          style={{ opacity: matrixOpacity, y: matrixY, scale: matrixScale, transformOrigin: '50% 18%' }}
-        >
-          <InteractiveHeatmatrix
-            technologies={technologies}
-            industries={industries}
-            cells={cells}
-            compact
-            showLegend={false}
-            cinematicReveal={{
-              enabled: true,
-              active: matrixRevealActive,
-              resetKey: matrixRevealResetKey
-            }}
-            className="w-full max-w-[860px] border-[#fdba74]/30 bg-slate-950/84"
-          />
         </motion.div>
 
         <motion.div

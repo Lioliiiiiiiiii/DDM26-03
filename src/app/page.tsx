@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { DataCard } from '@/components/DataCard';
 import { HomepageCinematicIntro } from '@/components/HomepageCinematicIntro';
+import { HomepageMethodologyMatrix } from '@/components/HomepageMethodologyMatrix';
 import { MetricPill } from '@/components/MetricPill';
 import { MotionReveal } from '@/components/MotionReveal';
 import { SectionHeader } from '@/components/SectionHeader';
@@ -33,13 +34,11 @@ export default function HomePage() {
     <div className="space-y-14">
       <HomepageCinematicIntro
         intro={homepageIntro}
-        technologies={technologies}
-        industries={industries}
-        cells={matrixCells}
       />
 
       <MotionReveal>
-        <section id="methodology" className="space-y-6">
+        <section id="methodology" className="space-y-7">
+          <HomepageMethodologyMatrix technologies={technologies} industries={industries} cells={matrixCells} />
           <SectionHeader
             label="Methodology"
             title="How to read the matrix"

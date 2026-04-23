@@ -45,11 +45,11 @@ function FloatingPaths({ position }: FloatingPathsProps) {
             d={path.d}
             stroke={path.color}
             strokeWidth={path.width}
-            strokeOpacity={0.26}
+            strokeOpacity={0.3}
             initial={{ pathLength: 0.3, opacity: 0.5 }}
             animate={{
               pathLength: 1,
-              opacity: [0.35, 0.92, 0.35],
+              opacity: [0.4, 0.97, 0.4],
               pathOffset: [0, 1, 0]
             }}
             transition={{

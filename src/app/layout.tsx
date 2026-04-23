@@ -30,7 +30,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en">
       <body className="antialiased">
         <Navbar />
-        <main className="mx-auto w-full max-w-[1280px] px-4 pb-12 pt-8 md:px-8">{children}</main>
+        <main className="mx-auto w-full max-w-[1280px] px-4 pb-12 md:px-8">{children}</main>
         <div className="mx-auto mb-10 w-full max-w-[1280px] px-4 md:px-8">
           <ContactFooter />
         </div>

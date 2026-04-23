@@ -179,7 +179,7 @@ export function InteractiveHeatmatrix({
                   key={technology.slug}
                   href={`/technology/${technology.slug}`}
                   className={cn(
-                    'rounded-xl border p-3 text-center text-xs font-semibold uppercase tracking-[0.16em] transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300/80',
+                    'rounded-xl border p-2.5 text-center text-[11px] font-semibold uppercase leading-snug tracking-[0.12em] transition duration-300 whitespace-normal break-words focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300/80 md:p-3 md:text-xs',
                     active
                       ? 'border-orange-300/70 bg-orange-500/15 text-orange-100'
                       : 'border-white/10 bg-slate-900/70 text-slate-200 hover:border-orange-300/50 hover:text-orange-100',
