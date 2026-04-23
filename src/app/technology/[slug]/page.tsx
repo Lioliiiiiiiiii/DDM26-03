@@ -1,31 +1,27 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ContextualPageNav } from '@/components/ContextualPageNav';
-import { DataCard } from '@/components/DataCard';
 import { ExploreMatrixFooter } from '@/components/ExploreMatrixFooter';
-import { InsightQuote } from '@/components/InsightQuote';
-import { MarketValidationPanel } from '@/components/MarketValidationPanel';
-import { MetricPill } from '@/components/MetricPill';
 import { MotionReveal } from '@/components/MotionReveal';
-import { RadarChartCard } from '@/components/RadarChartCard';
-import { RankingList } from '@/components/RankingList';
 import { SectionHeader } from '@/components/SectionHeader';
-import { TrendChartCard } from '@/components/TrendChartCard';
-import { technologies } from '@/data';
-import { getCellsByTechnology } from '@/lib/matrix';
+import { TechnologyAccordionSection } from '@/components/TechnologyAccordionSection';
+import { TechnologyHeatAnalysisCard } from '@/components/TechnologyHeatAnalysisCard';
+import { TechnologyMarketValidationChart } from '@/components/TechnologyMarketValidationChart';
+import { TechnologyPerceptionPanel } from '@/components/TechnologyPerceptionPanel';
+import { TechnologyResearchInnovationPanel } from '@/components/TechnologyResearchInnovationPanel';
+import { technologyOrder, technologyPages, technologyResearchSeries } from '@/data';
 
 type TechnologyPageProps = {
   params: Promise<{ slug: string }>;
 };
 
 export function generateStaticParams() {
-  return technologies.map((technology) => ({ slug: technology.slug }));
+  return technologyPages.map((technology) => ({ slug: technology.slug }));
 }
 
 export async function generateMetadata({ params }: TechnologyPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const technology = technologies.find((item) => item.slug === slug);
+  const technology = technologyPages.find((item) => item.slug === slug);
 
   if (!technology) {
     return { title: 'Technology Not Found' };
@@ -39,154 +35,94 @@ export async function generateMetadata({ params }: TechnologyPageProps): Promise
 
 export default async function TechnologyPage({ params }: TechnologyPageProps) {
   const { slug } = await params;
-  const technology = technologies.find((item) => item.slug === slug);
+  const technology = technologyPages.find((item) => item.slug === slug);
 
   if (!technology) {
     notFound();
   }
 
-  const cells = getCellsByTechnology(technology.slug)
-    .sort((a, b) => b.score - a.score)
-    .map((cell) => ({ label: cell.industrySlug.replaceAll('-', ' '), score: cell.score }));
-
   return (
-    <div className="space-y-8">
+    <div className="space-y-7">
       <MotionReveal>
-        <section className="space-y-4">
+        <section className="rounded-2xl border border-white/10 bg-gradient-to-r from-[#0f1f49]/75 via-[#0d1a3b]/70 to-[#091126]/70 p-4 md:p-6">
           <Link
             href="/"
             className="inline-flex rounded-lg border border-white/10 bg-slate-900/70 px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-200 transition hover:border-orange-300/45 hover:text-orange-100"
           >
             Back to Heatmatrix
           </Link>
-          <SectionHeader
-            label="Technology Overview"
-            title={technology.name}
-            description={technology.definition}
+          <div className="mt-4 space-y-4">
+            <SectionHeader label="Technology Overview" title={technology.name} description={technology.definition} />
+            <div className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.14em]">
+              <span className="rounded-full border border-orange-300/40 bg-orange-500/15 px-3 py-1 text-orange-100">
+                Heat score {technology.overview.summaryMetrics.averageHeatScore}
+              </span>
+              <span className="rounded-full border border-white/10 bg-slate-900/70 px-3 py-1 text-slate-200">
+                Top sector {technology.overview.summaryMetrics.topExposureSector}
+              </span>
+              <span className="rounded-full border border-white/10 bg-slate-900/70 px-3 py-1 text-slate-200">
+                Cells above 60: {technology.overview.summaryMetrics.cellsAbove60}
+              </span>
+            </div>
+          </div>
+        </section>
+      </MotionReveal>
+
+      <MotionReveal>
+        <section id="strategic-overview">
+          <TechnologyHeatAnalysisCard
+            industries={technology.overview.industryRadarProfiles}
+            chairComment={technology.overview.chairComment}
           />
         </section>
       </MotionReveal>
 
-      <ContextualPageNav
-        links={[
-          { label: 'Strategic Overview', href: '#strategic-overview' },
-          { label: "Professional's Perception", href: '#perception' },
-          { label: 'Market Validation', href: '#market-validation' },
-          { label: 'Research & Innovation', href: '#research' }
-        ]}
+      <MotionReveal>
+        <section id="perception">
+          <TechnologyAccordionSection title="Professionals' Perception">
+            <TechnologyPerceptionPanel
+              currentTechnologySlug={technology.slug}
+              impactRanking={technology.professionalsPerception.impactRanking}
+              impactDistribution={technology.professionalsPerception.impactDistribution}
+              topUseCases={technology.professionalsPerception.topUseCases}
+            />
+          </TechnologyAccordionSection>
+        </section>
+      </MotionReveal>
+
+      <MotionReveal>
+        <section id="market-validation">
+          <TechnologyAccordionSection title="Market Validation">
+            <TechnologyMarketValidationChart
+              totals={technology.marketValidation.totals}
+              points={technology.marketValidation.scatterPoints}
+            />
+          </TechnologyAccordionSection>
+        </section>
+      </MotionReveal>
+
+      <MotionReveal>
+        <section id="research">
+          <TechnologyAccordionSection title="Research & Innovation">
+            <TechnologyResearchInnovationPanel
+              selectedTechnologySlug={technology.slug}
+              technologyOrder={technologyOrder}
+              patentsSeries={technologyResearchSeries.patents}
+              scholarSeries={technologyResearchSeries.scholarWork}
+              patentsDeltaPct={technology.researchInnovation.patentsDeltaPct}
+              scholarDeltaPct={technology.researchInnovation.scholarDeltaPct}
+              topApplicants={technology.researchInnovation.topApplicants2025}
+              topApplicantsNote={technology.researchInnovation.topApplicantsNote}
+            />
+          </TechnologyAccordionSection>
+        </section>
+      </MotionReveal>
+
+      <ExploreMatrixFooter
+        highlightTechnologySlug={technology.slug}
+        title={`Explore More on ${technology.shortName}`}
+        description="Continue exploring related intersections in the heatmatrix."
       />
-
-      <MotionReveal>
-        <section id="strategic-overview" className="space-y-4">
-          <SectionHeader
-            label="Strategic Overview"
-            title="Strategic signal profile"
-            description={technology.summary}
-          />
-          <div className="grid gap-4 lg:grid-cols-[1.2fr_1fr]">
-            <RadarChartCard
-              title={`${technology.shortName} strategic radar`}
-              description="Five-dimension disruption profile"
-              scores={technology.strategicScores}
-            />
-            <div className="space-y-4">
-              <DataCard title="Score summary">
-                <div className="grid gap-2">
-                  {technology.scoreSummary.map((metric) => (
-                    <MetricPill key={metric.label} {...metric} />
-                  ))}
-                </div>
-              </DataCard>
-              <RankingList title="Dimension breakdown" items={technology.dimensionBreakdown} />
-            </div>
-          </div>
-          <InsightQuote {...technology.expertQuote} />
-        </section>
-      </MotionReveal>
-
-      <MotionReveal>
-        <section id="perception" className="space-y-4">
-          <SectionHeader
-            label="Professional's Perception"
-            title="How practitioners view impact and timeline"
-            description="Survey-aligned views across leadership, operations, and implementation teams."
-          />
-          <div className="grid gap-4 lg:grid-cols-2">
-            <RankingList title="Perception rankings" items={technology.perceptionRankings} />
-            <TrendChartCard
-              title="Impact distribution timeline"
-              subtitle="How perceived disruption has evolved"
-              data={technology.impactTimeline}
-            />
-          </div>
-          <DataCard title="Top use cases" subtitle="Most-voted deployment pathways">
-            <div className="grid gap-3 md:grid-cols-3">
-              {technology.topUseCases.map((useCase) => (
-                <div key={useCase.title} className="rounded-xl border border-white/10 bg-slate-900/60 p-3">
-                  <p className="text-sm font-semibold text-slate-100">{useCase.title}</p>
-                  <p className="mt-2 text-sm text-slate-300">{useCase.description}</p>
-                  <p className="mt-2 text-xs uppercase tracking-[0.14em] text-orange-200">{useCase.signal}</p>
-                </div>
-              ))}
-            </div>
-          </DataCard>
-        </section>
-      </MotionReveal>
-
-      <MotionReveal>
-        <section id="market-validation" className="space-y-4">
-          <SectionHeader
-            label="Market Validation"
-            title="Ecosystem and capital confirmation"
-            description="Signal quality from company formation, funding flows, and strategic actors."
-          />
-          <MarketValidationPanel
-            ecosystemMetrics={technology.marketValidation.ecosystemMetrics}
-            notableActors={technology.marketValidation.notablePlayers}
-            signals={technology.marketValidation.fundingSignals}
-          />
-        </section>
-      </MotionReveal>
-
-      <MotionReveal>
-        <section id="research" className="space-y-4">
-          <SectionHeader
-            label="Research & Innovation"
-            title="Knowledge production and patent momentum"
-            description="Publication growth and research concentration over time."
-          />
-          <div className="grid gap-4 lg:grid-cols-[1.2fr_1fr]">
-            <TrendChartCard
-              title="Cumulative publication trend"
-              subtitle={`Estimated CAGR: ${technology.researchInnovation.cagr}`}
-              data={technology.researchInnovation.publicationTrend}
-              dataKeyLabel="publications"
-            />
-            <DataCard title="Notable patent applicants">
-              <ul className="space-y-2 text-sm text-slate-300">
-                {technology.researchInnovation.patentLeaders.map((leader) => (
-                  <li key={leader} className="rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2">
-                    {leader}
-                  </li>
-                ))}
-              </ul>
-            </DataCard>
-          </div>
-          <DataCard title="Top related industry intersections">
-            <div className="grid gap-2 md:grid-cols-3">
-              {cells.slice(0, 6).map((item) => (
-                <div key={item.label} className="rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2">
-                  <p className="text-xs uppercase tracking-[0.14em] text-slate-400">Industry</p>
-                  <p className="text-sm text-slate-100">{item.label}</p>
-                  <p className="text-sm font-semibold text-orange-200">Score {item.score}</p>
-                </div>
-              ))}
-            </div>
-          </DataCard>
-        </section>
-      </MotionReveal>
-
-      <ExploreMatrixFooter highlightTechnologySlug={technology.slug} />
     </div>
   );
 }

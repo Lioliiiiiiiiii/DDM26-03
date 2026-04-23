@@ -6,19 +6,25 @@ type ExploreMatrixFooterProps = {
   highlightTechnologySlug?: string;
   highlightIndustrySlug?: string;
   highlightCellId?: string;
+  label?: string;
+  title?: string;
+  description?: string;
 };
 
 export function ExploreMatrixFooter({
   highlightTechnologySlug,
   highlightIndustrySlug,
-  highlightCellId
+  highlightCellId,
+  label = 'Explore More',
+  title = 'Navigate The Heatmatrix',
+  description = 'Continue exploring related intersections, technology columns, and industry rows.'
 }: ExploreMatrixFooterProps) {
   return (
     <section className="space-y-6">
       <SectionHeader
-        label="Explore More"
-        title="Navigate The Heatmatrix"
-        description="Continue exploring related intersections, technology columns, and industry rows."
+        label={label}
+        title={title}
+        description={description}
       />
       <InteractiveHeatmatrix
         technologies={technologies}

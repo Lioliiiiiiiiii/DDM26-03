@@ -130,3 +130,113 @@ export type HomepageIntroContent = {
   sortSummary: string;
   scrollHint: string;
 };
+
+export type TechnologyOrderEntry = {
+  id: string;
+  slug: string;
+  name: string;
+  color: string;
+};
+
+export type TechnologyIndustryRadarProfile = {
+  industrySlug: string;
+  industryName: string;
+  heatScore: number;
+  radar: {
+    innovationIntensity: number;
+    innovationMomentum: number;
+    startupActivity: number;
+    marketValidation: number;
+    professionalsPerception: number;
+  };
+};
+
+export type TechnologyOverviewMetricSummary = {
+  averageHeatScore: number;
+  topExposureSector: string;
+  cellsAbove60: number;
+};
+
+export type TechnologyImpactRankingItem = {
+  technologyKey: string;
+  technologySlug: string;
+  label: string;
+  score: number;
+};
+
+export type TechnologyImpactDistributionItem = {
+  label: string;
+  count: number;
+  percentage: number;
+};
+
+export type TechnologyMarketScatterPoint = {
+  name: string;
+  foundedYear: number;
+  fundingUsd: number;
+  category: 'Native' | 'Unicorn' | 'Emerging';
+};
+
+export type TechnologyTopApplicant = {
+  name: string;
+  documentCount: number;
+  status: 'none' | 'new_challenger' | 'significant_climber' | 'significant_drop';
+};
+
+export type TechnologyResearchSeriesPoint = {
+  year: string;
+  [technologySlug: string]: string | number;
+};
+
+export type TechnologyPageData = {
+  id: string;
+  slug: string;
+  name: string;
+  shortName: string;
+  themeColor: string;
+  definition: string;
+  summary: string;
+  overview: {
+    summaryMetrics: TechnologyOverviewMetricSummary;
+    industryRadarProfiles: TechnologyIndustryRadarProfile[];
+    chairComment: {
+      speaker: string;
+      quote: string;
+    };
+  };
+  professionalsPerception: {
+    impactRanking: TechnologyImpactRankingItem[];
+    impactDistribution: TechnologyImpactDistributionItem[];
+    topUseCases: UseCase[];
+  };
+  marketValidation: {
+    totals: {
+      unicornFundingUsd: number;
+      unicornCount: number;
+      nativeUnicornCount: number;
+      emergingUnicornCount: number;
+      startupCount2025: number;
+    };
+    scatterPoints: TechnologyMarketScatterPoint[];
+  };
+  researchInnovation: {
+    patentsDeltaPct: number;
+    scholarDeltaPct: number;
+    topApplicants2025: TechnologyTopApplicant[];
+    topApplicantsNote: string;
+  };
+};
+
+export type TechnologyPagesDataset = {
+  generatedAt: string;
+  source: {
+    heatmatrixWorkbook: string;
+    contentWorkbook: string;
+  };
+  technologyOrder: TechnologyOrderEntry[];
+  researchSeries: {
+    patents: TechnologyResearchSeriesPoint[];
+    scholarWork: TechnologyResearchSeriesPoint[];
+  };
+  technologies: TechnologyPageData[];
+};
