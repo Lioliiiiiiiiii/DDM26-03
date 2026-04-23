@@ -51,19 +51,8 @@ export default async function TechnologyPage({ params }: TechnologyPageProps) {
           >
             Back to Heatmatrix
           </Link>
-          <div className="mt-4 space-y-4">
+          <div className="mt-5 space-y-3">
             <SectionHeader label="Technology Overview" title={technology.name} description={technology.definition} />
-            <div className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.14em]">
-              <span className="rounded-full border border-orange-300/40 bg-orange-500/15 px-3 py-1 text-orange-100">
-                Heat score {technology.overview.summaryMetrics.averageHeatScore}
-              </span>
-              <span className="rounded-full border border-white/10 bg-slate-900/70 px-3 py-1 text-slate-200">
-                Top sector {technology.overview.summaryMetrics.topExposureSector}
-              </span>
-              <span className="rounded-full border border-white/10 bg-slate-900/70 px-3 py-1 text-slate-200">
-                Cells above 60: {technology.overview.summaryMetrics.cellsAbove60}
-              </span>
-            </div>
           </div>
         </section>
       </MotionReveal>

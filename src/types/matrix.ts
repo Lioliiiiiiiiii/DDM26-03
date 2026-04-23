@@ -173,7 +173,9 @@ export type TechnologyImpactDistributionItem = {
 export type TechnologyMarketScatterPoint = {
   name: string;
   foundedYear: number;
+  foundedDate: string;
   fundingUsd: number;
+  description: string;
   category: 'Native' | 'Unicorn' | 'Emerging';
 };
 

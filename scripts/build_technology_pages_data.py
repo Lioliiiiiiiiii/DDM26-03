@@ -14,6 +14,7 @@ from statistics import mean
 from typing import Any
 
 from openpyxl import load_workbook
+from openpyxl.utils import column_index_from_string
 
 
 @dataclass(frozen=True)
@@ -38,9 +39,9 @@ TECH_SPECS: tuple[TechnologySpec, ...] = (
     TechnologySpec(
         key="agentic-generative-ai",
         slug="agentic-gen-ai",
-        name="Agentic & Generative AI",
-        short_name="Agentic & Generative AI",
-        color="#f97316",
+        name="Agentic & GenAI",
+        short_name="Agentic & GenAI",
+        color="#FF5EA8",
         aliases=("agentic gen ai", "agenticgenai", "generative ai", "agentic ai"),
     ),
     TechnologySpec(
@@ -48,7 +49,7 @@ TECH_SPECS: tuple[TechnologySpec, ...] = (
         slug="blockchain-decentralized-systems",
         name="Blockchain & Decentralized Systems",
         short_name="Blockchain & Decentralized Systems",
-        color="#fbbf24",
+        color="#FF7A45",
         aliases=("blockchain", "blockchain decentralized systems"),
     ),
     TechnologySpec(
@@ -56,7 +57,7 @@ TECH_SPECS: tuple[TechnologySpec, ...] = (
         slug="robotics-automation",
         name="Robotics & Automation",
         short_name="Robotics & Automation",
-        color="#fb923c",
+        color="#34D1BF",
         aliases=("robotics", "robotics automation"),
     ),
     TechnologySpec(
@@ -64,7 +65,7 @@ TECH_SPECS: tuple[TechnologySpec, ...] = (
         slug="quantum-computing",
         name="Quantum Computing",
         short_name="Quantum Computing",
-        color="#fde68a",
+        color="#6EA8FF",
         aliases=("quantum", "quantum computing"),
     ),
 )
@@ -93,6 +94,27 @@ INDUSTRY_LOOKUP = {
 }
 
 RESEARCH_POINT_YEARS = (2020, 2021, 2022, 2023, 2024, 2025)
+
+Q9_INDUSTRY_BLOCKS = (
+    ("Energy", "U", "AI"),
+    ("Industrials", "AJ", "AX"),
+    ("Materials", "AY", "BM"),
+    ("Consumer Goods", "BN", "CB"),
+    ("Health Care", "CC", "CQ"),
+    ("Financial Services", "CR", "DF"),
+    ("Information Technology", "DG", "DU"),
+    ("Real Estate", "DV", "EJ"),
+    ("Communication", "EK", "EY"),
+    ("Automotive & Transport", "EZ", "FN"),
+)
+
+TECH_TO_USECASE_CHUNK_INDEX = {
+    "descriptive-ai": 0,
+    "agentic-generative-ai": 1,
+    "blockchain-decentralized-systems": 2,
+    "robotics-automation": 3,
+    "quantum-computing": 4,
+}
 
 
 def normalize_text(value: str | None) -> str:
@@ -128,6 +150,31 @@ def parse_year(value: Any) -> int | None:
         year = int(value)
         return year if 1900 <= year <= 2100 else None
     return None
+
+
+def format_founded_date(value: Any, precision: Any) -> str:
+    normalized_precision = normalize_text(precision if isinstance(precision, str) else "")
+    if isinstance(value, datetime):
+        if "day" in normalized_precision:
+            return value.strftime("%Y-%m-%d")
+        if "month" in normalized_precision:
+            return value.strftime("%b %Y")
+        return str(value.year)
+    if isinstance(value, date):
+        return str(value.year)
+    if isinstance(value, (int, float)):
+        return str(int(value))
+    if isinstance(value, str):
+        stripped = value.strip()
+        if stripped:
+            return stripped
+    return "n/a"
+
+
+def clean_label(value: Any) -> str:
+    if not isinstance(value, str):
+        return ""
+    return re.sub(r"\s+", " ", value).strip()
 
 
 def get_tech_key(raw_value: Any) -> str | None:
@@ -323,60 +370,68 @@ def build_data(heatmatrix_path: Path, content_path: Path) -> dict[str, Any]:
         aggregate["patents2024"] += parse_number(ws_full.cell(row, 17).value)
         aggregate["scholar2024"] += parse_number(ws_full.cell(row, 18).value)
 
-    use_cases_by_tech: dict[str, list[dict[str, str]]] = defaultdict(list)
-    ws_survey_verbatim = wb_content["Survey Verbatim"]
-    for row in range(2, ws_survey_verbatim.max_row + 1):
-        quote = ws_survey_verbatim.cell(row, 4).value
-        if not isinstance(quote, str) or not quote.strip():
-            continue
-        mapped_techs = tech_keys_in_text(ws_survey_verbatim.cell(row, 2).value)
-        if not mapped_techs:
-            continue
-        industry_label = ws_survey_verbatim.cell(row, 1).value if isinstance(ws_survey_verbatim.cell(row, 1).value, str) else "Cross-industry"
-        industry = get_industry(industry_label)
-        industry_name = industry[1] if industry else industry_label.strip()
-        experience = ws_survey_verbatim.cell(row, 3).value
-        experience_label = experience.strip() if isinstance(experience, str) and experience.strip() else "n/a"
-        card = {
-            "title": to_title_from_quote(quote),
-            "description": quote.strip().strip('"'),
-            "signal": f"{industry_name} \u00b7 {experience_label}",
-        }
-        for tech_key in mapped_techs:
-            use_cases_by_tech[tech_key].append(card)
+    # Q9 use-case aggregation from Survey Results columns U:FN.
+    ws_survey_results = wb_content["Survey Results"]
+    q9_use_case_votes: dict[str, dict[str, dict[str, Any]]] = defaultdict(dict)
+    for industry_name, start_col_letter, _end_col_letter in Q9_INDUSTRY_BLOCKS:
+        block_start = column_index_from_string(start_col_letter)
+        for tech_key, chunk_index in TECH_TO_USECASE_CHUNK_INDEX.items():
+            chunk_start = block_start + chunk_index * 3
+            chunk_end = chunk_start + 2
+            for column in range(chunk_start, chunk_end + 1):
+                label = clean_label(ws_survey_results.cell(2, column).value)
+                if not label:
+                    continue
+                votes = 0
+                for row in range(3, ws_survey_results.max_row + 1):
+                    value = ws_survey_results.cell(row, column).value
+                    if isinstance(value, str):
+                        if value.strip():
+                            votes += 1
+                    elif value not in (None, ""):
+                        votes += 1
 
-    chair_comments: dict[str, dict[str, str]] = {}
-    quote_use_cases_by_tech: dict[str, list[dict[str, str]]] = defaultdict(list)
-    ws_quotes = wb_content["Quotes"]
-    for row in range(2, ws_quotes.max_row + 1):
-        mapped_techs = tech_keys_in_text(ws_quotes.cell(row, 3).value)
-        if not mapped_techs:
-            continue
-        quote = ws_quotes.cell(row, 4).value
-        if not isinstance(quote, str) or not quote.strip():
-            continue
-        translation = ws_quotes.cell(row, 5).value
-        speaker = ws_quotes.cell(row, 1).value if isinstance(ws_quotes.cell(row, 1).value, str) else "Expert panel"
-        industry_value = ws_quotes.cell(row, 2).value
-        industry_text = industry_value.strip() if isinstance(industry_value, str) and industry_value.strip() else "Cross-industry"
-        normalized_quote = translation.strip() if isinstance(translation, str) and translation.strip() else quote.strip()
-        use_case_card = {
-            "title": to_title_from_quote(normalized_quote),
-            "description": normalized_quote,
-            "signal": f"{industry_text} · {speaker}",
-        }
-        for tech_key in mapped_techs:
-            if tech_key in chair_comments:
-                quote_use_cases_by_tech[tech_key].append(use_case_card)
-            else:
-                chair_comments[tech_key] = {
-                    "speaker": speaker,
-                    "quote": normalized_quote,
-                }
+                if votes <= 0:
+                    continue
 
-    scatter_points: dict[str, dict[tuple[str, str], dict[str, Any]]] = defaultdict(dict)
+                existing = q9_use_case_votes[tech_key].setdefault(
+                    label,
+                    {"label": label, "votes": 0, "industries": set()},
+                )
+                existing["votes"] += votes
+                existing["industries"].add(industry_name)
 
-    def ingest_scatter(ws_name: str, tech_col: int, org_col: int, year_col: int, funding_col: int, category: str) -> None:
+    q9_use_cases_by_tech: dict[str, list[dict[str, str]]] = {}
+    for tech_key, vote_map in q9_use_case_votes.items():
+        ranked = sorted(vote_map.values(), key=lambda item: (-item["votes"], item["label"]))[:6]
+        q9_use_cases_by_tech[tech_key] = [
+            {
+                "title": item["label"],
+                "description": f"Selected {item['votes']} times in Q9 across all industries.",
+                "signal": f"Q9 aggregation · {len(item['industries'])} industry blocks",
+            }
+            for item in ranked
+        ]
+
+    chair_comment_placeholder = {
+        "speaker": "Chair",
+        "quote": "Chair's comment placeholder — final commentary will be inserted here.",
+    }
+
+    scatter_points: dict[str, dict[str, dict[str, Any]]] = defaultdict(dict)
+    category_priority = {"Emerging": 1, "Unicorn": 2, "Native": 3}
+
+    def ingest_scatter(
+        ws_name: str,
+        tech_col: int,
+        org_col: int,
+        year_col: int,
+        funding_col: int,
+        short_desc_col: int,
+        full_desc_col: int,
+        precision_col: int,
+        category: str,
+    ) -> None:
         ws = wb_content[ws_name]
         for row in range(2, ws.max_row + 1):
             tech_key = get_tech_key(ws.cell(row, tech_col).value)
@@ -385,29 +440,69 @@ def build_data(heatmatrix_path: Path, content_path: Path) -> dict[str, Any]:
             organization = ws.cell(row, org_col).value
             if not isinstance(organization, str) or not organization.strip():
                 continue
-            founded_year = parse_year(ws.cell(row, year_col).value)
+            founded_raw = ws.cell(row, year_col).value
+            founded_year = parse_year(founded_raw)
             funding_usd = parse_number(ws.cell(row, funding_col).value)
             if not founded_year or funding_usd <= 0:
                 continue
-            key = (organization.strip(), category)
-            existing = scatter_points[tech_key].get(key)
-            if existing and existing["fundingUsd"] >= funding_usd:
-                continue
-            scatter_points[tech_key][key] = {
+            description = clean_label(ws.cell(row, short_desc_col).value)
+            if not description:
+                description = clean_label(ws.cell(row, full_desc_col).value) or "No activity description available."
+            founded_date = format_founded_date(founded_raw, ws.cell(row, precision_col).value)
+            normalized_org = normalize_text(organization)
+
+            candidate = {
                 "name": organization.strip(),
                 "foundedYear": founded_year,
+                "foundedDate": founded_date,
                 "fundingUsd": round(funding_usd, 2),
+                "description": description,
                 "category": category,
+                "_priority": category_priority[category],
             }
+            existing = scatter_points[tech_key].get(normalized_org)
+            if not existing:
+                scatter_points[tech_key][normalized_org] = candidate
+                continue
 
-    ingest_scatter("Native Unicorns", tech_col=2, org_col=3, year_col=10, funding_col=12, category="Native")
-    ingest_scatter("Unicorns - TECH", tech_col=1, org_col=2, year_col=8, funding_col=10, category="Unicorn")
+            if candidate["_priority"] > existing["_priority"]:
+                scatter_points[tech_key][normalized_org] = candidate
+                continue
+
+            if candidate["_priority"] == existing["_priority"] and candidate["fundingUsd"] > existing["fundingUsd"]:
+                scatter_points[tech_key][normalized_org] = candidate
+
+    ingest_scatter(
+        "Native Unicorns",
+        tech_col=2,
+        org_col=3,
+        year_col=10,
+        funding_col=12,
+        short_desc_col=7,
+        full_desc_col=8,
+        precision_col=11,
+        category="Native",
+    )
+    ingest_scatter(
+        "Unicorns - TECH",
+        tech_col=1,
+        org_col=2,
+        year_col=8,
+        funding_col=10,
+        short_desc_col=5,
+        full_desc_col=6,
+        precision_col=9,
+        category="Unicorn",
+    )
     ingest_scatter(
         "Emerging Unicorns - TECH",
         tech_col=1,
         org_col=2,
         year_col=9,
         funding_col=11,
+        short_desc_col=6,
+        full_desc_col=7,
+        precision_col=10,
         category="Emerging",
     )
 
@@ -536,36 +631,12 @@ def build_data(heatmatrix_path: Path, content_path: Path) -> dict[str, Any]:
         patents_delta = pct_change(market["patents2024"], market["patents2025"])
         scholar_delta = pct_change(market["scholar2024"], market["scholar2025"])
 
-        comment = chair_comments.get(
-            spec.key,
-            {
-                "speaker": "Research synthesis",
-                "quote": "Chair comment not available in the source workbook.",
-            },
-        )
-
-        primary_use_cases = use_cases_by_tech.get(spec.key, [])
-        supplemental_use_cases = quote_use_cases_by_tech.get(spec.key, [])
-        deduped_use_cases = []
-        seen_descriptions: set[str] = set()
-        for item in [*primary_use_cases, *supplemental_use_cases]:
-            signature = normalize_text(item["description"])
-            if not signature or signature in seen_descriptions:
-                continue
-            seen_descriptions.add(signature)
-            deduped_use_cases.append(item)
-
-        tech_use_cases = deduped_use_cases[:6]
-        if not tech_use_cases:
-            tech_use_cases = [
-                {
-                    "title": "No survey use case available",
-                    "description": "No survey verbatim entries were tagged for this technology in the source workbook.",
-                    "signal": "Source workbook",
-                }
-            ]
-
-        points = list(scatter_points.get(spec.key, {}).values())
+        tech_use_cases = q9_use_cases_by_tech.get(spec.key, [])[:6]
+        points = []
+        for point in scatter_points.get(spec.key, {}).values():
+            cleaned = dict(point)
+            cleaned.pop("_priority", None)
+            points.append(cleaned)
         points.sort(key=lambda item: item["fundingUsd"], reverse=True)
 
         technology_pages.append(
@@ -584,12 +655,12 @@ def build_data(heatmatrix_path: Path, content_path: Path) -> dict[str, Any]:
                         "cellsAbove60": cells_above_60,
                     },
                     "industryRadarProfiles": merged_industry_cards,
-                    "chairComment": comment,
+                    "chairComment": chair_comment_placeholder,
                 },
                 "professionalsPerception": {
                     "impactRanking": impact_ranking,
                     "impactDistribution": impact_distribution,
-                    "topUseCases": tech_use_cases[:6],
+                    "topUseCases": tech_use_cases,
                 },
                 "marketValidation": {
                     "totals": {

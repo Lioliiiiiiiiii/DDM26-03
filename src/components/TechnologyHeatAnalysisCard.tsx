@@ -98,12 +98,12 @@ export function TechnologyHeatAnalysisCard({ industries, chairComment }: Technol
           </div>
         </article>
 
-        <article className="flex min-h-[260px] flex-col justify-between rounded-xl bg-gradient-to-br from-orange-500 to-amber-400 p-4 text-slate-950">
+        <article className="flex min-h-[260px] flex-col justify-between rounded-xl border border-[rgba(245,158,11,0.28)] bg-[#12213D] p-4 text-slate-100">
           <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-900/80">Chair Comment</p>
-            <p className="text-sm font-medium leading-relaxed text-slate-900/95">&ldquo;{chairComment.quote}&rdquo;</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#F59E0B]">Chair Comment</p>
+            <p className="text-sm font-medium leading-7 text-[#F8FAFC]">&ldquo;{chairComment.quote}&rdquo;</p>
           </div>
-          <p className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-900/75">
+          <p className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#CBD5E1]">
             {chairComment.speaker}
           </p>
         </article>

@@ -40,6 +40,36 @@ const formatUsd = (value: number) => {
   return `$${Math.round(value).toLocaleString('en-US')}`;
 };
 
+function MarketPointTooltip({
+  active,
+  payload
+}: {
+  active?: boolean;
+  payload?: Array<{ payload?: TechnologyMarketScatterPoint }>;
+}) {
+  if (!active || !payload || payload.length === 0 || !payload[0]?.payload) {
+    return null;
+  }
+
+  const point = payload[0].payload;
+
+  return (
+    <div className="max-w-[320px] rounded-xl border border-orange-300/30 bg-slate-950/95 p-3 text-sm shadow-panel">
+      <p className="font-semibold text-slate-100">{point.name}</p>
+      <p className="mt-2 text-xs uppercase tracking-[0.14em] text-orange-200">{point.category}</p>
+      <p className="mt-2 text-slate-300">{point.description}</p>
+      <div className="mt-3 space-y-1 text-xs text-slate-200">
+        <p>
+          <span className="text-slate-400">Founded:</span> {point.foundedDate}
+        </p>
+        <p>
+          <span className="text-slate-400">Funding:</span> {formatUsd(point.fundingUsd)}
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export function TechnologyMarketValidationChart({ totals, points }: TechnologyMarketValidationChartProps) {
   const nativePoints = points.filter((point) => point.category === 'Native');
   const unicornPoints = points.filter((point) => point.category === 'Unicorn');
@@ -83,17 +113,7 @@ export function TechnologyMarketValidationChart({ totals, points }: TechnologyMa
               />
               <RechartsTooltip
                 cursor={{ strokeDasharray: '3 3', stroke: 'rgba(251, 146, 60, 0.3)' }}
-                formatter={(value: number, _name: string, payload: { payload?: TechnologyMarketScatterPoint }) => [
-                  formatUsd(value),
-                  payload?.payload?.name ?? 'Organization'
-                ]}
-                labelFormatter={(label) => `Founded: ${label}`}
-                contentStyle={{
-                  backgroundColor: 'rgba(10, 15, 23, 0.96)',
-                  border: '1px solid rgba(251, 146, 60, 0.35)',
-                  borderRadius: 12,
-                  color: '#f8fafc'
-                }}
+                content={<MarketPointTooltip />}
               />
               <Scatter data={nativePoints} fill={CATEGORY_COLORS.Native} name="Native" />
               <Scatter data={unicornPoints} fill={CATEGORY_COLORS.Unicorn} name="Unicorn" />
