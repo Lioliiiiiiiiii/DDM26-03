@@ -77,7 +77,7 @@ export function InteractiveHeatmatrix({
   const [hovered, setHovered] = useState<HoverState>(null);
   const homepageGrid = gridPreset === 'homepage';
   const rowLabelWidth = homepageGrid ? 148 : compact ? 170 : 190;
-  const cellWidth = homepageGrid ? 84 : compact ? 92 : 112;
+  const cellWidth = homepageGrid ? 126 : compact ? 92 : 112;
   const cellHeight = homepageGrid ? 52 : compact ? 58 : 64;
   const headerHeight = homepageGrid ? 52 : compact ? 56 : 62;
   const gridGapClass = homepageGrid ? 'gap-1.5' : 'gap-2';
@@ -175,7 +175,7 @@ export function InteractiveHeatmatrix({
       )}
     >
       <div className="relative overflow-x-auto">
-        <div className={cn('mx-auto w-fit', homepageGrid ? 'min-w-[600px]' : 'min-w-[720px]')}>
+        <div className={cn('mx-auto w-fit', homepageGrid ? 'min-w-[820px]' : 'min-w-[720px]')}>
           <div
             className={cn('grid', gridGapClass)}
             style={{
