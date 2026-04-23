@@ -17,6 +17,7 @@ type InteractiveHeatmatrixProps = {
   highlightTechnologySlug?: string;
   highlightIndustrySlug?: string;
   highlightCellId?: string;
+  gridPreset?: 'default' | 'homepage';
   cinematicReveal?: {
     enabled: boolean;
     active: boolean;
@@ -48,6 +49,18 @@ const makeRng = (seed: number) => {
   };
 };
 
+const getHomepageIndustryLabel = (industry: Industry) => {
+  if (industry.slug === 'communication-creative-services') {
+    return 'Comm & Creative';
+  }
+
+  if (industry.slug === 'information-technology') {
+    return 'IT';
+  }
+
+  return industry.name;
+};
+
 export function InteractiveHeatmatrix({
   technologies,
   industries,
@@ -58,12 +71,16 @@ export function InteractiveHeatmatrix({
   highlightTechnologySlug,
   highlightIndustrySlug,
   highlightCellId,
+  gridPreset = 'default',
   cinematicReveal
 }: InteractiveHeatmatrixProps) {
   const [hovered, setHovered] = useState<HoverState>(null);
-  const rowLabelWidth = compact ? 170 : 190;
-  const cellWidth = compact ? 92 : 112;
-  const cellHeight = compact ? 58 : 64;
+  const homepageGrid = gridPreset === 'homepage';
+  const rowLabelWidth = homepageGrid ? 148 : compact ? 170 : 190;
+  const cellWidth = homepageGrid ? 84 : compact ? 92 : 112;
+  const cellHeight = homepageGrid ? 52 : compact ? 58 : 64;
+  const headerHeight = homepageGrid ? 52 : compact ? 56 : 62;
+  const gridGapClass = homepageGrid ? 'gap-1.5' : 'gap-2';
   const cinematicEnabled = Boolean(cinematicReveal?.enabled);
   const cinematicActive = Boolean(cinematicReveal?.active);
 
@@ -158,11 +175,13 @@ export function InteractiveHeatmatrix({
       )}
     >
       <div className="relative overflow-x-auto">
-        <div className="mx-auto w-fit min-w-[720px]">
+        <div className={cn('mx-auto w-fit', homepageGrid ? 'min-w-[600px]' : 'min-w-[720px]')}>
           <div
-            className="grid gap-2"
+            className={cn('grid', gridGapClass)}
             style={{
-              gridTemplateColumns: `${rowLabelWidth}px repeat(${technologies.length}, minmax(${cellWidth}px, 1fr))`
+              gridTemplateColumns: homepageGrid
+                ? `${rowLabelWidth}px repeat(${technologies.length}, ${cellWidth}px)`
+                : `${rowLabelWidth}px repeat(${technologies.length}, minmax(${cellWidth}px, 1fr))`
             }}
           >
             <div
@@ -170,6 +189,7 @@ export function InteractiveHeatmatrix({
                 'sticky left-0 z-20 rounded-xl border border-transparent bg-slate-950/90 p-3 transition duration-300',
                 cinematicEnabled && !labelsVisible && 'pointer-events-none translate-y-1 opacity-0'
               )}
+              style={{ height: `${headerHeight}px` }}
             />
             {technologies.map((technology) => {
               const active = technology.slug === highlightTechnologySlug;
@@ -179,13 +199,14 @@ export function InteractiveHeatmatrix({
                   key={technology.slug}
                   href={`/technology/${technology.slug}`}
                   className={cn(
-                    'rounded-xl border p-2.5 text-center text-[11px] font-semibold uppercase leading-snug tracking-[0.12em] transition duration-300 whitespace-normal break-words focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300/80 md:p-3 md:text-xs',
+                    'flex items-center justify-center rounded-xl border p-2.5 text-center text-[11px] font-semibold uppercase leading-snug tracking-[0.12em] transition duration-300 whitespace-normal break-words focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300/80 md:p-3 md:text-xs',
                     active
                       ? 'border-orange-300/70 bg-orange-500/15 text-orange-100'
                       : 'border-white/10 bg-slate-900/70 text-slate-200 hover:border-orange-300/50 hover:text-orange-100',
                     cinematicEnabled && !labelsVisible && 'pointer-events-none translate-y-1 opacity-0'
                   )}
                   tabIndex={cinematicEnabled && !labelsVisible ? -1 : undefined}
+                  style={{ height: `${headerHeight}px` }}
                 >
                   {technology.shortName}
                 </Link>
@@ -194,21 +215,24 @@ export function InteractiveHeatmatrix({
 
             {industries.map((industry) => {
               const rowActive = industry.slug === highlightIndustrySlug;
+              const industryLabel = homepageGrid ? getHomepageIndustryLabel(industry) : industry.name;
 
               return (
                 <Fragment key={industry.slug}>
                   <Link
                     href={`/industry/${industry.slug}`}
                     className={cn(
-                      'sticky left-0 z-20 rounded-xl border p-3 text-sm font-medium transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300/80',
+                      'sticky left-0 z-20 flex items-center rounded-xl border p-3 font-medium transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300/80',
                       rowActive
                         ? 'border-orange-300/70 bg-orange-500/15 text-orange-100'
                         : 'border-white/10 bg-slate-900/80 text-slate-200 hover:border-orange-300/40 hover:text-orange-100',
-                      cinematicEnabled && !labelsVisible && 'pointer-events-none translate-y-1 opacity-0'
+                      cinematicEnabled && !labelsVisible && 'pointer-events-none translate-y-1 opacity-0',
+                      homepageGrid ? 'justify-start px-2 text-xs leading-tight whitespace-normal md:text-sm' : 'text-sm'
                     )}
                     tabIndex={cinematicEnabled && !labelsVisible ? -1 : undefined}
+                    style={homepageGrid ? { height: `${cellHeight}px` } : undefined}
                   >
-                    {industry.name}
+                    {industryLabel}
                   </Link>
                   {technologies.map((technology) => {
                     const key = `${technology.slug}::${industry.slug}`;

@@ -53,8 +53,9 @@ export function HomepageMethodologyMatrix({
         industries={industries}
         cells={cells}
         compact
+        gridPreset="homepage"
         cinematicReveal={{ enabled: true, active: revealActive }}
-        className="w-full max-w-[840px] border-[#fdba74]/30 bg-slate-950/84 p-3 md:p-4"
+        className="w-full max-w-[760px] border-[#fdba74]/30 bg-slate-950/84 p-2.5 md:p-3"
       />
     </div>
   );

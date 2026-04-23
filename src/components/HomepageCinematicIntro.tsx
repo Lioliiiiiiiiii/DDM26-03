@@ -11,6 +11,7 @@ import { useMemo, useRef } from 'react';
 import { BackgroundLines } from '@/components/BackgroundLines';
 import { cn } from '@/lib/utils';
 import { HomepageIntroContent } from '@/types/matrix';
+import essecLogo from '../../public/logos/essec-bs-logo-blanc.png';
 
 type HomepageCinematicIntroProps = {
   intro: HomepageIntroContent;
@@ -206,12 +207,13 @@ export function HomepageCinematicIntro({ intro }: HomepageCinematicIntroProps) {
         >
           <div className="pointer-events-none absolute right-6 top-6 md:right-16 md:top-8">
             <Image
-              src="/logos/essec-bs-logo-blanc.png"
+              src={essecLogo}
               alt="ESSEC Business School"
               width={156}
               height={132}
               priority
-              className="h-auto w-24 sm:w-28 md:w-[9.75rem]"
+              sizes="(max-width: 640px) 6rem, (max-width: 768px) 7rem, 9.75rem"
+              className="h-auto w-24 object-contain sm:w-28 md:w-[9.75rem]"
             />
           </div>
           <p className="text-xs font-semibold uppercase tracking-[0.26em] text-[#fdba74] md:text-sm">
