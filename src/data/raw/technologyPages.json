@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-23T16:13:03.635681",
+  "generatedAt": "2026-04-24T15:10:06.608935",
   "source": {
     "heatmatrixWorkbook": "/Users/leonielarribau/Downloads/Heatmatrix 2026 Deciles-2.xlsx",
     "contentWorkbook": "/Users/leonielarribau/Downloads/Matrix content table-5.xlsx"
@@ -6236,8 +6236,8 @@
           },
           {
             "name": "Lead",
-            "foundedYear": 1928,
-            "foundedDate": "1928",
+            "foundedYear": 2022,
+            "foundedDate": "2022",
             "fundingUsd": 170000000.0,
             "description": "Lead is a Banking as a Service platform providing financial solutions for individuals, businesses, and fintech companies.",
             "category": "Unicorn"

@@ -116,6 +116,10 @@ TECH_TO_USECASE_CHUNK_INDEX = {
     "quantum-computing": 4,
 }
 
+FOUNDED_YEAR_CORRECTIONS: dict[tuple[str, str], int] = {
+    ("blockchain-decentralized-systems", "lead"): 2022,
+}
+
 
 def normalize_text(value: str | None) -> str:
     if not value:
@@ -450,6 +454,10 @@ def build_data(heatmatrix_path: Path, content_path: Path) -> dict[str, Any]:
                 description = clean_label(ws.cell(row, full_desc_col).value) or "No activity description available."
             founded_date = format_founded_date(founded_raw, ws.cell(row, precision_col).value)
             normalized_org = normalize_text(organization)
+            corrected_year = FOUNDED_YEAR_CORRECTIONS.get((tech_key, normalized_org))
+            if corrected_year:
+                founded_year = corrected_year
+                founded_date = str(corrected_year)
 
             candidate = {
                 "name": organization.strip(),
