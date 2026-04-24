@@ -187,17 +187,13 @@ export function HomepageCinematicIntro({ intro }: HomepageCinematicIntroProps) {
         />
 
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_22%,rgba(249,115,22,0.2),transparent_42%),radial-gradient(circle_at_72%_8%,rgba(251,191,36,0.14),transparent_32%),linear-gradient(120deg,#05070d_0%,#0b121c_48%,#0f1624_100%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_22%,rgba(249,115,22,0.2),transparent_42%),linear-gradient(120deg,#05070d_0%,#0b121c_48%,#0f1624_100%)]" />
           <motion.div className="absolute inset-0" style={{ opacity: linesOpacity }}>
             <BackgroundLines className="z-[2] mix-blend-screen" />
           </motion.div>
           <motion.div
             className="absolute -left-[16%] top-[-18%] h-[56vh] w-[56vh] rounded-full bg-orange-500/20 blur-[110px]"
             style={{ x: useTransform(scrollYProgress, [0, 1], [-30, 80]) }}
-          />
-          <motion.div
-            className="absolute right-[-16%] top-[8%] h-[44vh] w-[44vh] rounded-full bg-amber-400/20 blur-[100px]"
-            style={{ x: useTransform(scrollYProgress, [0, 1], [40, -80]) }}
           />
         </div>
 

@@ -15,7 +15,7 @@ type BackgroundLinesProps = {
 function FloatingPaths({ position }: FloatingPathsProps) {
   const paths = useMemo(
     () => {
-      const colors = ['#c2410c', '#f97316', '#fdba74'];
+      const colors = ['#d34c10', '#ff7f2a', '#ffc285'];
       return (
       Array.from({ length: 36 }, (_, index) => ({
         id: index,
@@ -45,11 +45,11 @@ function FloatingPaths({ position }: FloatingPathsProps) {
             d={path.d}
             stroke={path.color}
             strokeWidth={path.width}
-            strokeOpacity={0.3}
-            initial={{ pathLength: 0.3, opacity: 0.5 }}
+            strokeOpacity={0.4}
+            initial={{ pathLength: 0.3, opacity: 0.58 }}
             animate={{
               pathLength: 1,
-              opacity: [0.4, 0.97, 0.4],
+              opacity: [0.5, 1, 0.5],
               pathOffset: [0, 1, 0]
             }}
             transition={{
