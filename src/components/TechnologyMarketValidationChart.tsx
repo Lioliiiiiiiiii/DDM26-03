@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo, useState } from 'react';
 import { DataCard } from '@/components/DataCard';
 import { MetricPill } from '@/components/MetricPill';
 import { TechnologyMarketScatterPoint } from '@/types/matrix';
@@ -14,7 +15,7 @@ import {
 } from 'recharts';
 
 type TechnologyMarketValidationChartProps = {
-  totals: {
+  totals?: {
     unicornFundingUsd: number;
     unicornCount: number;
     nativeUnicornCount: number;
@@ -22,6 +23,8 @@ type TechnologyMarketValidationChartProps = {
     startupCount2025: number;
   };
   points: TechnologyMarketScatterPoint[];
+  technologyFilters?: Array<{ slug: string; name: string }>;
+  startupCountByTechnology?: Record<string, number>;
 };
 
 const CATEGORY_COLORS: Record<TechnologyMarketScatterPoint['category'], string> = {
@@ -70,19 +73,85 @@ function MarketPointTooltip({
   );
 }
 
-export function TechnologyMarketValidationChart({ totals, points }: TechnologyMarketValidationChartProps) {
-  const nativePoints = points.filter((point) => point.category === 'Native');
-  const unicornPoints = points.filter((point) => point.category === 'Unicorn');
-  const emergingPoints = points.filter((point) => point.category === 'Emerging');
+export function TechnologyMarketValidationChart({
+  totals,
+  points,
+  technologyFilters,
+  startupCountByTechnology
+}: TechnologyMarketValidationChartProps) {
+  const [selectedTechnologySlug, setSelectedTechnologySlug] = useState<string>('all');
+
+  const filteredPoints = useMemo(() => {
+    if (!technologyFilters || selectedTechnologySlug === 'all') {
+      return points;
+    }
+    return points.filter((point) => point.technologySlug === selectedTechnologySlug);
+  }, [points, selectedTechnologySlug, technologyFilters]);
+
+  const computedTotals = useMemo(() => {
+    const unicornFundingUsd = filteredPoints.reduce((sum, point) => sum + point.fundingUsd, 0);
+    const nativeUnicornCount = filteredPoints.filter((point) => point.category === 'Native').length;
+    const unicornCount = filteredPoints.filter((point) => point.category === 'Native' || point.category === 'Unicorn').length;
+    const emergingUnicornCount = filteredPoints.filter((point) => point.category === 'Emerging').length;
+
+    const startupCount2025 =
+      selectedTechnologySlug === 'all'
+        ? totals?.startupCount2025 ?? 0
+        : startupCountByTechnology?.[selectedTechnologySlug] ?? 0;
+
+    return {
+      unicornFundingUsd,
+      unicornCount,
+      nativeUnicornCount,
+      emergingUnicornCount,
+      startupCount2025
+    };
+  }, [filteredPoints, selectedTechnologySlug, startupCountByTechnology, totals?.startupCount2025]);
+
+  const activeTotals = totals && (!technologyFilters || selectedTechnologySlug === 'all') ? totals : computedTotals;
+
+  const nativePoints = filteredPoints.filter((point) => point.category === 'Native');
+  const unicornPoints = filteredPoints.filter((point) => point.category === 'Unicorn');
+  const emergingPoints = filteredPoints.filter((point) => point.category === 'Emerging');
 
   return (
     <div className="space-y-4">
+      {technologyFilters ? (
+        <div className="flex flex-wrap gap-2">
+          <button
+            type="button"
+            onClick={() => setSelectedTechnologySlug('all')}
+            className={`rounded-full border px-3 py-1 text-[11px] font-medium uppercase tracking-[0.12em] transition ${
+              selectedTechnologySlug === 'all'
+                ? 'border-orange-300/60 bg-orange-500/20 text-orange-100'
+                : 'border-white/10 bg-slate-900/70 text-slate-300 hover:border-white/20'
+            }`}
+          >
+            All
+          </button>
+          {technologyFilters.map((technology) => (
+            <button
+              key={technology.slug}
+              type="button"
+              onClick={() => setSelectedTechnologySlug(technology.slug)}
+              className={`rounded-full border px-3 py-1 text-[11px] font-medium uppercase tracking-[0.12em] transition ${
+                selectedTechnologySlug === technology.slug
+                  ? 'border-orange-300/60 bg-orange-500/20 text-orange-100'
+                  : 'border-white/10 bg-slate-900/70 text-slate-300 hover:border-white/20'
+              }`}
+            >
+              {technology.name}
+            </button>
+          ))}
+        </div>
+      ) : null}
+
       <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
-        <MetricPill label="Total funding" value={formatUsd(totals.unicornFundingUsd)} tone="positive" />
-        <MetricPill label="Unicorn count" value={String(totals.unicornCount)} />
-        <MetricPill label="Native" value={String(totals.nativeUnicornCount)} />
-        <MetricPill label="Emerging" value={String(totals.emergingUnicornCount)} />
-        <MetricPill label="Startups 2025" value={String(totals.startupCount2025)} />
+        <MetricPill label="Total funding" value={formatUsd(activeTotals.unicornFundingUsd)} tone="positive" />
+        <MetricPill label="Unicorn count" value={String(activeTotals.unicornCount)} />
+        <MetricPill label="Native" value={String(activeTotals.nativeUnicornCount)} />
+        <MetricPill label="Emerging" value={String(activeTotals.emergingUnicornCount)} />
+        <MetricPill label="Startups 2025" value={String(activeTotals.startupCount2025)} />
       </div>
 
       <DataCard
@@ -105,7 +174,7 @@ export function TechnologyMarketValidationChart({ totals, points }: TechnologyMa
                 type="number"
                 dataKey="fundingUsd"
                 scale="log"
-                domain={[1_000_000, 'dataMax']}
+                domain={[1_000_000, 'auto']}
                 tick={{ fill: 'rgba(226, 232, 240, 0.72)', fontSize: 11 }}
                 tickFormatter={formatUsd}
                 width={62}

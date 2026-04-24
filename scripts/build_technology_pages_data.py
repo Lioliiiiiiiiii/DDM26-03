@@ -72,6 +72,19 @@ TECH_SPECS: tuple[TechnologySpec, ...] = (
 
 TECH_BY_KEY = {item.key: item for item in TECH_SPECS}
 
+INDUSTRY_SPECS = (
+    {"slug": "energy", "name": "Energy"},
+    {"slug": "materials", "name": "Materials"},
+    {"slug": "industrials", "name": "Industrials"},
+    {"slug": "consumer-goods", "name": "Consumer Goods"},
+    {"slug": "health-care", "name": "Healthcare"},
+    {"slug": "financial-services", "name": "Financial Services"},
+    {"slug": "information-technology", "name": "Information Technology"},
+    {"slug": "communication-creative-services", "name": "Communication & Creative Services"},
+    {"slug": "real-estate", "name": "Real Estate"},
+    {"slug": "automotive-transport", "name": "Automotive & Transport"},
+)
+
 INDUSTRY_LOOKUP = {
     "energy": ("energy", "Energy"),
     "materials": ("materials", "Materials"),
@@ -91,21 +104,34 @@ INDUSTRY_LOOKUP = {
     "financials": ("financial-services", "Financial Services"),
     "financial": ("financial-services", "Financial Services"),
     "automotive": ("automotive-transport", "Automotive & Transport"),
+    "energycompaniesinvolvedintheexplorationproductionorrefiningofenergyproducts": ("energy", "Energy"),
+    "materialsbusinessesinchemicalsconstructionmaterialsmetalspaperandforestryproducts": ("materials", "Materials"),
+    "industrialsaerospacedefensemachineryconstructionfabricationandmanufacturing": ("industrials", "Industrials"),
+    "consumergoodsfoodbeverageretailclothingapparelbeautyhouseholdproductsmassmarketluxurygoods": ("consumer-goods", "Consumer Goods"),
+    "healthcare": ("health-care", "Healthcare"),
+    "financialsbanksinvestmentfundsinsurancecompaniesandrealestatefirms": ("financial-services", "Financial Services"),
+    "informationtechnologysoftwarehardwareelectronicsanditservices": ("information-technology", "Information Technology"),
+    "communicationservicestelecommunicationsmediaentertainmentandcreativeindustries": (
+        "communication-creative-services",
+        "Communication & Creative Services",
+    ),
+    "realestate": ("real-estate", "Real Estate"),
+    "automotivetransport": ("automotive-transport", "Automotive & Transport"),
 }
 
 RESEARCH_POINT_YEARS = (2020, 2021, 2022, 2023, 2024, 2025)
 
 Q9_INDUSTRY_BLOCKS = (
-    ("Energy", "U", "AI"),
-    ("Industrials", "AJ", "AX"),
-    ("Materials", "AY", "BM"),
-    ("Consumer Goods", "BN", "CB"),
-    ("Health Care", "CC", "CQ"),
-    ("Financial Services", "CR", "DF"),
-    ("Information Technology", "DG", "DU"),
-    ("Real Estate", "DV", "EJ"),
-    ("Communication", "EK", "EY"),
-    ("Automotive & Transport", "EZ", "FN"),
+    ("energy", "U", "AI"),
+    ("industrials", "AJ", "AX"),
+    ("materials", "AY", "BM"),
+    ("consumer-goods", "BN", "CB"),
+    ("health-care", "CC", "CQ"),
+    ("financial-services", "CR", "DF"),
+    ("information-technology", "DG", "DU"),
+    ("real-estate", "DV", "EJ"),
+    ("communication-creative-services", "EK", "EY"),
+    ("automotive-transport", "EZ", "FN"),
 )
 
 TECH_TO_USECASE_CHUNK_INDEX = {
@@ -243,22 +269,39 @@ def build_data(heatmatrix_path: Path, content_path: Path) -> dict[str, Any]:
     wb_content = load_workbook(content_path, data_only=True)
 
     definitions: dict[str, str] = {}
+    industry_definitions: dict[str, str] = {}
     ws_definitions = wb_content["Definitions"]
     current_tech: str | None = None
+    current_industry_slug: str | None = None
+    in_industry_section = False
     for row in range(1, ws_definitions.max_row + 1):
         cell_value = ws_definitions.cell(row, 1).value
         if not isinstance(cell_value, str):
             continue
         text = cell_value.strip()
-        if normalize_text(text).startswith("2industries"):
-            break
-        if text.lower().startswith("definition:") and current_tech:
-            definitions[current_tech] = text.replace("Definition:", "", 1).strip()
+        normalized_text = normalize_text(text)
+
+        if normalized_text.startswith("2industries"):
+            in_industry_section = True
+            current_tech = None
             continue
-        maybe_tech = get_tech_key(text)
-        if maybe_tech:
-            current_tech = maybe_tech
+
+        if not in_industry_section:
+            if text.lower().startswith("definition:") and current_tech:
+                definitions[current_tech] = text.replace("Definition:", "", 1).strip()
+                continue
+            maybe_tech = get_tech_key(text)
+            if maybe_tech:
+                current_tech = maybe_tech
             continue
+
+        if text.lower().startswith("definition:") and current_industry_slug:
+            industry_definitions[current_industry_slug] = text.replace("Definition:", "", 1).strip()
+            continue
+
+        maybe_industry = get_industry(text)
+        if maybe_industry:
+            current_industry_slug = maybe_industry[0]
 
     heat_scores: dict[str, list[dict[str, Any]]] = defaultdict(list)
     ws_heatmatrix = wb_heat["Heatmatrix"]
@@ -345,6 +388,7 @@ def build_data(heatmatrix_path: Path, content_path: Path) -> dict[str, Any]:
     impact_ranking.sort(key=lambda item: item["score"], reverse=True)
 
     full_table_aggregates: dict[str, dict[str, float]] = {}
+    full_table_industry_startups: dict[str, dict[str, float]] = defaultdict(lambda: defaultdict(float))
     ws_full = wb_heat["FULL TABLE and WEIGHTS"]
     for spec in TECH_SPECS:
         full_table_aggregates[spec.key] = {
@@ -360,9 +404,11 @@ def build_data(heatmatrix_path: Path, content_path: Path) -> dict[str, Any]:
         }
 
     for row in range(2, 52):
+        industry = get_industry(ws_full.cell(row, 1).value)
         tech_key = get_tech_key(ws_full.cell(row, 2).value)
-        if not tech_key:
+        if not tech_key or not industry:
             continue
+        industry_slug = industry[0]
         aggregate = full_table_aggregates[tech_key]
         aggregate["unicornFundingUsd"] += parse_number(ws_full.cell(row, 3).value)
         aggregate["unicornCount"] += parse_number(ws_full.cell(row, 5).value)
@@ -373,6 +419,7 @@ def build_data(heatmatrix_path: Path, content_path: Path) -> dict[str, Any]:
         aggregate["scholar2025"] += parse_number(ws_full.cell(row, 15).value)
         aggregate["patents2024"] += parse_number(ws_full.cell(row, 17).value)
         aggregate["scholar2024"] += parse_number(ws_full.cell(row, 18).value)
+        full_table_industry_startups[industry_slug][tech_key] += parse_number(ws_full.cell(row, 11).value)
 
     # Q9 use-case aggregation from Survey Results columns U:FN.
     ws_survey_results = wb_content["Survey Results"]
@@ -512,6 +559,102 @@ def build_data(heatmatrix_path: Path, content_path: Path) -> dict[str, Any]:
         full_desc_col=7,
         precision_col=10,
         category="Emerging",
+    )
+
+    industry_scatter_points: dict[str, dict[tuple[str, str], dict[str, Any]]] = defaultdict(dict)
+
+    def ingest_industry_scatter(
+        ws_name: str,
+        industry_col: int,
+        tech_col: int,
+        org_col: int,
+        year_col: int,
+        funding_col: int,
+        short_desc_col: int,
+        full_desc_col: int,
+        precision_col: int,
+        category: str,
+    ) -> None:
+        ws = wb_content[ws_name]
+        for row in range(2, ws.max_row + 1):
+            industry = get_industry(ws.cell(row, industry_col).value)
+            tech_key = get_tech_key(ws.cell(row, tech_col).value)
+            organization = ws.cell(row, org_col).value
+            if not industry or not tech_key or not isinstance(organization, str) or not organization.strip():
+                continue
+
+            industry_slug = industry[0]
+            founded_raw = ws.cell(row, year_col).value
+            founded_year = parse_year(founded_raw)
+            funding_usd = parse_number(ws.cell(row, funding_col).value)
+            if not founded_year or funding_usd <= 0:
+                continue
+
+            description = clean_label(ws.cell(row, short_desc_col).value)
+            if not description:
+                description = clean_label(ws.cell(row, full_desc_col).value) or "No activity description available."
+            founded_date = format_founded_date(founded_raw, ws.cell(row, precision_col).value)
+
+            dedupe_key = (normalize_text(organization), tech_key)
+            candidate = {
+                "name": organization.strip(),
+                "foundedYear": founded_year,
+                "foundedDate": founded_date,
+                "fundingUsd": round(funding_usd, 2),
+                "description": description,
+                "category": category,
+                "technologySlug": TECH_BY_KEY[tech_key].slug,
+                "technologyName": TECH_BY_KEY[tech_key].name,
+                "_priority": category_priority[category],
+            }
+
+            existing = industry_scatter_points[industry_slug].get(dedupe_key)
+            if not existing:
+                industry_scatter_points[industry_slug][dedupe_key] = candidate
+                continue
+
+            if candidate["_priority"] > existing["_priority"]:
+                industry_scatter_points[industry_slug][dedupe_key] = candidate
+                continue
+
+            if candidate["_priority"] == existing["_priority"] and candidate["fundingUsd"] > existing["fundingUsd"]:
+                industry_scatter_points[industry_slug][dedupe_key] = candidate
+
+    ingest_industry_scatter(
+        "Unicorns - CELL",
+        industry_col=1,
+        tech_col=2,
+        org_col=3,
+        year_col=9,
+        funding_col=11,
+        short_desc_col=6,
+        full_desc_col=7,
+        precision_col=10,
+        category="Unicorn",
+    )
+    ingest_industry_scatter(
+        "Emerging Unicorns - CELL",
+        industry_col=1,
+        tech_col=2,
+        org_col=3,
+        year_col=10,
+        funding_col=12,
+        short_desc_col=7,
+        full_desc_col=8,
+        precision_col=11,
+        category="Emerging",
+    )
+    ingest_industry_scatter(
+        "Native Unicorns",
+        industry_col=1,
+        tech_col=2,
+        org_col=3,
+        year_col=10,
+        funding_col=12,
+        short_desc_col=7,
+        full_desc_col=8,
+        precision_col=11,
+        category="Native",
     )
 
     patents_by_tech: dict[str, dict[int, float]] = defaultdict(dict)
@@ -689,6 +832,231 @@ def build_data(heatmatrix_path: Path, content_path: Path) -> dict[str, Any]:
             }
         )
 
+    q6_columns: dict[str, int] = {}
+    q7_columns: dict[str, int] = {}
+    q8_columns: dict[str, int] = {}
+
+    for column in range(column_index_from_string("F"), column_index_from_string("J") + 1):
+        tech_key = get_tech_key(ws_survey_results.cell(2, column).value)
+        if tech_key:
+            q6_columns[tech_key] = column
+    for column in range(column_index_from_string("K"), column_index_from_string("O") + 1):
+        tech_key = get_tech_key(ws_survey_results.cell(2, column).value)
+        if tech_key:
+            q7_columns[tech_key] = column
+    for column in range(column_index_from_string("P"), column_index_from_string("T") + 1):
+        tech_key = get_tech_key(ws_survey_results.cell(2, column).value)
+        if tech_key:
+            q8_columns[tech_key] = column
+
+    survey_rows_by_industry: dict[str, list[int]] = defaultdict(list)
+    for row in range(3, ws_survey_results.max_row + 1):
+        industry = get_industry(ws_survey_results.cell(row, 1).value)
+        if industry:
+            survey_rows_by_industry[industry[0]].append(row)
+
+    impact_bucket_map = {
+        "noimpact": "No impact",
+        "minorimpact": "Minor impact",
+        "moderateimpact": "Moderate impact",
+        "significantimpact": "Significant impact",
+        "verysignificantimpact": "Very significant impact",
+    }
+    timeline_bucket_map = {
+        "never": "Never",
+        "laterin2years": "Later (2+yr)",
+        "later2yr": "Later (2+yr)",
+        "laterin2yr": "Later (2+yr)",
+        "soonnextyear": "Soon (next yr)",
+        "now": "Now",
+    }
+    impact_bucket_order = [
+        "No impact",
+        "Minor impact",
+        "Moderate impact",
+        "Significant impact",
+        "Very significant impact",
+    ]
+    timeline_bucket_order = ["Never", "Later (2+yr)", "Soon (next yr)", "Now"]
+    q9_block_lookup = {slug: column_index_from_string(start) for slug, start, _ in Q9_INDUSTRY_BLOCKS}
+
+    industry_overview_pages: list[dict[str, Any]] = []
+    for industry_spec in INDUSTRY_SPECS:
+        industry_slug = industry_spec["slug"]
+        industry_name = industry_spec["name"]
+        industry_rows = survey_rows_by_industry.get(industry_slug, [])
+
+        technology_profiles: list[dict[str, Any]] = []
+        for spec in TECH_SPECS:
+            heat_entry = next(
+                (entry for entry in heat_scores.get(spec.key, []) if entry["industrySlug"] == industry_slug),
+                None,
+            )
+            radar_entry = next(
+                (entry for entry in radar_by_tech.get(spec.key, []) if entry["industrySlug"] == industry_slug),
+                None,
+            )
+            if not heat_entry or not radar_entry:
+                continue
+            technology_profiles.append(
+                {
+                    "slug": spec.slug,
+                    "name": spec.name,
+                    "heatScore": heat_entry["score"],
+                    "radar": {
+                        "innovationIntensity": radar_entry["innovationIntensity"],
+                        "innovationMomentum": radar_entry["innovationMomentum"],
+                        "startupActivity": radar_entry["startupActivity"],
+                        "marketValidation": radar_entry["marketValidation"],
+                        "professionalsPerception": radar_entry["professionalsPerception"],
+                    },
+                }
+            )
+
+        impact_ranking: list[dict[str, Any]] = []
+        impact_distribution_by_technology: dict[str, list[dict[str, Any]]] = {}
+        timeline_distribution_by_technology: dict[str, list[dict[str, Any]]] = {}
+        startup_count_by_technology: dict[str, int] = {}
+
+        for spec in TECH_SPECS:
+            q6_col = q6_columns.get(spec.key)
+            if q6_col:
+                ranks = [
+                    parse_number(ws_survey_results.cell(row, q6_col).value)
+                    for row in industry_rows
+                    if parse_number(ws_survey_results.cell(row, q6_col).value) > 0
+                ]
+                if ranks:
+                    avg_rank = mean(ranks)
+                    impact_ranking.append(
+                        {
+                            "technologyKey": spec.key,
+                            "technologySlug": spec.slug,
+                            "label": spec.name,
+                            "score": round(6 - avg_rank, 2),
+                        }
+                    )
+
+            q7_col = q7_columns.get(spec.key)
+            impact_counts = {bucket: 0 for bucket in impact_bucket_order}
+            if q7_col:
+                for row in industry_rows:
+                    raw_value = ws_survey_results.cell(row, q7_col).value
+                    normalized = normalize_text(raw_value if isinstance(raw_value, str) else "")
+                    bucket = impact_bucket_map.get(normalized)
+                    if bucket:
+                        impact_counts[bucket] += 1
+            impact_total = sum(impact_counts.values())
+            impact_distribution_by_technology[spec.slug] = [
+                {
+                    "label": bucket,
+                    "count": impact_counts[bucket],
+                    "percentage": round((impact_counts[bucket] / impact_total) * 100, 1) if impact_total else 0.0,
+                }
+                for bucket in impact_bucket_order
+            ]
+
+            q8_col = q8_columns.get(spec.key)
+            timeline_counts = {bucket: 0 for bucket in timeline_bucket_order}
+            if q8_col:
+                for row in industry_rows:
+                    raw_value = ws_survey_results.cell(row, q8_col).value
+                    normalized = normalize_text(raw_value if isinstance(raw_value, str) else "")
+                    bucket = timeline_bucket_map.get(normalized)
+                    if bucket:
+                        timeline_counts[bucket] += 1
+            timeline_total = sum(timeline_counts.values())
+            timeline_distribution_by_technology[spec.slug] = [
+                {
+                    "label": bucket,
+                    "count": timeline_counts[bucket],
+                    "percentage": round((timeline_counts[bucket] / timeline_total) * 100, 1) if timeline_total else 0.0,
+                }
+                for bucket in timeline_bucket_order
+            ]
+
+            startup_count_by_technology[spec.slug] = int(round(full_table_industry_startups[industry_slug].get(spec.key, 0)))
+
+        impact_ranking.sort(key=lambda item: item["score"], reverse=True)
+
+        use_case_candidates: list[dict[str, Any]] = []
+        q9_start_col = q9_block_lookup.get(industry_slug)
+        if q9_start_col:
+            for offset in range(15):
+                column = q9_start_col + offset
+                title = clean_label(ws_survey_results.cell(2, column).value)
+                if not title:
+                    continue
+                tech_index = offset // 3
+                tech_spec = TECH_SPECS[tech_index]
+                votes = 0
+                for row in industry_rows:
+                    value = ws_survey_results.cell(row, column).value
+                    if isinstance(value, str):
+                        if value.strip():
+                            votes += 1
+                    elif value not in (None, ""):
+                        votes += 1
+                if votes <= 0:
+                    continue
+                use_case_candidates.append(
+                    {
+                        "title": title,
+                        "description": "",
+                        "signal": tech_spec.name,
+                        "votes": votes,
+                    }
+                )
+
+        use_case_candidates.sort(key=lambda item: (-item["votes"], item["title"]))
+        top_use_cases = [
+            {
+                "title": item["title"],
+                "description": item["description"],
+                "signal": item["signal"],
+            }
+            for item in use_case_candidates[:6]
+        ]
+
+        market_points_raw = list(industry_scatter_points.get(industry_slug, {}).values())
+        market_points = []
+        for point in market_points_raw:
+            cleaned = dict(point)
+            cleaned.pop("_priority", None)
+            market_points.append(cleaned)
+        market_points.sort(key=lambda item: item["fundingUsd"], reverse=True)
+
+        startup_count_total = sum(startup_count_by_technology.values())
+        avg_heat = round(mean(profile["heatScore"] for profile in technology_profiles), 1) if technology_profiles else 0.0
+
+        industry_overview_pages.append(
+            {
+                "id": f"industry-{industry_slug}",
+                "slug": industry_slug,
+                "name": industry_name,
+                "summary": f"{industry_name} records an average heat score of {avg_heat}/100 across the five technologies in the 2026 matrix.",
+                "definition": industry_definitions.get(industry_slug, ""),
+                "overview": {
+                    "technologyRadarProfiles": technology_profiles,
+                    "chairComment": {
+                        "speaker": "Chair",
+                        "quote": "Chair's comment placeholder — final commentary will be inserted here.",
+                    },
+                },
+                "professionalsPerception": {
+                    "impactRanking": impact_ranking,
+                    "impactDistributionByTechnology": impact_distribution_by_technology,
+                    "timelineDistributionByTechnology": timeline_distribution_by_technology,
+                    "topUseCases": top_use_cases,
+                },
+                "marketValidation": {
+                    "points": market_points,
+                    "startupCount2025": startup_count_total,
+                    "startupCountByTechnology": startup_count_by_technology,
+                },
+            }
+        )
+
     return {
         "generatedAt": datetime.now().isoformat(),
         "source": {
@@ -709,6 +1077,7 @@ def build_data(heatmatrix_path: Path, content_path: Path) -> dict[str, Any]:
             "scholarWork": scholar_series,
         },
         "technologies": technology_pages,
+        "industryPages": industry_overview_pages,
     }
 
 

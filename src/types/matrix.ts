@@ -151,6 +151,19 @@ export type TechnologyIndustryRadarProfile = {
   };
 };
 
+export type HeatAnalysisProfile = {
+  slug: string;
+  name: string;
+  heatScore: number;
+  radar: {
+    innovationIntensity: number;
+    innovationMomentum: number;
+    startupActivity: number;
+    marketValidation: number;
+    professionalsPerception: number;
+  };
+};
+
 export type TechnologyOverviewMetricSummary = {
   averageHeatScore: number;
   topExposureSector: string;
@@ -177,6 +190,8 @@ export type TechnologyMarketScatterPoint = {
   fundingUsd: number;
   description: string;
   category: 'Native' | 'Unicorn' | 'Emerging';
+  technologySlug?: string;
+  technologyName?: string;
 };
 
 export type TechnologyTopApplicant = {
@@ -241,4 +256,31 @@ export type TechnologyPagesDataset = {
     scholarWork: TechnologyResearchSeriesPoint[];
   };
   technologies: TechnologyPageData[];
+  industryPages?: IndustryOverviewPageData[];
+};
+
+export type IndustryOverviewPageData = {
+  id: string;
+  slug: string;
+  name: string;
+  summary: string;
+  definition: string;
+  overview: {
+    technologyRadarProfiles: HeatAnalysisProfile[];
+    chairComment: {
+      speaker: string;
+      quote: string;
+    };
+  };
+  professionalsPerception: {
+    impactRanking: TechnologyImpactRankingItem[];
+    impactDistributionByTechnology: Record<string, TechnologyImpactDistributionItem[]>;
+    timelineDistributionByTechnology: Record<string, TechnologyImpactDistributionItem[]>;
+    topUseCases: UseCase[];
+  };
+  marketValidation: {
+    points: TechnologyMarketScatterPoint[];
+    startupCount2025: number;
+    startupCountByTechnology: Record<string, number>;
+  };
 };
