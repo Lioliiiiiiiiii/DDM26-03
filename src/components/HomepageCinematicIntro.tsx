@@ -180,14 +180,14 @@ export function HomepageCinematicIntro({ intro }: HomepageCinematicIntroProps) {
       className="relative left-1/2 right-1/2 -mx-[50vw] h-[680vh] w-screen"
       aria-label="Cinematic introduction"
     >
-      <div className="sticky top-16 h-[calc(100svh-4rem)] w-full overflow-hidden border-y border-white/10 bg-[#06090f]">
+      <div className="sticky top-16 h-[calc(100svh-4rem)] w-full overflow-hidden border-y border-white/10 bg-[#04070d]">
         <motion.div
           className="absolute left-0 top-0 z-40 h-1 bg-gradient-to-r from-[#fed7aa] via-[#fb923c] to-[#c2410c]"
           style={{ scaleX: scrollYProgress, transformOrigin: '0% 50%' }}
         />
 
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_22%,rgba(249,115,22,0.2),transparent_42%),linear-gradient(120deg,#05070d_0%,#0b121c_48%,#0f1624_100%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_22%,rgba(249,115,22,0.2),transparent_42%),linear-gradient(120deg,#04060b_0%,#091018_48%,#0c1320_100%)]" />
           <motion.div className="absolute inset-0" style={{ opacity: linesOpacity }}>
             <BackgroundLines className="z-[2] mix-blend-screen" />
           </motion.div>
