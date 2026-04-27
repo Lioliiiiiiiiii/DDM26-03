@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { DataCard } from '@/components/DataCard';
+import { FilterPillGroup, FilterPillOption } from '@/components/FilterPillGroup';
 import { MetricPill } from '@/components/MetricPill';
 import { TechnologyMarketScatterPoint } from '@/types/matrix';
 import {
@@ -23,8 +24,11 @@ type TechnologyMarketValidationChartProps = {
     startupCount2025: number;
   };
   points: TechnologyMarketScatterPoint[];
-  technologyFilters?: Array<{ slug: string; name: string }>;
+  technologyFilters?: FilterPillOption[];
   startupCountByTechnology?: Record<string, number>;
+  filterOptions?: FilterPillOption[];
+  pointsByFilter?: Record<string, TechnologyMarketScatterPoint[]>;
+  startupCountByFilter?: Record<string, number>;
 };
 
 const CATEGORY_COLORS: Record<TechnologyMarketScatterPoint['category'], string> = {
@@ -32,6 +36,8 @@ const CATEGORY_COLORS: Record<TechnologyMarketScatterPoint['category'], string> 
   Unicorn: '#72a9ff',
   Emerging: '#4ade80'
 };
+
+const ALL_FILTER = { slug: 'all', name: 'All' };
 
 const formatUsd = (value: number) => {
   if (value >= 1_000_000_000) {
@@ -77,27 +83,38 @@ export function TechnologyMarketValidationChart({
   totals,
   points,
   technologyFilters,
-  startupCountByTechnology
+  startupCountByTechnology,
+  filterOptions,
+  pointsByFilter,
+  startupCountByFilter
 }: TechnologyMarketValidationChartProps) {
-  const [selectedTechnologySlug, setSelectedTechnologySlug] = useState<string>('all');
+  const resolvedFilterOptions = filterOptions ?? technologyFilters ?? [];
+  const [selectedFilterSlug, setSelectedFilterSlug] = useState<string>('all');
 
   const filteredPoints = useMemo(() => {
-    if (!technologyFilters || selectedTechnologySlug === 'all') {
+    if (!resolvedFilterOptions.length || selectedFilterSlug === 'all') {
       return points;
     }
-    return points.filter((point) => point.technologySlug === selectedTechnologySlug);
-  }, [points, selectedTechnologySlug, technologyFilters]);
+
+    if (pointsByFilter) {
+      return pointsByFilter[selectedFilterSlug] ?? [];
+    }
+
+    return points.filter((point) => point.technologySlug === selectedFilterSlug);
+  }, [points, pointsByFilter, resolvedFilterOptions.length, selectedFilterSlug]);
 
   const computedTotals = useMemo(() => {
     const unicornFundingUsd = filteredPoints.reduce((sum, point) => sum + point.fundingUsd, 0);
     const nativeUnicornCount = filteredPoints.filter((point) => point.category === 'Native').length;
-    const unicornCount = filteredPoints.filter((point) => point.category === 'Native' || point.category === 'Unicorn').length;
+    const unicornCount = filteredPoints.filter(
+      (point) => point.category === 'Native' || point.category === 'Unicorn'
+    ).length;
     const emergingUnicornCount = filteredPoints.filter((point) => point.category === 'Emerging').length;
 
     const startupCount2025 =
-      selectedTechnologySlug === 'all'
+      selectedFilterSlug === 'all'
         ? totals?.startupCount2025 ?? 0
-        : startupCountByTechnology?.[selectedTechnologySlug] ?? 0;
+        : startupCountByFilter?.[selectedFilterSlug] ?? startupCountByTechnology?.[selectedFilterSlug] ?? 0;
 
     return {
       unicornFundingUsd,
@@ -106,9 +123,15 @@ export function TechnologyMarketValidationChart({
       emergingUnicornCount,
       startupCount2025
     };
-  }, [filteredPoints, selectedTechnologySlug, startupCountByTechnology, totals?.startupCount2025]);
+  }, [
+    filteredPoints,
+    selectedFilterSlug,
+    startupCountByFilter,
+    startupCountByTechnology,
+    totals?.startupCount2025
+  ]);
 
-  const activeTotals = totals && (!technologyFilters || selectedTechnologySlug === 'all') ? totals : computedTotals;
+  const activeTotals = totals && selectedFilterSlug === 'all' ? totals : computedTotals;
 
   const nativePoints = filteredPoints.filter((point) => point.category === 'Native');
   const unicornPoints = filteredPoints.filter((point) => point.category === 'Unicorn');
@@ -116,34 +139,13 @@ export function TechnologyMarketValidationChart({
 
   return (
     <div className="space-y-4">
-      {technologyFilters ? (
-        <div className="flex flex-wrap gap-2">
-          <button
-            type="button"
-            onClick={() => setSelectedTechnologySlug('all')}
-            className={`rounded-full border px-3 py-1 text-[11px] font-medium uppercase tracking-[0.12em] transition ${
-              selectedTechnologySlug === 'all'
-                ? 'border-orange-300/60 bg-orange-500/20 text-orange-100'
-                : 'border-white/10 bg-slate-900/70 text-slate-300 hover:border-white/20'
-            }`}
-          >
-            All
-          </button>
-          {technologyFilters.map((technology) => (
-            <button
-              key={technology.slug}
-              type="button"
-              onClick={() => setSelectedTechnologySlug(technology.slug)}
-              className={`rounded-full border px-3 py-1 text-[11px] font-medium uppercase tracking-[0.12em] transition ${
-                selectedTechnologySlug === technology.slug
-                  ? 'border-orange-300/60 bg-orange-500/20 text-orange-100'
-                  : 'border-white/10 bg-slate-900/70 text-slate-300 hover:border-white/20'
-              }`}
-            >
-              {technology.name}
-            </button>
-          ))}
-        </div>
+      {resolvedFilterOptions.length ? (
+        <FilterPillGroup
+          options={[ALL_FILTER, ...resolvedFilterOptions]}
+          selectedSlug={selectedFilterSlug}
+          onSelect={setSelectedFilterSlug}
+          ariaLabel="Market Validation filters"
+        />
       ) : null}
 
       <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
@@ -154,42 +156,45 @@ export function TechnologyMarketValidationChart({
         <MetricPill label="Startups 2025" value={String(activeTotals.startupCount2025)} />
       </div>
 
-      <DataCard
-        title="Organization Funding Landscape"
-        subtitle="Founded date vs total funding by maturity category"
-      >
-        <div className="h-[340px]">
-          <ResponsiveContainer width="100%" height="100%">
-            <ScatterChart margin={{ top: 12, right: 8, bottom: 8, left: 8 }}>
-              <CartesianGrid stroke="rgba(148, 163, 184, 0.15)" />
-              <XAxis
-                type="number"
-                dataKey="foundedYear"
-                domain={[1995, 2027]}
-                tick={{ fill: 'rgba(226, 232, 240, 0.72)', fontSize: 11 }}
-                tickCount={8}
-                name="Founded"
-              />
-              <YAxis
-                type="number"
-                dataKey="fundingUsd"
-                scale="log"
-                domain={[1_000_000, 'auto']}
-                tick={{ fill: 'rgba(226, 232, 240, 0.72)', fontSize: 11 }}
-                tickFormatter={formatUsd}
-                width={62}
-                name="Funding"
-              />
-              <RechartsTooltip
-                cursor={{ strokeDasharray: '3 3', stroke: 'rgba(251, 146, 60, 0.3)' }}
-                content={<MarketPointTooltip />}
-              />
-              <Scatter data={nativePoints} fill={CATEGORY_COLORS.Native} name="Native" />
-              <Scatter data={unicornPoints} fill={CATEGORY_COLORS.Unicorn} name="Unicorn" />
-              <Scatter data={emergingPoints} fill={CATEGORY_COLORS.Emerging} name="Emerging" />
-            </ScatterChart>
-          </ResponsiveContainer>
-        </div>
+      <DataCard title="Organization Funding Landscape" subtitle="Founded date vs total funding by maturity category">
+        {filteredPoints.length ? (
+          <div className="h-[340px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <ScatterChart margin={{ top: 12, right: 8, bottom: 8, left: 8 }}>
+                <CartesianGrid stroke="rgba(148, 163, 184, 0.15)" />
+                <XAxis
+                  type="number"
+                  dataKey="foundedYear"
+                  domain={[1995, 2027]}
+                  tick={{ fill: 'rgba(226, 232, 240, 0.72)', fontSize: 11 }}
+                  tickCount={8}
+                  name="Founded"
+                />
+                <YAxis
+                  type="number"
+                  dataKey="fundingUsd"
+                  scale="log"
+                  domain={[1_000_000, 'auto']}
+                  tick={{ fill: 'rgba(226, 232, 240, 0.72)', fontSize: 11 }}
+                  tickFormatter={formatUsd}
+                  width={62}
+                  name="Funding"
+                />
+                <RechartsTooltip
+                  cursor={{ strokeDasharray: '3 3', stroke: 'rgba(251, 146, 60, 0.3)' }}
+                  content={<MarketPointTooltip />}
+                />
+                <Scatter data={nativePoints} fill={CATEGORY_COLORS.Native} name="Native" />
+                <Scatter data={unicornPoints} fill={CATEGORY_COLORS.Unicorn} name="Unicorn" />
+                <Scatter data={emergingPoints} fill={CATEGORY_COLORS.Emerging} name="Emerging" />
+              </ScatterChart>
+            </ResponsiveContainer>
+          </div>
+        ) : (
+          <div className="flex min-h-[340px] items-center justify-center rounded-xl border border-white/10 bg-slate-950/45 px-6 text-center text-sm leading-6 text-slate-400">
+            No market validation points are available for this selection yet.
+          </div>
+        )}
 
         <div className="mt-4 flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.14em] text-slate-300">
           <span className="inline-flex items-center gap-2">

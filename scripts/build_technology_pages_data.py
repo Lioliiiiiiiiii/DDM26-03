@@ -258,15 +258,85 @@ def to_title_from_quote(quote: str) -> str:
     return first_sentence
 
 
+def clean_use_case_title(value: Any) -> str:
+    title = clean_label(value)
+    if ":" in title:
+        prefix, rest = title.split(":", 1)
+        if get_tech_key(prefix):
+            title = rest
+    return clean_label(title)
+
+
+def use_case_key(value: Any) -> str:
+    return normalize_text(clean_use_case_title(value))
+
+
+def load_use_case_descriptions(
+    workbook_path: Path | None,
+) -> tuple[dict[str, str], dict[tuple[str, str, str], str]]:
+    if not workbook_path or not workbook_path.exists():
+        return {}, {}
+
+    wb = load_workbook(workbook_path, data_only=True, read_only=True)
+    ws = wb[wb.sheetnames[0]]
+    descriptions_by_title: dict[str, str] = {}
+    descriptions_by_cell: dict[tuple[str, str, str], str] = {}
+    current_industry_slug: str | None = None
+
+    tech_columns: dict[int, str] = {}
+    for column in range(2, ws.max_column + 1, 2):
+        tech_key = get_tech_key(ws.cell(2, column).value)
+        if tech_key:
+            tech_columns[column] = tech_key
+
+    for row in range(4, ws.max_row + 1):
+        industry = get_industry(ws.cell(row, 1).value)
+        if industry:
+            current_industry_slug = industry[0]
+
+        for title_column, tech_key in tech_columns.items():
+            title = clean_use_case_title(ws.cell(row, title_column).value)
+            description = clean_label(ws.cell(row, title_column + 1).value)
+            key = use_case_key(title)
+            if not title or not description or not key:
+                continue
+
+            descriptions_by_title.setdefault(key, description)
+            if current_industry_slug:
+                descriptions_by_cell[(current_industry_slug, tech_key, key)] = description
+
+    return descriptions_by_title, descriptions_by_cell
+
+
+def get_use_case_description(
+    title: str,
+    descriptions_by_title: dict[str, str],
+    descriptions_by_cell: dict[tuple[str, str, str], str],
+    industry_slug: str | None = None,
+    tech_key: str | None = None,
+) -> str:
+    key = use_case_key(title)
+    if industry_slug and tech_key:
+        cell_description = descriptions_by_cell.get((industry_slug, tech_key, key))
+        if cell_description:
+            return cell_description
+    return descriptions_by_title.get(key, "")
+
+
 def pct_change(previous: float, current: float) -> float:
     if previous <= 0:
         return 0.0
     return ((current - previous) / previous) * 100
 
 
-def build_data(heatmatrix_path: Path, content_path: Path) -> dict[str, Any]:
+def build_data(
+    heatmatrix_path: Path,
+    content_path: Path,
+    use_case_descriptions_path: Path | None = None,
+) -> dict[str, Any]:
     wb_heat = load_workbook(heatmatrix_path, data_only=True)
     wb_content = load_workbook(content_path, data_only=True)
+    use_case_descriptions, use_case_cell_descriptions = load_use_case_descriptions(use_case_descriptions_path)
 
     definitions: dict[str, str] = {}
     industry_definitions: dict[str, str] = {}
@@ -458,7 +528,12 @@ def build_data(heatmatrix_path: Path, content_path: Path) -> dict[str, Any]:
         q9_use_cases_by_tech[tech_key] = [
             {
                 "title": item["label"],
-                "description": f"Selected {item['votes']} times in Q9 across all industries.",
+                "description": get_use_case_description(
+                    item["label"],
+                    use_case_descriptions,
+                    use_case_cell_descriptions,
+                    tech_key=tech_key,
+                ),
                 "signal": f"Q9 aggregation · {len(item['industries'])} industry blocks",
             }
             for item in ranked
@@ -1002,7 +1077,13 @@ def build_data(heatmatrix_path: Path, content_path: Path) -> dict[str, Any]:
                 use_case_candidates.append(
                     {
                         "title": title,
-                        "description": "",
+                        "description": get_use_case_description(
+                            title,
+                            use_case_descriptions,
+                            use_case_cell_descriptions,
+                            industry_slug=industry_slug,
+                            tech_key=tech_spec.key,
+                        ),
                         "signal": tech_spec.name,
                         "votes": votes,
                     }
@@ -1097,6 +1178,12 @@ def main() -> None:
         help="Path to matrix content workbook",
     )
     parser.add_argument(
+        "--use-case-descriptions",
+        type=Path,
+        default=Path.home() / "Downloads" / "DD_chair_top3_use_cases-descriptions.xlsx",
+        help="Optional path to workbook with use-case short descriptions",
+    )
+    parser.add_argument(
         "--output",
         type=Path,
         default=project_root / "src" / "data" / "raw" / "technologyPages.json",
@@ -1104,7 +1191,10 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    payload = build_data(args.heatmatrix, args.content)
+    use_case_descriptions_path = args.use_case_descriptions if args.use_case_descriptions.exists() else None
+    payload = build_data(args.heatmatrix, args.content, use_case_descriptions_path)
+    if use_case_descriptions_path:
+        payload["source"]["useCaseDescriptionsWorkbook"] = str(use_case_descriptions_path)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("w", encoding="utf-8") as file:
         json.dump(payload, file, indent=2, ensure_ascii=False)

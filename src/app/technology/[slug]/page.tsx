@@ -1,15 +1,15 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ExploreMatrixFooter } from '@/components/ExploreMatrixFooter';
 import { MotionReveal } from '@/components/MotionReveal';
-import { SectionHeader } from '@/components/SectionHeader';
+import { OverviewHero } from '@/components/OverviewHero';
 import { TechnologyAccordionSection } from '@/components/TechnologyAccordionSection';
 import { TechnologyHeatAnalysisCard } from '@/components/TechnologyHeatAnalysisCard';
 import { TechnologyMarketValidationChart } from '@/components/TechnologyMarketValidationChart';
 import { TechnologyPerceptionPanel } from '@/components/TechnologyPerceptionPanel';
 import { TechnologyResearchInnovationPanel } from '@/components/TechnologyResearchInnovationPanel';
-import { technologyOrder, technologyPages, technologyResearchSeries } from '@/data';
+import { industryOverviewPages, technologyOrder, technologyPages, technologyResearchSeries } from '@/data';
+import { aggregateDistribution } from '@/lib/distributions';
 
 type TechnologyPageProps = {
   params: Promise<{ slug: string }>;
@@ -41,20 +41,53 @@ export default async function TechnologyPage({ params }: TechnologyPageProps) {
     notFound();
   }
 
+  const industryFilters = industryOverviewPages.map((industry) => ({
+    slug: industry.slug,
+    name: industry.name
+  }));
+
+  const impactDistributionByIndustry = Object.fromEntries(
+    industryOverviewPages.map((industry) => [
+      industry.slug,
+      industry.professionalsPerception.impactDistributionByTechnology[technology.slug] ?? []
+    ])
+  );
+
+  const timelineDistributionByIndustry = Object.fromEntries(
+    industryOverviewPages.map((industry) => [
+      industry.slug,
+      industry.professionalsPerception.timelineDistributionByTechnology[technology.slug] ?? []
+    ])
+  );
+
+  const aggregateTimelineDistribution = aggregateDistribution(
+    Object.values(timelineDistributionByIndustry),
+    ['Never', 'Later (2+yr)', 'Soon (next yr)', 'Now']
+  );
+
+  const marketPointsByIndustry = Object.fromEntries(
+    industryOverviewPages.map((industry) => [
+      industry.slug,
+      industry.marketValidation.points.filter((point) => point.technologySlug === technology.slug)
+    ])
+  );
+
+  const startupCountByIndustry = Object.fromEntries(
+    industryOverviewPages.map((industry) => [
+      industry.slug,
+      industry.marketValidation.startupCountByTechnology[technology.slug] ?? 0
+    ])
+  );
+
   return (
     <div className="space-y-7">
       <MotionReveal>
-        <section className="rounded-2xl border border-white/10 bg-gradient-to-r from-[#0f1f49]/75 via-[#0d1a3b]/70 to-[#091126]/70 p-4 md:p-6">
-          <Link
-            href="/"
-            className="inline-flex rounded-lg border border-white/10 bg-slate-900/70 px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-200 transition hover:border-orange-300/45 hover:text-orange-100"
-          >
-            Back to Heatmatrix
-          </Link>
-          <div className="mt-5 space-y-3">
-            <SectionHeader label="Technology Overview" title={technology.name} description={technology.definition} />
-          </div>
-        </section>
+        <OverviewHero
+          label="Technology Overview"
+          title={technology.name}
+          definition={technology.definition}
+          perspectiveTitle={`Our perspective on ${technology.name}`}
+        />
       </MotionReveal>
 
       <MotionReveal>
@@ -62,6 +95,7 @@ export default async function TechnologyPage({ params }: TechnologyPageProps) {
           <TechnologyHeatAnalysisCard
             industries={technology.overview.industryRadarProfiles}
             chairComment={technology.overview.chairComment}
+            pageName={technology.name}
           />
         </section>
       </MotionReveal>
@@ -73,6 +107,11 @@ export default async function TechnologyPage({ params }: TechnologyPageProps) {
               currentTechnologySlug={technology.slug}
               impactRanking={technology.professionalsPerception.impactRanking}
               impactDistribution={technology.professionalsPerception.impactDistribution}
+              timelineDistribution={aggregateTimelineDistribution}
+              distributionFilters={[{ slug: 'all', name: 'All' }, ...industryFilters]}
+              defaultDistributionFilterSlug="all"
+              impactDistributionByFilter={impactDistributionByIndustry}
+              timelineDistributionByFilter={timelineDistributionByIndustry}
               topUseCases={technology.professionalsPerception.topUseCases}
             />
           </TechnologyAccordionSection>
@@ -85,6 +124,9 @@ export default async function TechnologyPage({ params }: TechnologyPageProps) {
             <TechnologyMarketValidationChart
               totals={technology.marketValidation.totals}
               points={technology.marketValidation.scatterPoints}
+              filterOptions={industryFilters}
+              pointsByFilter={marketPointsByIndustry}
+              startupCountByFilter={startupCountByIndustry}
             />
           </TechnologyAccordionSection>
         </section>

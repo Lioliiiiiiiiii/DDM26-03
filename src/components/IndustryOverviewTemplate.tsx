@@ -1,10 +1,9 @@
 'use client';
 
-import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { ExploreMatrixFooter } from '@/components/ExploreMatrixFooter';
 import { MotionReveal } from '@/components/MotionReveal';
-import { SectionHeader } from '@/components/SectionHeader';
+import { OverviewHero } from '@/components/OverviewHero';
 import { TechnologyAccordionSection } from '@/components/TechnologyAccordionSection';
 import { TechnologyHeatAnalysisCard } from '@/components/TechnologyHeatAnalysisCard';
 import { TechnologyMarketValidationChart } from '@/components/TechnologyMarketValidationChart';
@@ -17,12 +16,7 @@ type IndustryOverviewTemplateProps = {
 
 export function IndustryOverviewTemplate({ industry }: IndustryOverviewTemplateProps) {
   const defaultTechnologySlug = industry.overview.technologyRadarProfiles[0]?.slug ?? '';
-  const [selectedTechnologySlug, setSelectedTechnologySlug] = useState(defaultTechnologySlug);
-
-  const selectedImpactDistribution =
-    industry.professionalsPerception.impactDistributionByTechnology[selectedTechnologySlug] ?? [];
-  const selectedTimelineDistribution =
-    industry.professionalsPerception.timelineDistributionByTechnology[selectedTechnologySlug] ?? [];
+  const [selectedHeatTechnologySlug, setSelectedHeatTechnologySlug] = useState(defaultTechnologySlug);
 
   const technologyFilters = useMemo(
     () =>
@@ -55,17 +49,12 @@ export function IndustryOverviewTemplate({ industry }: IndustryOverviewTemplateP
   return (
     <div className="space-y-7">
       <MotionReveal>
-        <section className="rounded-2xl border border-white/10 bg-gradient-to-r from-[#0f1f49]/75 via-[#0d1a3b]/70 to-[#091126]/70 p-4 md:p-6">
-          <Link
-            href="/"
-            className="inline-flex rounded-lg border border-white/10 bg-slate-900/70 px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-200 transition hover:border-orange-300/45 hover:text-orange-100"
-          >
-            Back to Heatmatrix
-          </Link>
-          <div className="mt-5 space-y-3">
-            <SectionHeader label="Industry Overview" title={industry.name} description={industry.definition} />
-          </div>
-        </section>
+        <OverviewHero
+          label="Industry Overview"
+          title={industry.name}
+          definition={industry.definition}
+          perspectiveTitle={`Our perspective on ${industry.name}`}
+        />
       </MotionReveal>
 
       <MotionReveal>
@@ -73,9 +62,10 @@ export function IndustryOverviewTemplate({ industry }: IndustryOverviewTemplateP
           <TechnologyHeatAnalysisCard
             profiles={industry.overview.technologyRadarProfiles}
             chairComment={industry.overview.chairComment}
+            pageName={industry.name}
             sectionTitle="Strategic Overview per Technology"
-            selectedProfileSlug={selectedTechnologySlug}
-            onSelectProfileSlug={setSelectedTechnologySlug}
+            selectedProfileSlug={selectedHeatTechnologySlug}
+            onSelectProfileSlug={setSelectedHeatTechnologySlug}
           />
         </section>
       </MotionReveal>
@@ -84,12 +74,18 @@ export function IndustryOverviewTemplate({ industry }: IndustryOverviewTemplateP
         <section id="perception">
           <TechnologyAccordionSection title="Professionals' Perception">
             <TechnologyPerceptionPanel
-              currentTechnologySlug={selectedTechnologySlug}
               impactRanking={industry.professionalsPerception.impactRanking}
-              impactDistribution={selectedImpactDistribution}
-              timelineDistribution={selectedTimelineDistribution}
+              impactDistribution={
+                industry.professionalsPerception.impactDistributionByTechnology[defaultTechnologySlug] ?? []
+              }
+              timelineDistribution={
+                industry.professionalsPerception.timelineDistributionByTechnology[defaultTechnologySlug] ?? []
+              }
+              distributionFilters={technologyFilters}
+              defaultDistributionFilterSlug={defaultTechnologySlug}
+              impactDistributionByFilter={industry.professionalsPerception.impactDistributionByTechnology}
+              timelineDistributionByFilter={industry.professionalsPerception.timelineDistributionByTechnology}
               topUseCases={industry.professionalsPerception.topUseCases}
-              useCaseSignalMode="chip"
             />
           </TechnologyAccordionSection>
         </section>

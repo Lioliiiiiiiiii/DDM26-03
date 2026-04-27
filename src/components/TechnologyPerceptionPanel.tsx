@@ -1,4 +1,9 @@
+'use client';
+
+import { useMemo, useState } from 'react';
 import { DataCard } from '@/components/DataCard';
+import { FilterPillGroup, FilterPillOption } from '@/components/FilterPillGroup';
+import { StackedDistributionBars } from '@/components/StackedDistributionBars';
 import {
   TechnologyImpactDistributionItem,
   TechnologyImpactRankingItem,
@@ -6,13 +11,19 @@ import {
 } from '@/types/matrix';
 
 type TechnologyPerceptionPanelProps = {
-  currentTechnologySlug: string;
+  currentTechnologySlug?: string;
   impactRanking: TechnologyImpactRankingItem[];
   impactDistribution: TechnologyImpactDistributionItem[];
   timelineDistribution?: TechnologyImpactDistributionItem[];
   topUseCases: UseCase[];
-  useCaseSignalMode?: 'text' | 'chip';
+  distributionFilters?: FilterPillOption[];
+  defaultDistributionFilterSlug?: string;
+  impactDistributionByFilter?: Record<string, TechnologyImpactDistributionItem[]>;
+  timelineDistributionByFilter?: Record<string, TechnologyImpactDistributionItem[]>;
 };
+
+const USE_CASE_DESCRIPTION_PLACEHOLDER =
+  'Short description placeholder - final use-case copy will be added here once the Chair-approved description is available.';
 
 export function TechnologyPerceptionPanel({
   currentTechnologySlug,
@@ -20,107 +31,93 @@ export function TechnologyPerceptionPanel({
   impactDistribution,
   timelineDistribution,
   topUseCases,
-  useCaseSignalMode = 'text'
+  distributionFilters = [],
+  defaultDistributionFilterSlug,
+  impactDistributionByFilter,
+  timelineDistributionByFilter
 }: TechnologyPerceptionPanelProps) {
+  const initialDistributionSlug =
+    defaultDistributionFilterSlug ?? distributionFilters[0]?.slug ?? 'all';
+  const [selectedDistributionSlug, setSelectedDistributionSlug] = useState(initialDistributionSlug);
+
+  const activeDistributionSlug = distributionFilters.some((filter) => filter.slug === selectedDistributionSlug)
+    ? selectedDistributionSlug
+    : initialDistributionSlug;
+
+  const activeImpactDistribution = useMemo(() => {
+    if (!distributionFilters.length || activeDistributionSlug === 'all') {
+      return impactDistribution;
+    }
+
+    return impactDistributionByFilter?.[activeDistributionSlug] ?? [];
+  }, [activeDistributionSlug, distributionFilters.length, impactDistribution, impactDistributionByFilter]);
+
+  const activeTimelineDistribution = useMemo(() => {
+    if (!distributionFilters.length || activeDistributionSlug === 'all') {
+      return timelineDistribution;
+    }
+
+    return timelineDistributionByFilter?.[activeDistributionSlug] ?? [];
+  }, [activeDistributionSlug, distributionFilters.length, timelineDistribution, timelineDistributionByFilter]);
+
   return (
     <div className="space-y-4">
-      <div className="grid gap-4 lg:grid-cols-2">
-        <DataCard title="Impact Ranking" subtitle="Weighted impact score (1-5)">
-          <ol className="space-y-2">
-            {impactRanking.map((item, index) => {
-              const isCurrent = item.technologySlug === currentTechnologySlug;
-              return (
-                <li
-                  key={item.technologySlug}
-                  className={`flex items-center justify-between rounded-lg border px-3 py-2 text-sm ${
-                    isCurrent
-                      ? 'border-orange-300/60 bg-orange-500/12 text-orange-100'
-                      : 'border-white/10 bg-slate-900/70 text-slate-200'
-                  }`}
-                >
-                  <span className="font-medium">
-                    #{index + 1} {item.label}
-                  </span>
-                  <span className="font-semibold">{item.score.toFixed(2)}</span>
-                </li>
-              );
-            })}
-          </ol>
+      {distributionFilters.length ? (
+        <FilterPillGroup
+          options={distributionFilters}
+          selectedSlug={activeDistributionSlug}
+          onSelect={setSelectedDistributionSlug}
+          ariaLabel="Professionals' Perception distribution filters"
+        />
+      ) : null}
+
+      <div className="grid gap-4 lg:grid-cols-[minmax(240px,0.7fr)_minmax(0,1.65fr)]">
+        <DataCard title="Impact Ranking" className="h-full">
+          {impactRanking.length ? (
+            <ol className="space-y-2">
+              {impactRanking.map((item, index) => {
+                const isCurrent = item.technologySlug === currentTechnologySlug;
+
+                return (
+                  <li
+                    key={item.technologySlug}
+                    className={`rounded-lg border px-3 py-2 text-sm ${
+                      isCurrent
+                        ? 'border-orange-300/60 bg-orange-500/12 text-orange-100'
+                        : 'border-white/10 bg-slate-900/70 text-slate-200'
+                    }`}
+                  >
+                    <span className="font-medium">
+                      #{index + 1} {item.label}
+                    </span>
+                  </li>
+                );
+              })}
+            </ol>
+          ) : (
+            <p className="text-sm leading-6 text-slate-400">No ranking data is available yet.</p>
+          )}
         </DataCard>
 
-        <DataCard
-          title={timelineDistribution ? 'Impact & Timeline Distribution' : 'Impact Distribution'}
-          subtitle="Survey response share"
-        >
-          <div className={timelineDistribution ? 'grid gap-4 md:grid-cols-2' : ''}>
-            <div>
-              {timelineDistribution ? (
-                <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-400">
-                  Impact
-                </p>
-              ) : null}
-              <ul className="space-y-3">
-                {impactDistribution.map((item) => (
-                  <li key={item.label} className="space-y-1">
-                    <div className="flex items-center justify-between text-xs uppercase tracking-[0.14em] text-slate-300">
-                      <span>{item.label}</span>
-                      <span>
-                        {item.percentage}% ({item.count})
-                      </span>
-                    </div>
-                    <div className="h-2 overflow-hidden rounded-full bg-slate-800">
-                      <div
-                        className="h-full rounded-full bg-gradient-to-r from-[#70a6ff] via-[#79b7ff] to-[#97ccff]"
-                        style={{ width: `${Math.min(item.percentage, 100)}%` }}
-                      />
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {timelineDistribution ? (
-              <div>
-                <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-400">Timeline</p>
-                <ul className="space-y-3">
-                  {timelineDistribution.map((item) => (
-                    <li key={`timeline-${item.label}`} className="space-y-1">
-                      <div className="flex items-center justify-between text-xs uppercase tracking-[0.14em] text-slate-300">
-                        <span>{item.label}</span>
-                        <span>
-                          {item.percentage}% ({item.count})
-                        </span>
-                      </div>
-                      <div className="h-2 overflow-hidden rounded-full bg-slate-800">
-                        <div
-                          className="h-full rounded-full bg-gradient-to-r from-[#7f7dff] via-[#8ca5ff] to-[#a5beff]"
-                          style={{ width: `${Math.min(item.percentage, 100)}%` }}
-                        />
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
-          </div>
+        <DataCard title="Impact & Timeline Distribution" subtitle="Percentage share of responses">
+          <StackedDistributionBars
+            impactDistribution={activeImpactDistribution}
+            timelineDistribution={activeTimelineDistribution}
+          />
         </DataCard>
       </div>
 
-      <DataCard title="Top Voted Use Cases" subtitle="Survey and interview synthesis">
+      <DataCard title="Top Voted Use Cases">
         <div className="grid gap-3 md:grid-cols-2">
-          {topUseCases.map((useCase) => (
-            <article key={`${useCase.title}-${useCase.signal}`} className="rounded-xl border border-white/10 bg-slate-900/60 p-3">
+          {topUseCases.slice(0, 4).map((useCase, index) => (
+            <article
+              key={`${useCase.title}-${index}`}
+              className="rounded-xl border border-white/10 bg-slate-900/60 p-4"
+            >
               <p className="text-sm font-semibold text-slate-100">{useCase.title}</p>
-              {useCase.description ? (
-                <p className="mt-2 text-sm leading-relaxed text-slate-300">{useCase.description}</p>
-              ) : null}
-              {useCaseSignalMode === 'chip' ? (
-                <span className="mt-3 inline-flex rounded-full border border-orange-300/35 bg-orange-500/12 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-orange-100">
-                  {useCase.signal}
-                </span>
-              ) : (
-                <p className="mt-2 text-xs uppercase tracking-[0.14em] text-orange-200">{useCase.signal}</p>
-              )}
+              <p className="mt-2 text-sm leading-relaxed text-slate-300">
+                {useCase.description || USE_CASE_DESCRIPTION_PLACEHOLDER}
+              </p>
             </article>
           ))}
         </div>

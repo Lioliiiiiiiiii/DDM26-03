@@ -1,8 +1,9 @@
 {
-  "generatedAt": "2026-04-24T17:18:43.802678",
+  "generatedAt": "2026-04-27T12:22:54.638730",
   "source": {
     "heatmatrixWorkbook": "/Users/leonielarribau/Downloads/Heatmatrix 2026 Deciles-2.xlsx",
-    "contentWorkbook": "/Users/leonielarribau/Downloads/Matrix content table-5.xlsx"
+    "contentWorkbook": "/Users/leonielarribau/Downloads/Matrix content table-5.xlsx",
+    "useCaseDescriptionsWorkbook": "/Users/leonielarribau/Downloads/DD_chair_top3_use_cases-descriptions.xlsx"
   },
   "technologyOrder": [
     {
@@ -331,32 +332,32 @@
         "topUseCases": [
           {
             "title": "Predictive Maintenance (next-gen)",
-            "description": "Selected 123 times in Q9 across all industries.",
+            "description": "ML models analyze sensor data from turbines and inverters to predict failures before they occur, reducing costly unplanned downtime.",
             "signal": "Q9 aggregation · 2 industry blocks"
           },
           {
             "title": "Demand Prediction & Inventory Optimization",
-            "description": "Selected 64 times in Q9 across all industries.",
+            "description": "AI analyzes sales data to forecast demand in real time, reducing costly overstock and stockouts across global CPG supply chains.",
             "signal": "Q9 aggregation · 1 industry blocks"
           },
           {
             "title": "Smart Grid & Virtual Power Plants",
-            "description": "Selected 59 times in Q9 across all industries.",
+            "description": "AI forecasts renewable output and orchestrates batteries/EVs to balance grids, enabling consumers to sell energy back as 'prosumers'.",
             "signal": "Q9 aggregation · 1 industry blocks"
           },
           {
             "title": "Predictive Maintenance for Building Assets",
-            "description": "Selected 56 times in Q9 across all industries.",
+            "description": "IoT sensors and AI detect anomalies in HVAC, elevators, and building systems before failures occur, shifting property management from reactive to predictive.",
             "signal": "Q9 aggregation · 1 industry blocks"
           },
           {
             "title": "Property Valuation Models",
-            "description": "Selected 54 times in Q9 across all industries.",
+            "description": "Algorithms analyze extensive datasets—including historical sales, location, and structural features—to provide precise, instant property valuations.",
             "signal": "Q9 aggregation · 1 industry blocks"
           },
           {
             "title": "Autonomous Vehicles, Robotaxis & Self-Driving Trucks (next gen)",
-            "description": "Selected 50 times in Q9 across all industries.",
+            "description": "Advanced sensor fusion and edge AI enable Level 4 autonomous driving—Waymo's robotaxi market alone could reach ~$10 trillion globally.",
             "signal": "Q9 aggregation · 1 industry blocks"
           }
         ]
@@ -4535,32 +4536,32 @@
         "topUseCases": [
           {
             "title": "Autonomous Software Development ('Vibe Coding')",
-            "description": "Selected 89 times in Q9 across all industries.",
+            "description": "AI agents write, test, debug, and deploy entire applications from natural language prompts, democratizing software creation and boosting developer productivity.",
             "signal": "Q9 aggregation · 1 industry blocks"
           },
           {
             "title": "Agentic Back-Office and Front Office",
-            "description": "Selected 84 times in Q9 across all industries.",
+            "description": "A workforce of AI agents handles regulatory reporting, KYC/AML checks, compliance workflows and front office.",
             "signal": "Q9 aggregation · 1 industry blocks"
           },
           {
             "title": "Generative Design & Material Modeling",
-            "description": "Selected 73 times in Q9 across all industries.",
+            "description": "GenAI optimizes physical part designs for weight and performance, compressing R&D cycles and democratizing complex engineering.",
             "signal": "Q9 aggregation · 2 industry blocks"
           },
           {
             "title": "Autonomous IT Operations (AIOps) & Agentic Service Desk",
-            "description": "Selected 69 times in Q9 across all industries.",
+            "description": "AI agents autonomously resolve IT support tickets, manage system failures, and optimize workflows without human intervention.",
             "signal": "Q9 aggregation · 1 industry blocks"
           },
           {
             "title": "Autonomous Financial Agents",
-            "description": "Selected 64 times in Q9 across all industries.",
+            "description": "Agentic AI systems will independently manage complex, multi-step workflows. Use cases include real-time liquidity rebalancing, executing trades within predefined risk parameters, and managing end-to-end loan origination from document collection to approval",
             "signal": "Q9 aggregation · 1 industry blocks"
           },
           {
             "title": "Accelerating Pharmaceutical R&D & Drug Discovery",
-            "description": "Selected 53 times in Q9 across all industries.",
+            "description": "GenAI optimizes trial designs, patient selection, and data analysis, rescuing drug discovery from the 'valley of death' by reducing failure rates.",
             "signal": "Q9 aggregation · 1 industry blocks"
           }
         ]
@@ -5603,32 +5604,32 @@
         "topUseCases": [
           {
             "title": "Digital Product Passports (DPPs)",
-            "description": "Selected 33 times in Q9 across all industries.",
+            "description": "Manufactured products are tracked via blockchain throughout their lifecycle, enabling authenticity, resale circularity, and repair history.",
             "signal": "Q9 aggregation · 3 industry blocks"
           },
           {
             "title": "Corporate Stablecoins for Treasury & Settlements",
-            "description": "Selected 24 times in Q9 across all industries.",
+            "description": "Enterprises use fiat-backed stablecoins for B2B payments and cross-border treasury, replacing 3-7 day settlement windows with instant, 24/7 liquidity.",
             "signal": "Q9 aggregation · 1 industry blocks"
           },
           {
             "title": "Tokenization of Real-World Assets (RWAs)",
-            "description": "Selected 24 times in Q9 across all industries.",
+            "description": "Traditional financial assets (Treasuries, bonds, real estate) are tokenized for 24/7 trading, fractional ownership, and near-instant settlement. Market projected to grow to $30T.",
             "signal": "Q9 aggregation · 1 industry blocks"
           },
           {
             "title": "Supply Chain Traceability",
-            "description": "Selected 14 times in Q9 across all industries.",
+            "description": "Tracks parts from raw materials to assembly, improving accountability and preventing counterfeits.",
             "signal": "Q9 aggregation · 1 industry blocks"
           },
           {
             "title": "Atomic Settlement (Delivery versus Payment)",
-            "description": "Selected 13 times in Q9 across all industries.",
+            "description": "Blockchain simultaneously exchanges tokenized assets and digital cash, eliminating settlement risk and moving markets toward T+0 settlement.",
             "signal": "Q9 aggregation · 1 industry blocks"
           },
           {
             "title": "Peer-to-Peer (P2P) Energy Trading",
-            "description": "Selected 13 times in Q9 across all industries.",
+            "description": "Blockchain serves as the distributed trust layer for decentralized energy markets, allowing consumers, commercial buildings, and DER owners to directly buy and sell excess electricity (e.g., from rooftop solar) without relying exclusively on a central utility",
             "signal": "Q9 aggregation · 1 industry blocks"
           }
         ]
@@ -6935,32 +6936,32 @@
         "topUseCases": [
           {
             "title": "Humanoid & Industrial Robots in Auto Manufacturing",
-            "description": "Selected 41 times in Q9 across all industries.",
+            "description": "Humanoid robots and robotic arms perform assembly, mechanical repair, and quality checks on factory floors, driving toward 'lights-out' manufacturing.",
             "signal": "Q9 aggregation · 1 industry blocks"
           },
           {
             "title": "Humanoid Robots on Factory Assembly Lines",
-            "description": "Selected 37 times in Q9 across all industries.",
+            "description": "AI-powered humanoids (Optimus, Apollo) handle heavy pick-and-place and repetitive assembly, potentially cutting factory operating costs.",
             "signal": "Q9 aggregation · 1 industry blocks"
           },
           {
             "title": "3D Printing for Complex Industrial Parts",
-            "description": "Selected 27 times in Q9 across all industries.",
+            "description": "Robotic additive manufacturing produces complex parts (nuclear filters, aerospace components) on demand.",
             "signal": "Q9 aggregation · 1 industry blocks"
           },
           {
             "title": "Operating Robotaxis & Autonomous Vehicle Fleets",
-            "description": "Selected 25 times in Q9 across all industries.",
+            "description": "Fully autonomous Level 4 vehicles (Waymo, Zoox) provide commercial ride-hailing services.",
             "signal": "Q9 aggregation · 1 industry blocks"
           },
           {
             "title": "Autonomous IT operations",
-            "description": "Selected 23 times in Q9 across all industries.",
+            "description": "Agents detect incidents, correlate signals, identify root cause, execute runbooks (restart, rollback, re-route), and open/close tickets with an audit trail.",
             "signal": "Q9 aggregation · 1 industry blocks"
           },
           {
             "title": "Warehouse Fulfillment & Palletization (Cobots)",
-            "description": "Selected 23 times in Q9 across all industries.",
+            "description": "AI-driven cobots and humanoid robots handle pick-and-place and palletization at scale, enabling same-day delivery by shortening 'click to ship' times.",
             "signal": "Q9 aggregation · 1 industry blocks"
           }
         ]
@@ -7739,32 +7740,32 @@
         "topUseCases": [
           {
             "title": "Portfolio Optimization & Complex Financial Simulations",
-            "description": "Selected 15 times in Q9 across all industries.",
+            "description": "Quantum processors run Monte Carlo simulations and portfolio optimizations in seconds instead of days, enabling near-instant market reactions.",
             "signal": "Q9 aggregation · 1 industry blocks"
           },
           {
             "title": "Accelerating Drug Discovery via Molecular Simulation",
-            "description": "Selected 13 times in Q9 across all industries.",
+            "description": "Quantum computers simulate molecular interactions impossible for classical systems, shifting drug discovery from a 'flashlight' to a 'lantern' approach.",
             "signal": "Q9 aggregation · 1 industry blocks"
           },
           {
             "title": "Radically Improved Risk Modeling",
-            "description": "Selected 13 times in Q9 across all industries.",
+            "description": "Quantum computing enables granular, real-time risk modeling for insurers and banks, replacing historical 'rearview mirror' analysis with precise predictions.",
             "signal": "Q9 aggregation · 1 industry blocks"
           },
           {
             "title": "Quantum Machine Learning (QML) & AI Acceleration",
-            "description": "Selected 12 times in Q9 across all industries.",
+            "description": "Quantum processors accelerate AI model training and optimization, reducing energy consumption for complex tasks that overwhelm classical hardware.",
             "signal": "Q9 aggregation · 1 industry blocks"
           },
           {
             "title": "Advanced Materials for Energy Storage",
-            "description": "Selected 10 times in Q9 across all industries.",
+            "description": "Quantum computers simulate molecular structures to design next-gen battery chemistries, unlocking the storage needed for renewable energy.",
             "signal": "Q9 aggregation · 1 industry blocks"
           },
           {
             "title": "Advanced Material Simulations",
-            "description": "Selected 9 times in Q9 across all industries.",
+            "description": "Quantum computers simulate molecular structures to discover new industrial materials, replacing slow physical trial-and-error R&D.",
             "signal": "Q9 aggregation · 1 industry blocks"
           }
         ]
@@ -8288,32 +8289,32 @@
         "topUseCases": [
           {
             "title": "Predictive Maintenance (next-gen)",
-            "description": "",
+            "description": "ML models analyze sensor data from turbines and inverters to predict failures before they occur, reducing costly unplanned downtime.",
             "signal": "Descriptive AI"
           },
           {
             "title": "Smart Grid & Virtual Power Plants",
-            "description": "",
+            "description": "AI forecasts renewable output and orchestrates batteries/EVs to balance grids, enabling consumers to sell energy back as 'prosumers'.",
             "signal": "Descriptive AI"
           },
           {
             "title": "Predictive Renewable Energy Trading",
-            "description": "",
+            "description": "Agents predict wind/solar surges and instantly sell excess power on spot markets, eliminating human trading lag.",
             "signal": "Agentic & GenAI"
           },
           {
             "title": "Value Chain Optimization (VCO)",
-            "description": "",
+            "description": "AI agents dynamically adjust refinery configurations and trading decisions in real time, breaking down silos between operations and trading desks.",
             "signal": "Agentic & GenAI"
           },
           {
             "title": "Smart Nuclear Diagnostics",
-            "description": "",
+            "description": "GenAI and LLMs empower nuclear plant operators with complex modeling and real-time diagnostics, boosting safety and uptime amid the nuclear renaissance.",
             "signal": "Agentic & GenAI"
           },
           {
             "title": "Offshore and Extreme Environment Inspection",
-            "description": "",
+            "description": "Autonomous drones equipped with computer vision and thermography are deployed for Beyond Visual Line of Sight (BVLOS) inspections of offshore wind turbines. They can identify surface damages and subsurface fractures on blades while the turbine is still rotating.",
             "signal": "Robotics & Automation"
           }
         ]
@@ -8730,32 +8731,32 @@
         "topUseCases": [
           {
             "title": "Accelerating Advanced Materials Discovery",
-            "description": "",
+            "description": "ML rapidly simulates molecular structures to discover bio-based construction materials and low-carbon alternatives, compressing R&D cycles.",
             "signal": "Descriptive AI"
           },
           {
             "title": "Accelerating R&D via LLM-Guided Discovery",
-            "description": "",
+            "description": "LLMs simulate unique molecular structures to accelerate discovery of novel, low-carbon materials for construction and electronics.",
             "signal": "Agentic & GenAI"
           },
           {
             "title": "Automating Manual Industrial Processes",
-            "description": "",
+            "description": "Foundation AI models (like RLWRLD) enable robots to mimic human expertise for material handling, sorting, and processing tasks.",
             "signal": "Robotics & Automation"
           },
           {
             "title": "\"Agentic Labs\" for Advanced Materials & Chemicals",
-            "description": "",
+            "description": "Systems like FORUM-AI act as full-stack \"AI scientists.\" Rather than just answering queries, these agentic models generate hypotheses for new chemical formulations, direct robotic synthesis systems (like the A-Lab) to execute experiments, and analyze the resulting data in a continuous, autonomous loop to discover new battery materials and catalysts",
             "signal": "Agentic & GenAI"
           },
           {
             "title": "Computer Vision for Sorting & Quality",
-            "description": "",
+            "description": "In plastics recycling, AI-driven vision systems achieve maximum accuracy in identifying and separating complex polymer types and contaminants on conveyor belts. In mining, computer vision is used for mineral sorting, fragmentation analysis, and monitoring the structural integrity of mine walls.",
             "signal": "Descriptive AI"
           },
           {
             "title": "Autonomous Extractive Fleets",
-            "description": "",
+            "description": "Mining operations are scaling up zero-emission, battery-electric autonomous haulage trucks and Load-Haul-Dump (LHD) machines, allowing for 24/7 \"lights-out\" extraction even in GPS-denied underground environments",
             "signal": "Robotics & Automation"
           }
         ]
@@ -9402,22 +9403,22 @@
         "topUseCases": [
           {
             "title": "Predictive Maintenance (next-gen)",
-            "description": "",
+            "description": "Analyze sensor data to a new level (very weak signals, deep layers of data) to predict mechanical issues before machinery fails.",
             "signal": "Descriptive AI"
           },
           {
             "title": "Real-Time Defect Detection (Computer Vision)",
-            "description": "",
+            "description": "Cameras with AI pattern recognition detect product defects on assembly lines in real time.",
             "signal": "Descriptive AI"
           },
           {
             "title": "Generative Design & Material Modeling",
-            "description": "",
+            "description": "GenAI optimizes physical part designs for weight and performance, compressing R&D cycles and democratizing complex engineering.",
             "signal": "Agentic & GenAI"
           },
           {
             "title": "Humanoid Robots on Factory Assembly Lines",
-            "description": "",
+            "description": "AI-powered humanoids (Optimus, Apollo) handle heavy pick-and-place and repetitive assembly, potentially cutting factory operating costs.",
             "signal": "Robotics & Automation"
           },
           {
@@ -9427,7 +9428,7 @@
           },
           {
             "title": "3D Printing for Complex Industrial Parts",
-            "description": "",
+            "description": "Robotic additive manufacturing produces complex parts (nuclear filters, aerospace components) on demand.",
             "signal": "Robotics & Automation"
           }
         ]
@@ -10304,32 +10305,32 @@
         "topUseCases": [
           {
             "title": "Demand Prediction & Inventory Optimization",
-            "description": "",
+            "description": "AI analyzes sales data to forecast demand in real time, reducing costly overstock and stockouts across global CPG supply chains.",
             "signal": "Descriptive AI"
           },
           {
             "title": "Personalized Recommendations & Digital Clienteling",
-            "description": "",
+            "description": "AI uses browsing and purchase history to deliver individualized product recommendations, replacing generic catalogs with 1:1 digital journeys.",
             "signal": "Descriptive AI"
           },
           {
             "title": "Conversational Product Search",
-            "description": "",
+            "description": "LLM-powered chatbots deliver natural-language product search, virtual styling, and gift ideation, driving higher conversion than keyword search.",
             "signal": "Agentic & GenAI"
           },
           {
             "title": "Dynamic Pricing & Targeted Promotions",
-            "description": "",
+            "description": "AI optimizes prices and promotions by channel, store, and product in real time, protecting margins and driving a lift in conversion rates.",
             "signal": "Descriptive AI"
           },
           {
             "title": "Autonomous Shopping Agents",
-            "description": "",
+            "description": "AI agents autonomously compare, negotiate, and purchase products on consumers' behalf.",
             "signal": "Agentic & GenAI"
           },
           {
             "title": "Warehouse Fulfillment & Palletization (Cobots)",
-            "description": "",
+            "description": "AI-driven cobots and humanoid robots handle pick-and-place and palletization at scale, enabling same-day delivery by shortening 'click to ship' times.",
             "signal": "Robotics & Automation"
           }
         ]
@@ -11306,32 +11307,32 @@
         "topUseCases": [
           {
             "title": "Accelerating Pharmaceutical R&D & Drug Discovery",
-            "description": "",
+            "description": "GenAI optimizes trial designs, patient selection, and data analysis, rescuing drug discovery from the 'valley of death' by reducing failure rates.",
             "signal": "Agentic & GenAI"
           },
           {
             "title": "Medical Image Analysis (Radiology & Pathology)",
-            "description": "",
+            "description": "Computer vision analyzes radiology scans and retinal screens, drastically reducing patient wait times while maintaining or exceeding human accuracy.",
             "signal": "Descriptive AI"
           },
           {
             "title": "Preventive care enabled by AI analyzing weak signals in data",
-            "description": "",
+            "description": "Predictive AI analyzes patient populations to proactively identify high-risk individuals before they show symptoms, shifting to preventative care.",
             "signal": "Descriptive AI"
           },
           {
             "title": "Clinical Decision Support & Autonomous Diagnosis",
-            "description": "",
+            "description": "AI agents that continuously monitor patient vitals, lab results, and imaging — flagging anomalies, suggesting diagnoses, and escalating to physicians autonomously.",
             "signal": "Agentic & GenAI"
           },
           {
             "title": "Digital Twins for drug testing, vaccines…",
-            "description": "",
+            "description": "Simulating organs, patients, or populations with digital twin for drug testing, vaccine developement, treatment planning…",
             "signal": "Descriptive AI"
           },
           {
             "title": "Frontline Health Advisor & Patient Navigation",
-            "description": "",
+            "description": "GenAI enables patients to describe symptoms naturally and be guided to the right care setting, addressing the 1B+ daily health queries on Google.",
             "signal": "Agentic & GenAI"
           }
         ]
@@ -12518,32 +12519,32 @@
         "topUseCases": [
           {
             "title": "Agentic Back-Office and Front Office",
-            "description": "",
+            "description": "A workforce of AI agents handles regulatory reporting, KYC/AML checks, compliance workflows and front office.",
             "signal": "Agentic & GenAI"
           },
           {
             "title": "Autonomous Financial Agents",
-            "description": "",
+            "description": "Agentic AI systems will independently manage complex, multi-step workflows. Use cases include real-time liquidity rebalancing, executing trades within predefined risk parameters, and managing end-to-end loan origination from document collection to approval",
             "signal": "Agentic & GenAI"
           },
           {
             "title": "Fraud Detection & AML Compliance",
-            "description": "",
+            "description": "AI detects transaction anomalies and flags money laundering in real time, forming a critical defensive layer across banking and payments.",
             "signal": "Descriptive AI"
           },
           {
             "title": "Security Selection & Insurance Risk Underwriting",
-            "description": "",
+            "description": "Predictive models analyze vast datasets to select securities and price insurance risk with greater precision, shifting from historical to real-time assessment.",
             "signal": "Descriptive AI"
           },
           {
             "title": "Hyper-Personalized Wealth Management ('Cyborg' Advisors)",
-            "description": "",
+            "description": "AI generates bespoke investment ideas and personalized outreach at scale, enabling advisors to serve more clients with higher-quality insights.",
             "signal": "Agentic & GenAI"
           },
           {
             "title": "Corporate Stablecoins for Treasury & Settlements",
-            "description": "",
+            "description": "Enterprises use fiat-backed stablecoins for B2B payments and cross-border treasury, replacing 3-7 day settlement windows with instant, 24/7 liquidity.",
             "signal": "Blockchain & Decentralized Systems"
           }
         ]
@@ -14520,32 +14521,32 @@
         "topUseCases": [
           {
             "title": "Autonomous Software Development ('Vibe Coding')",
-            "description": "",
+            "description": "AI agents write, test, debug, and deploy entire applications from natural language prompts, democratizing software creation and boosting developer productivity.",
             "signal": "Agentic & GenAI"
           },
           {
             "title": "Autonomous IT Operations (AIOps) & Agentic Service Desk",
-            "description": "",
+            "description": "AI agents autonomously resolve IT support tickets, manage system failures, and optimize workflows without human intervention.",
             "signal": "Agentic & GenAI"
           },
           {
             "title": "Automated Security Operations & Predictive Cybersecurity",
-            "description": "",
+            "description": "ML detects network intrusions, blocks malicious bots, and automates threat response in real time, shifting security from reactive to preemptive.",
             "signal": "Descriptive AI"
           },
           {
             "title": "Predictive Maintenance for IT Infrastructure (next-gen)",
-            "description": "",
+            "description": "Sensor and telemetry data predicts hardware failures (servers, network devices) before they occur, minimizing downtime and emergency repair costs.",
             "signal": "Descriptive AI"
           },
           {
             "title": "Autonomous IT operations",
-            "description": "",
+            "description": "Agents detect incidents, correlate signals, identify root cause, execute runbooks (restart, rollback, re-route), and open/close tickets with an audit trail.",
             "signal": "Robotics & Automation"
           },
           {
             "title": "Cloud Spend Optimization (FinOps)",
-            "description": "",
+            "description": "Advanced analytics dynamically allocate computing resources and detect waste, reducing cloud bills and carbon footprints for AI-intensive operations.",
             "signal": "Descriptive AI"
           }
         ]
@@ -22581,32 +22582,32 @@
         "topUseCases": [
           {
             "title": "Generative Video, Storyboarding, & VFX Production",
-            "description": "",
+            "description": "GenAI automates pre-visualization, background art, and AI dubbing for film, TV, videos.",
             "signal": "Agentic & GenAI"
           },
           {
             "title": "Hyper-Personalized Advertising & Dynamic Creative Optimization",
-            "description": "",
+            "description": "Traditional ML and predictive analytics are shifting mass marketing to \"mass one-to-one\" personalization.",
             "signal": "Descriptive AI"
           },
           {
             "title": "Data-Driven Editorial Decisions",
-            "description": "",
+            "description": "In publishing, descriptive analytics identify trending topics, forecast content demand, and optimize pricing. This allows editorial teams to transition toward predictive publishing models that dictate manuscript selection and prioritization",
             "signal": "Descriptive AI"
           },
           {
             "title": "Telecom Network Optimization & Predictive Maintenance (next-gen)",
-            "description": "",
+            "description": "AI performs root-cause analysis and capacity planning to create self-healing networks, drastically reducing OPEX and preventing outages.",
             "signal": "Descriptive AI"
           },
           {
             "title": "Zero-Touch Telecom Networks",
-            "description": "",
+            "description": "Telcos are transitioning to Level 4/5 autonomous networks. Agentic AI will act as a \"reasoning layer\" capable of self-configuring, self-healing, and self-optimizing network operations to reduce outages and energy consumption with minimal human oversight",
             "signal": "Agentic & GenAI"
           },
           {
             "title": "Digital Provenance and Copyright Defense",
-            "description": "",
+            "description": "With the explosion of \"AI slop\" and synthetic media, the industry is turning to blockchain to permanently timestamp and verify the origin of human-made content and journalistic assets. This creates an immutable audit trail to prove copyright ownership and combat deepfakesks and digital art directly to fans, bypassing record labels and streaming platforms.",
             "signal": "Blockchain & Decentralized Systems"
           }
         ]
@@ -22982,32 +22983,32 @@
         "topUseCases": [
           {
             "title": "Predictive Maintenance for Building Assets",
-            "description": "",
+            "description": "IoT sensors and AI detect anomalies in HVAC, elevators, and building systems before failures occur, shifting property management from reactive to predictive.",
             "signal": "Descriptive AI"
           },
           {
             "title": "Property Valuation Models",
-            "description": "",
+            "description": "Algorithms analyze extensive datasets—including historical sales, location, and structural features—to provide precise, instant property valuations.",
             "signal": "Descriptive AI"
           },
           {
             "title": "Strategic Investment Analysis & Sub-Market Identification",
-            "description": "",
+            "description": "Deep learning analyzes demographics, foot traffic, and economic data to identify emerging niche sub-markets (data centers, student housing) before they go mainstream.",
             "signal": "Descriptive AI"
           },
           {
             "title": "AI-Powered Digital Twins for Design & Construction",
-            "description": "",
+            "description": "Physical AI platforms simulate entire buildings before construction begins, preventing costly errors.",
             "signal": "Agentic & GenAI"
           },
           {
             "title": "Autonomous Leasing Agents",
-            "description": "",
+            "description": "GenAI chatbots handle leasing inquiries 24/7, schedule self-guided tours, and facilitate digital move-ins, effectively automating the tenant acquisition process.",
             "signal": "Agentic & GenAI"
           },
           {
             "title": "GenAI for Acquisition",
-            "description": "",
+            "description": "When potential acquisitions are considered, GenAI can enable automation and intelligent analytics for finding, buying and operating assets. GenAI can also enhance portfolio planning, scenario planning, contracting and financial analysis.",
             "signal": "Agentic & GenAI"
           }
         ]
@@ -23454,32 +23455,32 @@
         "topUseCases": [
           {
             "title": "Autonomous Vehicles, Robotaxis & Self-Driving Trucks (next gen)",
-            "description": "",
+            "description": "Advanced sensor fusion and edge AI enable Level 4 autonomous driving—Waymo's robotaxi market alone could reach ~$10 trillion globally.",
             "signal": "Descriptive AI"
           },
           {
             "title": "Predictive Quality and Preventative Maintenance",
-            "description": "",
+            "description": "By correlating high-resolution inspection results with production signals—such as torque curves, vibration patterns, and temperature anomalies—assembly lines can correct process conditions before a defect is generated.",
             "signal": "Descriptive AI"
           },
           {
             "title": "Humanoid & Industrial Robots in Auto Manufacturing",
-            "description": "",
+            "description": "Humanoid robots and robotic arms perform assembly, mechanical repair, and quality checks on factory floors, driving toward 'lights-out' manufacturing.",
             "signal": "Robotics & Automation"
           },
           {
             "title": "Generative Design & Material Modeling",
-            "description": "",
+            "description": "GenAI optimizes physical part designs for weight and performance, compressing R&D cycles and democratizing complex engineering.",
             "signal": "Agentic & GenAI"
           },
           {
             "title": "Smart Traffic Management",
-            "description": "",
+            "description": "Transportation departments are harnessing GPS data, traffic signal timings, and sensor feeds using AI algorithms to build predictive capabilities",
             "signal": "Descriptive AI"
           },
           {
             "title": "Operating Robotaxis & Autonomous Vehicle Fleets",
-            "description": "",
+            "description": "Fully autonomous Level 4 vehicles (Waymo, Zoox) provide commercial ride-hailing services.",
             "signal": "Robotics & Automation"
           }
         ]
